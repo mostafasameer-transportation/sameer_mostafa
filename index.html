@@ -366,12 +366,16 @@
 
 
   /* ---------- SCHOLAR METRICS ---------- */
-  .metrics-grid{
-    display:grid;
-    grid-template-columns:1.2fr .8fr;
-    gap:18px;
-  }
-  @media (max-width:760px){ .metrics-grid{ grid-template-columns:1fr; } }
+  .metrics-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:18px;align-items:start}
+  .metrics-grid>.metric-panel{min-width:0;align-self:start;height:fit-content}
+  .metrics-grid .bars{align-content:start}
+  .metrics-grid .reference-list{grid-template-columns:repeat(2,minmax(0,1fr));align-content:start;gap:10px}
+  .metrics-grid .ref-card{min-width:0;padding:12px;gap:7px}
+  .metrics-grid .ref-title{overflow-wrap:anywhere;font-size:13.5px}
+  .metrics-grid .ref-meta{font-size:12px;overflow-wrap:anywhere}
+  .metrics-grid .ref-source{font-size:11px;overflow-wrap:anywhere}
+  @media(max-width:980px){.metrics-grid{grid-template-columns:1fr}.metrics-grid .reference-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(max-width:600px){.metrics-grid .reference-list{grid-template-columns:1fr}}
   .metric-panel{
     border:1px solid var(--rule);
     border-radius:18px;
@@ -867,33 +871,33 @@
 
   /* ---------- LinkedIn recommendation screenshots ---------- */
   .recommendation-gallery{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
-    gap:18px;
-    margin-top:18px;
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:14px;align-items:start;
   }
+  .recommendation-gallery:not(.is-expanded) .rec-shot:nth-child(n+7){display:none}
   .rec-shot{
-    appearance:none;
-    border:1px solid rgba(124,183,255,0.18);
-    background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-    border-radius:18px;
-    padding:0;
-    overflow:hidden;
-    box-shadow:0 14px 30px rgba(0,0,0,0.34);
-    cursor:zoom-in;
-    transform:translateY(0);
-    transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+    appearance:none;display:flex;align-items:center;justify-content:center;width:100%;min-width:0;aspect-ratio:1.58;
+    border:1px solid rgba(124,183,255,0.20);background:linear-gradient(145deg,rgba(18,29,44,.98),rgba(8,11,17,.98));
+    border-radius:14px;padding:7px;overflow:hidden;box-shadow:0 8px 22px rgba(0,0,0,0.24);cursor:zoom-in;
+    transform:translateY(0);transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;
   }
-  .rec-shot:hover{
-    transform:translateY(-4px);
-    border-color:rgba(102,242,222,0.35);
-    box-shadow:0 20px 45px rgba(0,0,0,0.44);
+  .rec-shot:hover{transform:translateY(-3px);border-color:rgba(102,242,222,0.5);box-shadow:0 13px 28px rgba(0,0,0,0.34)}
+  .rec-shot img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;border-radius:8px}
+  .rec-shot:focus-visible{outline:2px solid #66f2de;outline-offset:3px}
+  .recommendation-intro{max-width:76ch;margin-bottom:10px}
+  .recommendation-archive-bar{
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:16px;padding:14px 16px;
+    border:1px solid var(--rule);border-radius:14px;background:linear-gradient(120deg,rgba(124,183,255,.07),rgba(102,242,222,.035));
   }
-  .rec-shot img{
-    width:100%;
-    height:auto;
-    display:block;
+  .recommendation-archive-note{font-size:12.5px;line-height:1.5;color:var(--ink-soft)}
+  .recommendation-toggle{
+    appearance:none;border:1px solid rgba(102,242,222,.35);border-radius:999px;padding:9px 15px;color:var(--ink);
+    background:rgba(102,242,222,.08);font:600 12px 'Inter',sans-serif;cursor:pointer;
+    transition:background .18s ease,border-color .18s ease,transform .18s ease;
   }
+  .recommendation-toggle:hover{background:rgba(102,242,222,.15);border-color:var(--pulse);transform:translateY(-1px)}
+  .recommendation-toggle:focus-visible{outline:2px solid var(--pulse);outline-offset:3px}
+  @media(max-width:980px){.recommendation-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(max-width:560px){.recommendation-gallery{grid-template-columns:1fr;gap:12px}.rec-shot{aspect-ratio:1.5}.recommendation-archive-bar{align-items:flex-start}.recommendation-toggle{width:100%}}
   .rec-shot:focus-visible{
     outline:2px solid #66f2de;
     outline-offset:3px;
@@ -1367,6 +1371,7 @@
       <svg class="route" width="22" height="12" viewBox="0 0 22 12"><line x1="0" y1="6" x2="16" y2="6" stroke="#1356C9" stroke-width="2"/><circle cx="19" cy="6" r="3" fill="#1356C9"/></svg>
       <span class="section-num">02A</span><h2>LinkedIn Recommendations</h2>
     </div>
+    <p class="section-intro recommendation-intro">A curated preview of professional recommendations. Select any image to read it at full size, or open the complete archive below.</p>
     <div class="recommendation-gallery" id="recommendationGallery">
       <button class="rec-shot" type="button" data-full="assets/profile-image-02.jpg" aria-label="Open LinkedIn recommendations page 1">
         <img src="assets/profile-image-02.jpg" alt="LinkedIn recommendations page 1" loading="lazy">
@@ -1435,7 +1440,11 @@
         <img src="assets/profile-image-23.jpg" alt="LinkedIn recommendations page 22" loading="lazy">
       </button>
 </div>
-  </section>
+      <div class="recommendation-archive-bar">
+      <div class="recommendation-archive-note"><strong>Recommendation archive</strong><br>6 featured pages shown · 22 screenshot pages available</div>
+      <button class="recommendation-toggle" id="recommendationToggle" type="button" aria-expanded="false" aria-controls="recommendationGallery">View all 22 recommendation pages</button>
+    </div>
+    </section>
 
 
   <!-- PUBLICATIONS -->
@@ -2616,5 +2625,27 @@
   <img id="modalImg" alt="LinkedIn recommendation preview">
 </div>
 
+<script>
+(function(){
+  const gallery=document.getElementById('recommendationGallery');
+  const toggle=document.getElementById('recommendationToggle');
+  if(!gallery||!toggle)return;
+  const total=gallery.querySelectorAll('.rec-shot').length;
+  const featured=Math.min(6,total);
+  function update(){
+    const expanded=gallery.classList.contains('is-expanded');
+    toggle.setAttribute('aria-expanded',String(expanded));
+    toggle.textContent=expanded?'Show featured recommendations':'View all '+total+' recommendation pages';
+    const note=toggle.parentElement.querySelector('.recommendation-archive-note');
+    if(note)note.innerHTML='<strong>Recommendation archive</strong><br>'+(expanded?'Showing all '+total+' screenshot pages':featured+' featured pages shown · '+total+' screenshot pages available');
+  }
+  toggle.addEventListener('click',function(){
+    gallery.classList.toggle('is-expanded');
+    update();
+    if(!gallery.classList.contains('is-expanded'))gallery.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+  update();
+})();
+</script>
 </body>
 </html>
