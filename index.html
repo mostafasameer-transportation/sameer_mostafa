@@ -1040,6 +1040,139 @@
   .rec-shot:hover img { transform:scale(1.04); box-shadow:0 10px 28px rgba(0,0,0,0.5); }
   .section-head h2 { transition:letter-spacing .3s; }
   .section-head:hover h2 { letter-spacing:0.06em; }
+
+  /* ---------- responsive polish for phones and small tablets ---------- */
+  .nav-toggle{display:none}
+  .abstract-picture{display:block;width:100%;line-height:0}
+  .animated-visual picture,.animated-visual img{display:block;width:100%;max-width:100%;height:auto}
+  .paper .ptag{justify-self:start;min-width:78px;width:max-content;padding:4px 10px}
+  .bar-top>div:first-child{min-width:0;overflow-wrap:anywhere}
+  .bar-top>div:last-child{flex:0 0 auto;text-align:right}
+  .hero h1,.paper .title,.section-head h2,.footer-grid,.copyline{overflow-wrap:anywhere}
+  @media(max-width:760px){
+    html{scroll-padding-top:72px}
+    body{font-size:15px;overflow-x:hidden}
+    .wrap{width:100%;padding-left:22px;padding-right:22px}
+    #navbar .nav-inner{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px 12px;padding:10px 18px}
+    .nav-name{font-size:15.5px;min-width:0}
+    .nav-toggle{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:8px 11px;border:1px solid var(--rule-strong);border-radius:11px;background:rgba(255,255,255,.04);color:var(--ink);font:600 12px 'Inter',sans-serif;cursor:pointer}
+    .nav-toggle:focus-visible{outline:2px solid var(--pulse);outline-offset:3px}
+    .nav-toggle-mark{display:flex;flex-direction:column;gap:4px;width:16px}
+    .nav-toggle-mark i{display:block;width:16px;height:2px;border-radius:2px;background:currentColor}
+    .nav-links{grid-column:1/-1;display:none;flex-direction:column;flex-wrap:nowrap;gap:0;width:100%;padding-top:6px;border-top:1px solid var(--rule)}
+    .nav-links.is-open{display:flex}
+    .nav-links a{display:flex;align-items:center;min-height:42px;padding:9px 2px;border-bottom:1px solid var(--rule);font-size:14px}
+    .nav-links a:last-child{border-bottom:0}
+    .hero{padding-top:38px}
+    .hero-inner{padding-bottom:26px}
+    .hero-grid{grid-template-columns:minmax(0,1fr);gap:16px;text-align:left}
+    .hero-photo{width:116px;height:116px;margin:0 auto 2px}
+    .eyebrow{font-size:10.5px;line-height:1.5;letter-spacing:.045em;align-items:flex-start}
+    .hero h1{font-size:clamp(2rem,8vw,2.35rem);line-height:1.12}
+    .hero .role{font-size:.96rem;line-height:1.55}
+    .hero .bio{font-size:14px;line-height:1.7;margin-top:12px}
+    .linkrow{gap:8px;margin-top:16px}
+    .linkrow a{font-size:12.5px;padding:7px 12px;min-height:38px;display:inline-flex;align-items:center}
+    .copy-btn{display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:6px 8px}
+    .stats.wrap{max-width:calc(100% - 36px)!important;padding-left:0!important;padding-right:0!important;margin-top:26px!important}
+    .stat{padding:14px 12px}
+    .stat .num{font-size:1.45rem}
+    .stat .lbl{font-size:11.5px;line-height:1.45}
+    section{padding:42px 0;scroll-margin-top:72px}
+    .section-head{gap:9px;margin-bottom:18px;align-items:flex-start}
+    .section-head svg.route{flex:0 0 18px;width:18px;margin-top:8px}
+    .section-num{font-size:10.5px;flex:0 0 auto;padding-top:2px}
+    .section-head h2{font-size:clamp(1.22rem,4.7vw,1.45rem);line-height:1.3}
+    .section-intro{font-size:14px;line-height:1.65;margin:-6px 0 20px}
+    .net-intro{font-size:14px;margin-bottom:18px}
+    .metric-panel{padding:15px;border-radius:14px}
+    .metric-head{flex-wrap:wrap;gap:8px;margin-bottom:12px}
+    .metric-head h3{font-size:15px}
+    .metric-note{font-size:12.5px;line-height:1.55}
+    .summary-visual{min-height:175px;margin:10px 0 14px}
+    .summary-value{font-size:44px}
+    .tiny-grid{gap:9px}
+    .tiny-card{padding:11px;border-radius:12px}
+    .tiny-card .v{font-size:19px;overflow-wrap:anywhere}
+    .tiny-card .s{font-size:11.5px;line-height:1.45}
+    .metrics-grid{gap:14px}
+    .metrics-grid .reference-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .metrics-grid .ref-card{padding:11px}
+    .metrics-grid .ref-title{font-size:12.5px;line-height:1.45}
+    .metrics-grid .ref-meta,.metrics-grid .ref-source{font-size:11px;line-height:1.45}
+    .bars{gap:10px}
+    .bar-top{font-size:12px;align-items:flex-start;flex-wrap:wrap}
+    .bar-label{line-height:1.45}
+    .paper{gap:8px;padding:14px 0}
+    .paper .title{font-size:14.5px;line-height:1.5}
+    .paper .authors,.paper .venue{font-size:12.5px;line-height:1.55}
+    .paper .desc{font-size:13px;line-height:1.65}
+    .pub-filters{gap:7px;margin-bottom:20px}
+    .pf{font-size:11px;padding:7px 10px}
+    .recommendation-intro{margin-bottom:12px}
+    .recommendation-gallery{gap:11px;margin-top:10px}
+    .rec-shot{border-radius:12px;padding:6px;aspect-ratio:1.5}
+    .rec-shot img{object-fit:contain}
+    .recommendation-archive-bar{margin-top:12px;padding:13px;border-radius:12px}
+    .recommendation-archive-note{font-size:12px}
+    .recommendation-toggle{min-height:42px}
+    .network-grid{grid-template-columns:minmax(0,1fr);gap:14px}
+    .network-panel,.snapshot-panel{padding:14px}
+    #collabSvg{min-height:0}
+    .net-legend{padding:10px 8px 12px;gap:10px;font-size:11px}
+    .spider-shell{padding:6px;border-radius:16px}
+    .spider-stats{gap:8px}
+    .mini-stat{padding:12px}
+    .mini-v{font-size:1.6rem}
+    .mini-s{font-size:11.5px;line-height:1.4}
+    .erow{grid-template-columns:minmax(0,1fr);gap:4px;padding:14px 0}
+    .erow .what{font-size:14.5px}
+    .erow .where,.erow .detail{font-size:12.5px;line-height:1.55}
+    .erow .when{text-align:left;font-size:11.5px}
+    .skillblock{margin-bottom:18px}
+    .chip-row{gap:7px}
+    .chip{font-size:12px;padding:6px 10px}
+    .proj-grid{grid-template-columns:minmax(0,1fr);gap:12px}
+    .proj-card{padding:15px}
+    .photo-mosaic{gap:10px}
+    .mosaic-caption{font-size:11px;line-height:1.5}
+    .vol-grid{grid-template-columns:minmax(0,1fr);gap:13px}
+    .vol-body{padding:14px}
+    .vol-desc{font-size:13px;line-height:1.6}
+    .poster-wrap{animation:none}
+    .img-modal{padding:10px}
+    .img-modal img{max-width:96vw;max-height:84vh;border-radius:12px}
+    .img-modal .modal-close{top:8px;right:8px}
+    footer{padding:28px 0 38px}
+    .footer-grid{flex-direction:column;gap:15px}
+    footer .addr{font-size:13px}
+    footer .flinks{gap:8px}
+    .copyline{font-size:10.5px;line-height:1.6;margin-top:24px}
+  }
+  @media(max-width:600px){
+    .metrics-grid .reference-list{grid-template-columns:minmax(0,1fr)}
+    .metrics-grid .metric-head{align-items:flex-start}
+    .metrics-grid .metric-head .badge{white-space:normal}
+    .recommendation-gallery:not(.is-expanded) .rec-shot:nth-child(n+4){display:none}
+    .recommendation-toggle{width:100%}
+    .visual-caption{font-size:11px;line-height:1.55;padding:9px 10px}
+    .animated-visual{margin-left:0;margin-right:0}
+    .animated-visual img{min-height:0!important}
+  }
+  @media(max-width:380px){
+    .wrap{padding-left:15px;padding-right:15px}
+    .stats.wrap{max-width:calc(100% - 30px)!important}
+    .section-head{gap:7px}
+    .section-head h2{font-size:1.18rem}
+    .stat{padding:12px 9px}
+    .stat .lbl{font-size:10.5px}
+    .metric-panel{padding:12px}
+    .tiny-grid{grid-template-columns:1fr 1fr;gap:7px}
+    .tiny-card{padding:9px}
+    .tiny-card .v{font-size:17px}
+    .linkrow a{padding:7px 10px;font-size:12px}
+    .metrics-grid .ref-card{padding:10px}
+  }
 </style>
 </head>
 <body>
@@ -1049,6 +1182,7 @@
 <div id="navbar">
   <div class="nav-inner">
     <div class="nav-name"><span class="nav-dot"></span>Mostafa Sameer</div>
+    <button class="nav-toggle" id="navToggle" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="Open navigation menu"><span class="nav-toggle-mark" aria-hidden="true"><i></i><i></i><i></i></span><span class="nav-toggle-label">Menu</span></button>
     <nav class="nav-links" id="navLinks">
       <a href="#metrics" data-t="metrics">Scholar</a>
       <a href="#updates" data-t="updates">Updates</a>
@@ -1587,8 +1721,11 @@
         <div class="venue">IEEE Access, 2025</div>
         <div class="plink"><a href="https://doi.org/10.1109/ACCESS.2025.3620637" target="_blank" rel="noopener">DOI: 10.1109/ACCESS.2025.3620637 →</a> · <a href="https://www.researchgate.net/publication/396512434" target="_blank" rel="noopener">View on ResearchGate →</a> · <a href="assets/av-machine-learning-animated-abstract.svg" target="_blank" rel="noopener">Open animated SVG →</a></div>
         <figure class="visual-summary animated-visual" aria-label="Animated graphical abstract of machine learning research in autonomous vehicles">
-          <a class="animated-abstract-open" href="assets/av-machine-learning-animated-abstract.svg" target="_blank" rel="noopener" aria-label="Open animated graphical abstract in a new tab">
-            <img src="assets/av-machine-learning-animated-abstract.svg" alt="Animated graphical abstract: machine learning themes, challenges, and future directions in autonomous vehicles" loading="lazy" width="960" height="570" style="display:block;width:100%;height:auto;min-height:220px;background:#101b2a;" />
+          <a class="animated-abstract-open" href="assets/av-machine-learning-animated-abstract.svg" data-desktop-href="assets/av-machine-learning-animated-abstract.svg" data-mobile-href="assets/av-machine-learning-animated-abstract-mobile.svg" target="_blank" rel="noopener" aria-label="Open animated graphical abstract in a new tab">
+            <picture class="abstract-picture">
+              <source media="(max-width: 600px)" srcset="assets/av-machine-learning-animated-abstract-mobile.svg" />
+              <img src="assets/av-machine-learning-animated-abstract.svg" alt="Animated graphical abstract: machine learning themes, challenges, and future directions in autonomous vehicles" loading="lazy" style="display:block;width:100%;height:auto;min-height:220px;background:#101b2a;" />
+            </picture>
           </a>
           <figcaption class="visual-caption">Animated, portfolio-created visual abstract based on the review’s reported themes and research agenda. <a href="https://doi.org/10.1109/ACCESS.2025.3620637" target="_blank" rel="noopener">Read the IEEE Access paper.</a></figcaption>
         </figure>
@@ -1604,8 +1741,11 @@
         <div class="desc">A 301-paper corpus (2014–2024) screened with PRISMA and mapped with LDA topic modeling to surface where resilience research in Bangladesh is concentrated, and where it isn't.</div>
         <div class="plink"><a href="https://doi.org/10.1016/j.pdisas.2025.100486" target="_blank" rel="noopener">DOI: 10.1016/j.pdisas.2025.100486 →</a> · <a href="https://www.researchgate.net/publication/397649463" target="_blank" rel="noopener">View on ResearchGate →</a> · <a href="https://doi.org/10.5281/zenodo.17611749" target="_blank" rel="noopener">Data and code →</a> · <a href="assets/bangladesh-disaster-resilience-animated-abstract.svg" target="_blank" rel="noopener">Open animated SVG →</a></div>
         <figure class="visual-summary animated-visual" aria-label="Animated graphical abstract of disaster resilience research in Bangladesh">
-          <a class="animated-abstract-open" href="assets/bangladesh-disaster-resilience-animated-abstract.svg" target="_blank" rel="noopener" aria-label="Open animated graphical abstract in a new tab">
-            <img src="assets/bangladesh-disaster-resilience-animated-abstract.svg" alt="Animated graphical abstract: PRISMA screening, topic modeling, research gaps, and resilience integration framework in Bangladesh" loading="lazy" width="960" height="590" style="display:block;width:100%;height:auto;min-height:220px;background:#101b2a;" />
+          <a class="animated-abstract-open" href="assets/bangladesh-disaster-resilience-animated-abstract.svg" data-desktop-href="assets/bangladesh-disaster-resilience-animated-abstract.svg" data-mobile-href="assets/bangladesh-disaster-resilience-animated-abstract-mobile.svg" target="_blank" rel="noopener" aria-label="Open animated graphical abstract in a new tab">
+            <picture class="abstract-picture">
+              <source media="(max-width: 600px)" srcset="assets/bangladesh-disaster-resilience-animated-abstract-mobile.svg" />
+              <img src="assets/bangladesh-disaster-resilience-animated-abstract.svg" alt="Animated graphical abstract: PRISMA screening, topic modeling, research gaps, and resilience integration framework in Bangladesh" loading="lazy" style="display:block;width:100%;height:auto;min-height:220px;background:#101b2a;" />
+            </picture>
           </a>
           <figcaption class="visual-caption">Animated, portfolio-created visual abstract based on the article’s screening, topic-modeling findings and proposed integration architecture. <a href="https://doi.org/10.1016/j.pdisas.2025.100486" target="_blank" rel="noopener">Read the published review.</a></figcaption>
         </figure>
@@ -2631,9 +2771,10 @@
   const toggle=document.getElementById('recommendationToggle');
   if(!gallery||!toggle)return;
   const total=gallery.querySelectorAll('.rec-shot').length;
-  const featured=Math.min(6,total);
+  const compact=window.matchMedia('(max-width:560px)');
   function update(){
     const expanded=gallery.classList.contains('is-expanded');
+    const featured=Math.min(compact.matches?3:6,total);
     toggle.setAttribute('aria-expanded',String(expanded));
     toggle.textContent=expanded?'Show featured recommendations':'View all '+total+' recommendation pages';
     const note=toggle.parentElement.querySelector('.recommendation-archive-note');
@@ -2644,7 +2785,37 @@
     update();
     if(!gallery.classList.contains('is-expanded'))gallery.scrollIntoView({behavior:'smooth',block:'start'});
   });
+  if(compact.addEventListener)compact.addEventListener('change',update);else if(compact.addListener)compact.addListener(update);
   update();
+})();
+</script>
+<script>
+(function(){
+  const toggle=document.getElementById('navToggle');
+  const nav=document.getElementById('navLinks');
+  if(!toggle||!nav)return;
+  function setOpen(open){
+    nav.classList.toggle('is-open',open);
+    toggle.setAttribute('aria-expanded',String(open));
+    toggle.setAttribute('aria-label',open?'Close navigation menu':'Open navigation menu');
+    const label=toggle.querySelector('.nav-toggle-label');
+    if(label)label.textContent=open?'Close':'Menu';
+  }
+  toggle.addEventListener('click',function(){setOpen(toggle.getAttribute('aria-expanded')!=='true')});
+  nav.querySelectorAll('a').forEach(function(link){link.addEventListener('click',function(){setOpen(false)})});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')setOpen(false)});
+  const mq=window.matchMedia('(min-width:761px)');
+  if(mq.addEventListener)mq.addEventListener('change',function(e){if(e.matches)setOpen(false)});
+  else if(mq.addListener)mq.addListener(function(e){if(e.matches)setOpen(false)});
+})();
+(function(){
+  const compact=window.matchMedia('(max-width:600px)');
+  const links=document.querySelectorAll('.animated-abstract-open[data-desktop-href][data-mobile-href]');
+  function sync(){
+    links.forEach(function(link){link.href=compact.matches?link.dataset.mobileHref:link.dataset.desktopHref});
+  }
+  sync();
+  if(compact.addEventListener)compact.addEventListener('change',sync);else if(compact.addListener)compact.addListener(sync);
 })();
 </script>
 </body>
