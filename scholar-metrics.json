@@ -1,7 +1,7 @@
 {
   "updated": "2026-10-31",
-  "status": "counts unverified · open Google Scholar",
-  "source": "Google Scholar direct access was rate-limited during the 31 October 2026 website update; unknown counts are shown as unavailable rather than estimated.",
+  "status": "Screenshot verified · 31 citations · h-index 3 · i10-index 2",
+  "source": "Transcribed from a Google Scholar profile screenshot supplied by the profile owner on 31 October 2026. Total citations were 31 in both the All and Since 2021 columns. Per-paper citations are set only for records whose counts were visible in the supplied screenshot; all other counts remain null pending direct verification.",
   "papers": [
     {
       "title": "Data-Driven Decarbonization: Clustering of National CO₂ Emission Profiles and Economic Indicators for Sustainable Energy Transitions",
@@ -15,12 +15,12 @@
     },
     {
       "title": "Mapping the Machine Learning Landscape in Autonomous Vehicles: A Scientometric Review of Research Trends, Applications, Challenges, and Future Directions",
-      "citations": null,
+      "citations": 11,
       "year": 2025
     },
     {
       "title": "Computational Review of Disaster Resilience Research in Bangladesh",
-      "citations": null,
+      "citations": 11,
       "year": 2025
     },
     {
@@ -42,6 +42,40 @@
       "title": "Bridge Inspection, Structural Assessment, and Rehabilitation Decision Frameworks: Comparative Practices Across Texas, New York, Florida, California, and Pennsylvania",
       "citations": null,
       "year": 2026
+    },
+    {
+      "title": "Why Researchers prefer ANCOVA over ANOVA?",
+      "citations": 5,
+      "year": 2022
+    },
+    {
+      "title": "Retrofitting Existing Buildings for Enhanced Sustainability: A Literature Review on Energy Efficiency and Building Performance",
+      "citations": 1,
+      "year": 2025
+    },
+    {
+      "title": "Socioeconomic Mobility and Urban Travel Patterns in Post-COVID U.S.: 2022 NHTS",
+      "citations": 1,
+      "year": 2025
+    },
+    {
+      "title": "Liquefaction Potentiality Analysis of Jhilmil Residential Town Project",
+      "citations": 1,
+      "year": 2016
+    },
+    {
+      "title": "Determination of Trip Attraction Rates of Different Size Hospitals in Dhaka City",
+      "citations": 1,
+      "year": 2015
     }
-  ]
+  ],
+  "metrics": {
+    "totalCitations": 31,
+    "citationsAll": 31,
+    "citationsSince2021": 31,
+    "hIndex": 3,
+    "i10Index": 2,
+    "verifiedDate": "2026-10-31",
+    "verifiedFrom": "User-provided Google Scholar profile screenshot"
+  }
 }
