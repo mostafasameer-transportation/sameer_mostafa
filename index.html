@@ -1341,6 +1341,35 @@
     .net-edge.flow,.net-ripple,.net-node circle,.net-node.center circle,.web-hub,.hub-ripple,.web-orbit,.web-lines line,.web-routes path,.web-node circle,.spider-shell::after,.proj-card{animation:none!important;transition:none!important}
     .net-pulse{display:none!important}
   }
+
+  /* Keep long Scholar verification/status text inside the viewport on narrow screens. */
+  #metrics, #metrics .scholar-grid, #metrics .metric-panel,
+  #metrics .metric-head, #metrics .metric-head > div { min-width:0; max-width:100%; box-sizing:border-box; }
+  #metrics .metric-head { flex-wrap:wrap; }
+  #metrics .metric-head > div:first-child { flex:1 1 100%; }
+  #metrics .badge, #metrics #scholarStatus, #metrics #scholarStatusSecondary {
+    display:inline-block;
+    max-width:100%;
+    width:fit-content;
+    box-sizing:border-box;
+    white-space:normal;
+    overflow-wrap:anywhere;
+    word-break:normal;
+    line-height:1.5;
+  }
+  #metrics .summary-visual, #metrics .tiny-grid, #metrics .tiny-card { min-width:0; max-width:100%; }
+  #metrics .scholar-caption { overflow-wrap:anywhere; line-height:1.65; }
+  @media(max-width:760px) {
+    #metrics .metric-panel { width:100%; }
+    #metrics .metric-head { align-items:flex-start; }
+    #metrics .badge, #metrics #scholarStatus, #metrics #scholarStatusSecondary {
+      white-space:normal;
+      max-width:100%;
+      font-size:10.5px;
+      padding:6px 9px;
+    }
+  }
+
 </style>
 </head>
 <body>
