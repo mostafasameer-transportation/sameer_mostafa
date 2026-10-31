@@ -1200,6 +1200,147 @@
     .linkrow a{padding:7px 10px;font-size:12px}
     .metrics-grid .ref-card{padding:10px}
   }
+
+  /* ---------- portfolio-wide visual and accessibility refinement ---------- */
+  :root{--ink-soft:#C2CBD8;--ink-faint:#9CAABD;--rule:rgba(255,255,255,.105);--rule-strong:rgba(255,255,255,.18)}
+  html{scroll-padding-top:84px}
+  body{font-size:16px;line-height:1.72;color:#F3F6FB;overflow-x:hidden}
+  .wrap{max-width:1160px;padding-left:30px;padding-right:30px}
+  .nav-inner{max-width:1160px;padding-left:30px;padding-right:30px;gap:14px 24px}
+  .nav-links{gap:16px}
+  .nav-links a{font-size:13px;color:#C3CDDA}
+  section{padding:54px 0;scroll-margin-top:84px}
+  .section-head{gap:12px;margin-bottom:22px}
+  .section-head h2{font-size:1.68rem;line-height:1.25;letter-spacing:-.015em}
+  .section-intro{max-width:74ch;font-size:15px;line-height:1.75;color:#C2CBD8}
+  .hero{padding-top:58px}
+  .hero h1{font-size:clamp(2.45rem,4.8vw,3.2rem);letter-spacing:-.035em}
+  .hero .role{font-size:1.08rem;line-height:1.55;color:#C6CFDC}
+  .hero .bio{max-width:68ch;line-height:1.78}
+  .stats.wrap{max-width:1160px!important;padding-left:30px!important;padding-right:30px!important}
+  .stat{padding:19px 18px}
+  .scholar-grid{grid-template-columns:minmax(0,1fr);gap:16px;margin-bottom:16px}
+  section#metrics>*{box-sizing:border-box;width:calc(100% - 60px);max-width:1160px;margin-left:auto;margin-right:auto}
+  section#metrics>.metric-panel{margin-top:18px}
+  .metric-panel,.network-panel,.snapshot-panel,.proj-card,.vol-card{border-color:rgba(255,255,255,.12);background-color:rgba(14,19,27,.84)}
+  .metric-panel{box-shadow:0 12px 34px rgba(0,0,0,.18)}
+  .metric-head h3{font-size:16.5px;line-height:1.4}
+  .metric-note{color:#BCC7D6;line-height:1.65}
+  .tiny-card .k,.mini-k{color:#B0BCCF}
+  .tiny-card .s,.mini-s{color:#C0CAD8;line-height:1.55}
+  .bar-top{color:#D1D9E4;line-height:1.55;align-items:flex-start}
+  .bar-label{color:#F2F6FC}
+  .metrics-grid{gap:16px}
+  .metrics-grid .metric-panel{min-height:0}
+  .metrics-grid .ref-title{color:#F1F5FB;font-size:14px;line-height:1.5}
+  .metrics-grid .ref-meta{color:#C1CCDA;line-height:1.5}
+  .metrics-grid .ref-source{color:#8FE9D8;line-height:1.5}
+  .timeline{max-width:90ch}
+  .t-item .when{font-size:12px;color:#A7C9FF;letter-spacing:.045em}
+  .t-item .what{font-size:15px;line-height:1.75;color:#F0F3F8;max-width:84ch}
+  .paper{gap:20px;padding:20px 0}
+  .paper .title{font-size:16px;line-height:1.55;font-weight:700}
+  .paper .authors,.paper .venue{font-size:13.5px;line-height:1.6;color:#C2CBD8}
+  .paper .desc{font-size:14px;line-height:1.75;color:#D2DAE5}
+  .erow{padding:18px 0}
+  .erow .what{font-size:16px;line-height:1.5;color:#F3F6FB}
+  .erow .where,.erow .detail{color:#C2CBD8;line-height:1.7}
+  .skillblock h4{color:#C3CDDA;font-size:12px}
+  .chip{border:1px solid rgba(124,183,255,.18);background:rgba(124,183,255,.06);color:#E4EBF5}
+  .proj-card{padding:20px;border-radius:16px;animation:none}
+  .proj-card:hover{transform:translateY(-3px);border-color:rgba(124,183,255,.5);box-shadow:0 16px 34px rgba(0,0,0,.24)}
+  .proj-card p,.vol-desc{font-size:14px;line-height:1.75;color:#C8D2DF}
+  .mosaic-caption{color:#AEBBCB}
+  .collab-mobile-key,.research-web-key{display:none}
+  .network-grid{grid-template-columns:minmax(0,1.2fr) minmax(350px,.9fr);gap:20px}
+  .network-panel,.snapshot-panel{padding:22px}
+  #collabSvg{min-height:0;overflow:visible}
+  .network-panel #collabSvg .nlabel{font-size:17px!important;font-weight:750;fill:#F5F8FD!important;paint-order:stroke;stroke:rgba(6,10,16,.94);stroke-width:2.5px;stroke-linejoin:round}
+  .network-panel #collabSvg .ntag{font-size:12px!important;fill:#B7C6D9!important;paint-order:stroke;stroke:rgba(6,10,16,.94);stroke-width:2.6px;stroke-linejoin:round}
+  .network-panel #collabSvg .center .nlabel{font-size:14px!important;fill:#fff!important;stroke:none}
+  .net-edge{stroke-opacity:.38}
+  .collab-detail{background:linear-gradient(140deg,rgba(124,183,255,.08),rgba(102,242,222,.035));border-color:rgba(255,255,255,.12);padding:16px}
+  .collab-kicker{font-size:11px;color:#7FF1DE}
+  .collab-name{font-size:16px;line-height:1.45}
+  .collab-tag{font-size:14px;line-height:1.7;color:#CFD7E3}
+  .net-legend{font-size:12.5px;color:#C8D2E0}
+  .spider-shell{padding:14px;border-color:rgba(255,255,255,.12);background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.018))}
+  .web-ring{stroke:rgba(180,199,224,.18);stroke-width:1.35}
+  .web-lines line,.web-routes path{stroke:rgba(139,184,255,.5);stroke-width:1.6}
+  .web-node circle{stroke:#9BC4FF;stroke-width:2.5}
+  .node-label{font-family:Inter,sans-serif!important;font-size:14px!important;font-weight:750;fill:#F4F7FC!important;paint-order:stroke;stroke:rgba(8,13,22,.96);stroke-width:3px;stroke-linejoin:round}
+  .hub-name{font-size:22px!important}
+  .hub-sub{font-size:13px!important;fill:#D5E0EF!important}
+  .web-hub{stroke-width:2}
+  .mini-stat{background:rgba(255,255,255,.045);border-color:rgba(255,255,255,.11);padding:18px}
+  .mini-k{font-size:11.5px;letter-spacing:.045em}
+  .mini-v{font-size:2.15rem}
+  .mini-s{font-size:13px}
+  .recommendation-archive-bar{background:linear-gradient(120deg,rgba(124,183,255,.06),rgba(102,242,222,.025))}
+  .recommendation-archive-note{color:#C2CBD8}
+  .rec-shot{background:#0D131D}
+  footer{color:#BEC9D7}
+  footer .copyline{color:#96A5B9}
+  .abstract-picture{border-radius:14px;overflow:hidden}
+  .animated-abstract-open{border-radius:14px;overflow:hidden}
+  @media(max-width:980px){
+    .network-grid{grid-template-columns:minmax(0,1fr);gap:16px}
+    .network-panel #collabSvg .nlabel{font-size:18px!important}
+    .network-panel #collabSvg .ntag{font-size:13px!important}
+    .network-panel #collabSvg .center .nlabel{font-size:15px!important}
+  }
+  @media(max-width:760px){
+    .wrap{max-width:100%;padding-left:22px;padding-right:22px}
+    .nav-inner{max-width:100%;padding:10px 18px;gap:8px 12px}
+    .nav-links{gap:0}
+    .hero{padding-top:38px}
+    .hero h1{font-size:clamp(2rem,8vw,2.35rem)}
+    section{padding:42px 0;scroll-margin-top:72px}
+    .section-head{gap:9px;margin-bottom:18px}
+    .section-head h2{font-size:clamp(1.22rem,4.7vw,1.45rem)}
+    section#metrics>*{width:calc(100% - 36px)}
+    .stats.wrap{max-width:calc(100% - 36px)!important;padding-left:0!important;padding-right:0!important}
+    .network-panel,.snapshot-panel{padding:15px}
+    .net-intro{font-size:14px}
+    .network-panel #collabSvg .nlabel{font-size:19px!important}
+    .network-panel #collabSvg .ntag{display:none}
+    .network-panel #collabSvg .center .nlabel{font-size:15px!important}
+    .collab-mobile-key{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:12px 0 6px}
+    .collab-person{display:flex;flex-direction:column;align-items:flex-start;gap:3px;min-width:0;padding:10px 11px;border:1px solid rgba(255,255,255,.11);border-radius:11px;background:rgba(255,255,255,.035);color:#F3F6FB;text-align:left;cursor:pointer}
+    .collab-person strong{font-size:12.5px;line-height:1.35;overflow-wrap:anywhere}
+    .collab-person span{font-size:11px;line-height:1.4;color:#B9C7D8;overflow-wrap:anywhere}
+    .collab-person.is-selected{border-color:rgba(102,242,222,.55);background:rgba(102,242,222,.075)}
+    .network-panel .net-legend{gap:12px;padding:10px 4px 6px}
+    .research-web-key{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:12px}
+    .research-web-key span{display:block;padding:8px 10px;border:1px solid rgba(255,255,255,.11);background:rgba(255,255,255,.035);border-radius:9px;font:600 11px/1.4 Inter,sans-serif;color:#E3EAF4}
+    .spider-shell .node-label{display:none}
+    .spider-shell{padding:10px}
+    .spider-stats{gap:10px}
+    .mini-stat{padding:13px}
+    .mini-v{font-size:1.8rem}
+    .scholar-grid{grid-template-columns:minmax(0,1fr)}
+    .metrics-grid{grid-template-columns:minmax(0,1fr)}
+    .paper{grid-template-columns:1fr;gap:7px}
+    .paper .title{font-size:15px}
+    .erow{grid-template-columns:minmax(0,1fr)}
+    .erow .when{text-align:left}
+    .proj-grid,.vol-grid{grid-template-columns:minmax(0,1fr)}
+    .photo-mosaic.cols2,.photo-mosaic.cols3{grid-template-columns:minmax(0,1fr)}
+    .proj-card{padding:16px}
+  }
+  @media(max-width:420px){
+    .wrap{padding-left:15px;padding-right:15px}
+    section#metrics>*{width:calc(100% - 30px)}
+    .stats.wrap{max-width:calc(100% - 30px)!important}
+    .collab-mobile-key,.research-web-key{grid-template-columns:minmax(0,1fr)}
+    .network-panel #collabSvg .nlabel{font-size:21px!important}
+    .section-head h2{font-size:1.18rem}
+    .tiny-grid{grid-template-columns:1fr 1fr;gap:7px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .net-edge.flow,.net-ripple,.net-node circle,.net-node.center circle,.web-hub,.hub-ripple,.web-orbit,.web-lines line,.web-routes path,.web-node circle,.spider-shell::after,.proj-card{animation:none!important;transition:none!important}
+    .net-pulse{display:none!important}
+  }
 </style>
 </head>
 <body>
@@ -1370,14 +1511,14 @@
       <svg class="route" width="22" height="12" viewBox="0 0 22 12"><line x1="0" y1="6" x2="16" y2="6" stroke="#1356C9" stroke-width="2"/><circle cx="19" cy="6" r="3" fill="#1356C9"/></svg>
       <span class="section-num">02</span><h2>Research Network</h2>
     </div>
-    <p class="net-intro">The same way I model bridges and flood plains as connected systems, here's my own research network — modeled as one. Frequent collaborators, linked through shared papers across resilience, transportation, and disaster-data work.</p>
+    <p class="net-intro">My research network brings together collaborators across infrastructure resilience, transportation systems, disaster data, and applied AI. Select a collaborator to explore the research connection.</p>
 
     <div class="network-grid">
       <div class="metric-panel network-panel">
         <div class="metric-head">
           <div>
             <h3>Collaboration map</h3>
-            <p class="metric-note">Hover a collaborator to highlight the connected line and see the research theme.</p>
+            <p class="metric-note">Hover or select a collaborator to highlight the connection and explore the research theme.</p>
           </div>
           <div class="badge">animated</div>
         </div>
@@ -1401,6 +1542,7 @@
           <g id="networkPulses" aria-hidden="true"></g>
           <g id="nodes"></g>
         </svg>
+        <div class="collab-mobile-key" id="collabMobileKey" aria-label="Collaborators"></div>
         <div class="collab-detail" id="collabDetail">
           <div class="collab-kicker">Selected collaborator</div>
           <div class="collab-name">Hover a node to preview the connection</div>
@@ -1520,6 +1662,9 @@
               <text x="132" y="60" text-anchor="middle" class="node-label">Data fusion</text>
             </g>
           </svg>
+          <div class="research-web-key" aria-label="Research themes">
+            <span>AI / ML</span><span>Flood risk</span><span>Bridge rehabilitation</span><span>Digital twins</span><span>Mobility</span><span>GIS and safety</span><span>Resilience</span><span>Pedestrian safety</span><span>Transit</span><span>Data fusion</span>
+          </div>
         </div>
         <div class="spider-stats">
           <div class="mini-stat">
@@ -2203,6 +2348,7 @@
   var pulsesG = document.getElementById('networkPulses');
   var ripplesG = document.getElementById('networkRipples');
   var detail = document.getElementById('collabDetail');
+  var mobileKey = document.getElementById('collabMobileKey');
   var ns = 'http://www.w3.org/2000/svg';
 
   function el(tag, attrs){
@@ -2212,6 +2358,20 @@
   }
 
   collaborators.forEach(function(c, idx){
+    var mobileButton = null;
+    if(mobileKey){
+      mobileButton = document.createElement('button');
+      mobileButton.type = 'button';
+      mobileButton.className = 'collab-person';
+      mobileButton.setAttribute('data-idx', idx);
+      var mobileName = document.createElement('strong');
+      mobileName.textContent = c.name;
+      var mobileTheme = document.createElement('span');
+      mobileTheme.textContent = c.tag.replace('&amp;','&');
+      mobileButton.appendChild(mobileName);
+      mobileButton.appendChild(mobileTheme);
+      mobileKey.appendChild(mobileButton);
+    }
     var rad = c.angle * Math.PI/180;
     var x = center.x + R*Math.cos(rad);
     var y = center.y + R*Math.sin(rad);
@@ -2232,27 +2392,40 @@
     g.appendChild(circle);
     var labelY = (y < center.y ? y-28 : y+34);
     var tagY = (y < center.y ? y-15 : y+47);
-    var label = el('text', { class:'nlabel', x:x, y:labelY, 'text-anchor':'middle' });
+    var labelAnchor = x < center.x-34 ? 'end' : (x > center.x+34 ? 'start' : 'middle');
+    var labelX = labelAnchor==='end' ? x-10 : (labelAnchor==='start' ? x+10 : x);
+    var label = el('text', { class:'nlabel', x:labelX, y:labelY, 'text-anchor':labelAnchor });
     label.textContent = c.name;
-    var tag = el('text', { class:'ntag', x:x, y:tagY, 'text-anchor':'middle' });
+    var tag = el('text', { class:'ntag', x:labelX, y:tagY, 'text-anchor':labelAnchor });
     tag.textContent = c.tag.replace('&amp;','&');
     g.appendChild(label);
     g.appendChild(tag);
     nodesG.appendChild(g);
 
     function highlight(on){
-      edge.style.strokeOpacity = on ? 0.92 : '';
-      edge.style.strokeWidth = on ? 2.8 : '';
-      circle.setAttribute('r', on ? 23 : 20);
+      edge.style.strokeOpacity = on ? 0.96 : '';
+      edge.style.strokeWidth = on ? 3 : '';
+      circle.setAttribute('r', on ? 24 : 20);
       if(detail){
         detail.querySelector('.collab-name').textContent = c.name;
         detail.querySelector('.collab-tag').textContent = c.note;
       }
+      if(mobileKey){
+        Array.prototype.forEach.call(mobileKey.querySelectorAll('.collab-person'),function(button){
+          button.classList.toggle('is-selected',on&&button.getAttribute('data-idx')===String(idx));
+          button.setAttribute('aria-pressed',String(on&&button.getAttribute('data-idx')===String(idx)));
+        });
+      }
     }
+    if(mobileButton)mobileButton.addEventListener('click',function(){g.focus();});
     g.addEventListener('mouseenter', function(){ highlight(true); });
     g.addEventListener('mouseleave', function(){ highlight(false); });
     g.addEventListener('focus', function(){ highlight(true); });
     g.addEventListener('blur', function(){ highlight(false); });
+    g.addEventListener('click', function(){ highlight(true); });
+    g.addEventListener('keydown',function(event){
+      if(event.key==='Enter'||event.key===' '){event.preventDefault();highlight(true);}
+    });
   });
 
   if(ripplesG){
