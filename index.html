@@ -667,7 +667,9 @@
   .visual-summary svg{display:block;width:100%;height:auto}
   .visual-caption{padding:10px 13px;border-top:1px solid rgba(255,255,255,.09);font-size:12px;line-height:1.55;color:var(--ink-soft)}
   .visual-caption a{color:var(--pulse)}
-  .animated-visual svg{overflow:hidden}
+  .animated-visual svg,.animated-visual img{overflow:hidden;display:block;width:100%;height:auto}
+  .animated-abstract-open{display:block;line-height:0;background:#101b2a}
+  .animated-abstract-open:focus-visible{outline:2px solid var(--pulse);outline-offset:3px}
   .animated-visual .visual-caption{font-size:12px}
   @media(max-width:640px){.visual-caption{font-size:11.5px}}
   @media(prefers-reduced-motion:reduce){.animated-visual svg *{animation:none!important}}
@@ -1576,108 +1578,9 @@
         <div class="venue">IEEE Access, 2025</div>
         <div class="plink"><a href="https://doi.org/10.1109/ACCESS.2025.3620637" target="_blank" rel="noopener">DOI: 10.1109/ACCESS.2025.3620637 →</a> · <a href="https://www.researchgate.net/publication/396512434" target="_blank" rel="noopener">View on ResearchGate →</a> · <a href="assets/av-machine-learning-animated-abstract.svg" target="_blank" rel="noopener">Open animated SVG →</a></div>
         <figure class="visual-summary animated-visual" aria-label="Animated graphical abstract of machine learning research in autonomous vehicles">
-          <svg viewBox="0 0 960 570" role="img" aria-labelledby="avAbstractTitle avAbstractDesc" xmlns="http://www.w3.org/2000/svg">
-            <title id="avAbstractTitle">Mapping the Machine Learning Landscape in Autonomous Vehicles</title>
-            <desc id="avAbstractDesc">Animated summary of a scientometric review covering research from 2011 to 2025, five major machine learning themes, key challenges, and emerging directions.</desc>
-            <style>
-              .av-flow{stroke-dasharray:7 9;animation:avDash 12s linear infinite}
-              .av-pulse{transform-box:fill-box;transform-origin:center;animation:avPulse 2.6s ease-in-out infinite}
-              .av-fade{animation:avFade 4.8s ease-in-out infinite}
-              @keyframes avDash{to{stroke-dashoffset:-160}}
-              @keyframes avPulse{0%,100%{opacity:.55;transform:scale(.88)}50%{opacity:1;transform:scale(1.08)}}
-              @keyframes avFade{0%,100%{opacity:.65}50%{opacity:1}}
-              @media(prefers-reduced-motion:reduce){.av-flow,.av-pulse,.av-fade{animation:none!important}.av-traveler{display:none}}
-            </style>
-            <defs>
-              <linearGradient id="avBg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b2440"/><stop offset="1" stop-color="#111923"/></linearGradient>
-              <linearGradient id="avSignal" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#47a5f5"/><stop offset="1" stop-color="#58dfc0"/></linearGradient>
-            </defs>
-            <rect width="960" height="570" rx="18" fill="url(#avBg)"/>
-            <text x="34" y="37" fill="#8bc8ff" font-size="12" font-family="Inter,Arial,sans-serif" font-weight="700" letter-spacing="2">ANIMATED RESEARCH VISUAL SUMMARY · 2025</text>
-            <text x="34" y="72" fill="#fff" font-size="27" font-family="Inter,Arial,sans-serif" font-weight="800">Machine Learning for Autonomous Vehicles</text>
-            <text x="34" y="98" fill="#c9d7e6" font-size="14" font-family="Inter,Arial,sans-serif">Scientometric mapping of research trends, applications, challenges and future directions</text>
-            <rect x="34" y="116" width="892" height="1.5" fill="#344658"/>
-
-            <g>
-              <rect x="34" y="132" width="278" height="76" rx="11" fill="#132b43" stroke="#315d82"/>
-              <text x="50" y="153" fill="#8bc8ff" font-size="10.5" font-family="Inter,Arial,sans-serif" font-weight="700" letter-spacing="1">RESEARCH WINDOW</text>
-              <text x="50" y="180" fill="#fff" font-size="23" font-family="Inter,Arial,sans-serif" font-weight="800">2011–2025</text>
-              <text x="202" y="180" fill="#a9bfd5" font-size="11" font-family="Inter,Arial,sans-serif">long-term evolution</text>
-              <rect x="326" y="132" width="300" height="76" rx="11" fill="#132b43" stroke="#315d82"/>
-              <text x="342" y="153" fill="#79dfc7" font-size="10.5" font-family="Inter,Arial,sans-serif" font-weight="700" letter-spacing="1">ANALYTICAL APPROACH</text>
-              <text x="342" y="177" fill="#fff" font-size="15" font-family="Inter,Arial,sans-serif" font-weight="700">Bibliometrics + science mapping</text>
-              <text x="342" y="194" fill="#a9bfd5" font-size="11" font-family="Inter,Arial,sans-serif">Publication, keyword and collaboration structures</text>
-              <rect x="640" y="132" width="286" height="76" rx="11" fill="#132b43" stroke="#315d82"/>
-              <text x="656" y="153" fill="#ffc36c" font-size="10.5" font-family="Inter,Arial,sans-serif" font-weight="700" letter-spacing="1">QUALITATIVE SYNTHESIS</text>
-              <text x="656" y="180" fill="#fff" font-size="23" font-family="Inter,Arial,sans-serif" font-weight="800">50</text>
-              <text x="701" y="178" fill="#d4e0ed" font-size="13" font-family="Inter,Arial,sans-serif">most-cited papers</text>
-              <text x="656" y="195" fill="#a9bfd5" font-size="11" font-family="Inter,Arial,sans-serif">Methods, contributions and open challenges</text>
-            </g>
-
-            <text x="34" y="235" fill="#d9e7f5" font-size="12" font-family="Inter,Arial,sans-serif" font-weight="700" letter-spacing="1.4">FIVE DOMINANT THEMATIC CLUSTERS</text>
-            <path d="M70 249 H890" stroke="#31516d" stroke-width="2" fill="none"/>
-            <path d="M70 249 H890" stroke="url(#avSignal)" stroke-width="2.5" fill="none" class="av-flow"/>
-            <circle class="av-traveler" r="5" fill="#fff"><animateMotion dur="7s" repeatCount="indefinite" path="M70 249 H890"/></circle>
-
-            <g>
-              <rect x="34" y="261" width="166" height="116" rx="11" fill="#142b46" stroke="#4d8ee6"/>
-              <rect x="34" y="261" width="5" height="116" rx="2.5" fill="#4d8ee6"/>
-              <circle cx="61" cy="286" r="9" fill="#4d8ee6" class="av-pulse"/>
-              <circle cx="61" cy="286" r="17" stroke="#4d8ee6" stroke-opacity=".36" fill="none"/>
-              <text x="53" y="317" fill="#fff" font-size="14" font-family="Inter,Arial,sans-serif" font-weight="700">Perception</text>
-              <text x="53" y="339" fill="#c9d9e9" font-size="11.5" font-family="Inter,Arial,sans-serif">Object detection,</text><text x="53" y="355" fill="#c9d9e9" font-size="11.5" font-family="Inter,Arial,sans-serif">scene understanding</text>
-            </g>
-            <g>
-              <rect x="217" y="261" width="166" height="116" rx="11" fill="#302719" stroke="#d99a3d"/>
-              <rect x="217" y="261" width="5" height="116" rx="2.5" fill="#d99a3d"/>
-              <circle cx="244" cy="286" r="9" fill="#d99a3d" class="av-pulse" style="animation-delay:.3s"/>
-              <circle cx="244" cy="286" r="17" stroke="#d99a3d" stroke-opacity=".36" fill="none"/>
-              <text x="236" y="317" fill="#fff" font-size="14" font-family="Inter,Arial,sans-serif" font-weight="700">Planning</text>
-              <text x="236" y="339" fill="#e8dcc8" font-size="11.5" font-family="Inter,Arial,sans-serif">Decision-making and</text><text x="236" y="355" fill="#e8dcc8" font-size="11.5" font-family="Inter,Arial,sans-serif">trajectory optimization</text>
-            </g>
-            <g>
-              <rect x="400" y="261" width="166" height="116" rx="11" fill="#153228" stroke="#41b67c"/>
-              <rect x="400" y="261" width="5" height="116" rx="2.5" fill="#41b67c"/>
-              <circle cx="427" cy="286" r="9" fill="#41b67c" class="av-pulse" style="animation-delay:.6s"/>
-              <circle cx="427" cy="286" r="17" stroke="#41b67c" stroke-opacity=".36" fill="none"/>
-              <text x="419" y="317" fill="#fff" font-size="14" font-family="Inter,Arial,sans-serif" font-weight="700">Control</text>
-              <text x="419" y="339" fill="#d2e7db" font-size="11.5" font-family="Inter,Arial,sans-serif">Vehicle response and</text><text x="419" y="355" fill="#d2e7db" font-size="11.5" font-family="Inter,Arial,sans-serif">trajectory tracking</text>
-            </g>
-            <g>
-              <rect x="583" y="261" width="166" height="116" rx="11" fill="#352025" stroke="#e7656b"/>
-              <rect x="583" y="261" width="5" height="116" rx="2.5" fill="#e7656b"/>
-              <circle cx="610" cy="286" r="9" fill="#e7656b" class="av-pulse" style="animation-delay:.9s"/>
-              <circle cx="610" cy="286" r="17" stroke="#e7656b" stroke-opacity=".36" fill="none"/>
-              <text x="602" y="317" fill="#fff" font-size="14" font-family="Inter,Arial,sans-serif" font-weight="700">Safety &amp; robustness</text>
-              <text x="602" y="339" fill="#f0d8da" font-size="11.5" font-family="Inter,Arial,sans-serif">Validation, reliability</text><text x="602" y="355" fill="#f0d8da" font-size="11.5" font-family="Inter,Arial,sans-serif">and interpretation</text>
-            </g>
-            <g>
-              <rect x="766" y="261" width="160" height="116" rx="11" fill="#22213b" stroke="#9a86ed"/>
-              <rect x="766" y="261" width="5" height="116" rx="2.5" fill="#9a86ed"/>
-              <circle cx="793" cy="286" r="9" fill="#9a86ed" class="av-pulse" style="animation-delay:1.2s"/>
-              <circle cx="793" cy="286" r="17" stroke="#9a86ed" stroke-opacity=".36" fill="none"/>
-              <text x="785" y="317" fill="#fff" font-size="14" font-family="Inter,Arial,sans-serif" font-weight="700">Connected systems</text>
-              <text x="785" y="339" fill="#dcd7f6" font-size="11.5" font-family="Inter,Arial,sans-serif">Communication and</text><text x="785" y="355" fill="#dcd7f6" font-size="11.5" font-family="Inter,Arial,sans-serif">federated learning</text>
-            </g>
-
-            <rect x="34" y="397" width="432" height="102" rx="12" fill="#121f2e" stroke="#344658"/>
-            <text x="52" y="420" fill="#ffb2a8" font-size="11" font-family="Inter,Arial,sans-serif" font-weight="700" letter-spacing="1.1">PERSISTENT CHALLENGES</text>
-            <rect x="52" y="435" width="120" height="25" rx="12" fill="#38282c" stroke="#7a454b"/><text x="112" y="451" text-anchor="middle" fill="#f5d7d7" font-size="10.5" font-family="Inter,Arial,sans-serif">Generalization</text>
-            <rect x="181" y="435" width="133" height="25" rx="12" fill="#38282c" stroke="#7a454b"/><text x="247" y="451" text-anchor="middle" fill="#f5d7d7" font-size="10.5" font-family="Inter,Arial,sans-serif">Safety validation</text>
-            <rect x="323" y="435" width="124" height="25" rx="12" fill="#38282c" stroke="#7a454b"/><text x="385" y="451" text-anchor="middle" fill="#f5d7d7" font-size="10.5" font-family="Inter,Arial,sans-serif">Interpretability</text>
-            <text x="52" y="482" fill="#9eb3c9" font-size="11" font-family="Inter,Arial,sans-serif">Reliable performance in changing, uncertain conditions</text>
-
-            <rect x="484" y="397" width="442" height="102" rx="12" fill="#122c29" stroke="#317c69"/>
-            <text x="502" y="420" fill="#7fe0c7" font-size="11" font-family="Inter,Arial,sans-serif" font-weight="700" letter-spacing="1.1">EMERGING RESEARCH DIRECTIONS</text>
-            <rect x="502" y="435" width="103" height="25" rx="12" fill="#183c38" stroke="#367b6b"/><text x="553" y="451" text-anchor="middle" fill="#d3f5e9" font-size="10.5" font-family="Inter,Arial,sans-serif">Digital twins</text>
-            <rect x="614" y="435" width="82" height="25" rx="12" fill="#183c38" stroke="#367b6b"/><text x="655" y="451" text-anchor="middle" fill="#d3f5e9" font-size="10.5" font-family="Inter,Arial,sans-serif">Edge AI</text>
-            <rect x="705" y="435" width="103" height="25" rx="12" fill="#183c38" stroke="#367b6b"/><text x="756" y="451" text-anchor="middle" fill="#d3f5e9" font-size="10.5" font-family="Inter,Arial,sans-serif">Quantum ML</text>
-            <rect x="817" y="435" width="91" height="25" rx="12" fill="#183c38" stroke="#367b6b"/><text x="862" y="451" text-anchor="middle" fill="#d3f5e9" font-size="10.5" font-family="Inter,Arial,sans-serif">LLMs</text>
-            <text x="502" y="482" fill="#9fcbbd" font-size="11" font-family="Inter,Arial,sans-serif">Toward scalable, adaptable and human-aware autonomy</text>
-
-            <rect x="34" y="517" width="892" height="31" rx="8" fill="#0d1928" stroke="#344658"/>
-            <text x="50" y="537" fill="#c8d7e6" font-size="11.5" font-family="Inter,Arial,sans-serif">Research mapping informs the field’s structure; it does not replace system-level safety testing.</text>
-          </svg>
+          <a class="animated-abstract-open" href="assets/av-machine-learning-animated-abstract.svg" target="_blank" rel="noopener" aria-label="Open animated graphical abstract in a new tab">
+            <img src="assets/av-machine-learning-animated-abstract.svg" alt="Animated graphical abstract: machine learning themes, challenges, and future directions in autonomous vehicles" loading="lazy" width="960" height="570" style="display:block;width:100%;height:auto;min-height:220px;background:#101b2a;" />
+          </a>
           <figcaption class="visual-caption">Animated, portfolio-created visual abstract based on the review’s reported themes and research agenda. <a href="https://doi.org/10.1109/ACCESS.2025.3620637" target="_blank" rel="noopener">Read the IEEE Access paper.</a></figcaption>
         </figure>
       </div>
@@ -1692,99 +1595,9 @@
         <div class="desc">A 301-paper corpus (2014–2024) screened with PRISMA and mapped with LDA topic modeling to surface where resilience research in Bangladesh is concentrated, and where it isn't.</div>
         <div class="plink"><a href="https://doi.org/10.1016/j.pdisas.2025.100486" target="_blank" rel="noopener">DOI: 10.1016/j.pdisas.2025.100486 →</a> · <a href="https://www.researchgate.net/publication/397649463" target="_blank" rel="noopener">View on ResearchGate →</a> · <a href="https://doi.org/10.5281/zenodo.17611749" target="_blank" rel="noopener">Data and code →</a> · <a href="assets/bangladesh-disaster-resilience-animated-abstract.svg" target="_blank" rel="noopener">Open animated SVG →</a></div>
         <figure class="visual-summary animated-visual" aria-label="Animated graphical abstract of disaster resilience research in Bangladesh">
-          <svg viewBox="0 0 960 590" role="img" aria-labelledby="bdAbstractTitle bdAbstractDesc" xmlns="http://www.w3.org/2000/svg">
-            <title id="bdAbstractTitle">Computational Review of Disaster Resilience Research in Bangladesh</title>
-            <desc id="bdAbstractDesc">Animated summary of PRISMA screening of 301 studies, ten-topic LDA modeling, the social-technical divide and an integrated decision-support blueprint.</desc>
-            <style>
-              .bd-flow{stroke-dasharray:7 8;animation:bdDash 11s linear infinite}
-              .bd-pulse{transform-box:fill-box;transform-origin:center;animation:bdPulse 2.8s ease-in-out infinite}
-              .bd-pop{animation:bdPop 4.4s ease-in-out infinite}
-              @keyframes bdDash{to{stroke-dashoffset:-150}}
-              @keyframes bdPulse{0%,100%{opacity:.55;transform:scale(.9)}50%{opacity:1;transform:scale(1.12)}}
-              @keyframes bdPop{0%,100%{opacity:.8}50%{opacity:1}}
-              @media(prefers-reduced-motion:reduce){.bd-flow,.bd-pulse,.bd-pop{animation:none!important}.bd-traveler{display:none}}
-            </style>
-            <defs>
-              <linearGradient id="bdBg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#092b40"/><stop offset="1" stop-color="#121b26"/></linearGradient>
-              <linearGradient id="bdSignal" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#43a8e8"/><stop offset="1" stop-color="#6dd7b4"/></linearGradient>
-            </defs>
-            <rect width="960" height="590" rx="18" fill="url(#bdBg)"/>
-            <text x="34" y="37" fill="#91d5ff" font-size="12" font-family="Inter,Arial,sans-serif" font-weight="700" letter-spacing="2">ANIMATED RESEARCH VISUAL SUMMARY · 2025</text>
-            <text x="34" y="72" fill="#fff" font-size="27" font-family="Inter,Arial,sans-serif" font-weight="800">Disaster Resilience Research in Bangladesh</text>
-            <text x="34" y="98" fill="#c9d7e6" font-size="14" font-family="Inter,Arial,sans-serif">A reproducible PRISMA + LDA review of the evidence base, themes and critical gaps</text>
-            <rect x="34" y="116" width="892" height="1.5" fill="#344658"/>
-
-            <text x="34" y="140" fill="#8edfd4" font-size="11.5" font-family="Inter,Arial,sans-serif" font-weight="700" letter-spacing="1.4">PRISMA SCREENING · 2014–2024</text>
-            <path d="M90 177 H870" stroke="#31516d" stroke-width="2" fill="none"/>
-            <path d="M90 177 H870" stroke="url(#bdSignal)" stroke-width="2.5" fill="none" class="bd-flow"/>
-            <circle class="bd-traveler" r="5" fill="#fff"><animateMotion dur="7.5s" repeatCount="indefinite" path="M90 177 H870"/></circle>
-
-            <g>
-              <rect x="34" y="153" width="202" height="84" rx="11" fill="#142c42" stroke="#3d82b5"/>
-              <text x="50" y="178" fill="#8bc8ff" font-size="10.5" font-family="Inter,Arial,sans-serif" font-weight="700" letter-spacing=".8">RECORDS RETRIEVED</text>
-              <text x="50" y="212" fill="#fff" font-size="27" font-family="Inter,Arial,sans-serif" font-weight="800">701</text>
-              <text x="112" y="210" fill="#b8ccdf" font-size="11.5" font-family="Inter,Arial,sans-serif">initial results</text>
-            </g>
-            <g>
-              <rect x="250" y="153" width="202" height="84" rx="11" fill="#142c42" stroke="#3d82b5"/>
-              <text x="266" y="178" fill="#8bc8ff" font-size="10.5" font-family="Inter,Arial,sans-serif" font-weight="700" letter-spacing=".8">AFTER DEDUPLICATION</text>
-              <text x="266" y="212" fill="#fff" font-size="27" font-family="Inter,Arial,sans-serif" font-weight="800">652</text>
-              <text x="328" y="210" fill="#b8ccdf" font-size="11.5" font-family="Inter,Arial,sans-serif">unique records</text>
-            </g>
-            <g>
-              <rect x="466" y="153" width="202" height="84" rx="11" fill="#142c42" stroke="#3d82b5"/>
-              <text x="482" y="178" fill="#8bc8ff" font-size="10.5" font-family="Inter,Arial,sans-serif" font-weight="700" letter-spacing=".8">FULL-TEXT REVIEW</text>
-              <text x="482" y="212" fill="#fff" font-size="27" font-family="Inter,Arial,sans-serif" font-weight="800">383</text>
-              <text x="544" y="210" fill="#b8ccdf" font-size="11.5" font-family="Inter,Arial,sans-serif">after screening</text>
-            </g>
-            <g>
-              <rect x="682" y="153" width="244" height="84" rx="11" fill="#153228" stroke="#41b67c"/>
-              <text x="698" y="178" fill="#7fe0af" font-size="10.5" font-family="Inter,Arial,sans-serif" font-weight="700" letter-spacing=".8">FINAL CORPUS</text>
-              <text x="698" y="212" fill="#fff" font-size="27" font-family="Inter,Arial,sans-serif" font-weight="800">301</text>
-              <text x="760" y="210" fill="#c2dfd1" font-size="11.5" font-family="Inter,Arial,sans-serif">peer-reviewed studies</text>
-              <circle cx="900" cy="169" r="5" fill="#7fe0af" class="bd-pulse"/>
-            </g>
-
-            <text x="34" y="264" fill="#d9e7f5" font-size="12" font-family="Inter,Arial,sans-serif" font-weight="700" letter-spacing="1.4">COMPUTATIONAL MAPPING · 10-TOPIC LDA MODEL</text>
-            <rect x="34" y="278" width="426" height="125" rx="12" fill="#14263a" stroke="#3a5976"/>
-            <text x="52" y="303" fill="#8bc8ff" font-size="11" font-family="Inter,Arial,sans-serif" font-weight="700" letter-spacing="1">DOMINANT RESEARCH AGENDAS</text>
-            <rect x="52" y="318" width="387" height="30" rx="8" fill="#193a52" stroke="#2e678a"/>
-            <circle cx="67" cy="333" r="5" fill="#6fcaff" class="bd-pulse"/>
-            <text x="81" y="337" fill="#f1f7fc" font-size="12" font-family="Inter,Arial,sans-serif" font-weight="700">Community adaptation &amp; livelihood resilience</text>
-            <rect x="52" y="357" width="387" height="30" rx="8" fill="#193a52" stroke="#2e678a"/>
-            <circle cx="67" cy="372" r="5" fill="#6fcaff" class="bd-pulse" style="animation-delay:.5s"/>
-            <text x="81" y="376" fill="#f1f7fc" font-size="12" font-family="Inter,Arial,sans-serif" font-weight="700">Disaster risk reduction policy &amp; institutions</text>
-
-            <rect x="478" y="278" width="448" height="125" rx="12" fill="#30251f" stroke="#9c6736"/>
-            <text x="496" y="303" fill="#ffc36c" font-size="11" font-family="Inter,Arial,sans-serif" font-weight="700" letter-spacing="1">STRUCTURAL DIVIDE &amp; UNDEREXPLORED GAPS</text>
-            <text x="496" y="327" fill="#fff" font-size="12" font-family="Inter,Arial,sans-serif" font-weight="700">Social–technical separation</text>
-            <text x="496" y="345" fill="#e7d8c8" font-size="11.5" font-family="Inter,Arial,sans-serif">Community-focused qualitative research often remains</text>
-            <text x="496" y="361" fill="#e7d8c8" font-size="11.5" font-family="Inter,Arial,sans-serif">separate from quantitative hazard and infrastructure models.</text>
-            <rect x="496" y="372" width="185" height="20" rx="10" fill="#493326" stroke="#9c6736"/><text x="588" y="385" text-anchor="middle" fill="#ffddb1" font-size="10" font-family="Inter,Arial,sans-serif">Supply-chain resilience</text>
-            <rect x="688" y="372" width="220" height="20" rx="10" fill="#493326" stroke="#9c6736"/><text x="798" y="385" text-anchor="middle" fill="#ffddb1" font-size="10" font-family="Inter,Arial,sans-serif">Salinity–health linkages</text>
-
-            <text x="34" y="430" fill="#7fe0c7" font-size="11.5" font-family="Inter,Arial,sans-serif" font-weight="700" letter-spacing="1.4">PROPOSED INTEGRATION BLUEPRINT</text>
-            <g>
-              <rect x="34" y="443" width="270" height="69" rx="10" fill="#12372f" stroke="#3d9d7d"/>
-              <text x="50" y="464" fill="#7fe0af" font-size="10" font-family="Inter,Arial,sans-serif" font-weight="700" letter-spacing=".8">LAYER 1</text>
-              <text x="50" y="486" fill="#fff" font-size="13" font-family="Inter,Arial,sans-serif" font-weight="700">Participatory GIS indicators</text>
-              <text x="50" y="502" fill="#b7ddce" font-size="10.5" font-family="Inter,Arial,sans-serif">Community and policy context</text>
-              <rect x="326" y="443" width="284" height="69" rx="10" fill="#12372f" stroke="#3d9d7d"/>
-              <text x="342" y="464" fill="#7fe0af" font-size="10" font-family="Inter,Arial,sans-serif" font-weight="700" letter-spacing=".8">LAYER 2</text>
-              <text x="342" y="486" fill="#fff" font-size="13" font-family="Inter,Arial,sans-serif" font-weight="700">Hazard &amp; lifeline rasters</text>
-              <text x="342" y="502" fill="#b7ddce" font-size="10.5" font-family="Inter,Arial,sans-serif">Exposure and critical infrastructure</text>
-              <rect x="632" y="443" width="294" height="69" rx="10" fill="#12372f" stroke="#3d9d7d"/>
-              <text x="648" y="464" fill="#7fe0af" font-size="10" font-family="Inter,Arial,sans-serif" font-weight="700" letter-spacing=".8">LAYER 3</text>
-              <text x="648" y="486" fill="#fff" font-size="13" font-family="Inter,Arial,sans-serif" font-weight="700">Bayesian-network inference</text>
-              <text x="648" y="502" fill="#b7ddce" font-size="10.5" font-family="Inter,Arial,sans-serif">Uncertainty-aware decision support</text>
-              <path d="M304 477 H326 M610 477 H632" stroke="#6dd7b4" stroke-width="2.5" fill="none" class="bd-flow"/>
-              <circle cx="315" cy="477" r="4" fill="#d9fff1" class="bd-pulse"/>
-              <circle cx="621" cy="477" r="4" fill="#d9fff1" class="bd-pulse" style="animation-delay:.7s"/>
-            </g>
-
-            <rect x="34" y="528" width="892" height="36" rx="8" fill="#0d1928" stroke="#344658"/>
-            <text x="50" y="550" fill="#c8d7e6" font-size="11.5" font-family="Inter,Arial,sans-serif">Practical aim: connect community, hazard and infrastructure evidence for transparent, multi-hazard resilience planning.</text>
-          </svg>
+          <a class="animated-abstract-open" href="assets/bangladesh-disaster-resilience-animated-abstract.svg" target="_blank" rel="noopener" aria-label="Open animated graphical abstract in a new tab">
+            <img src="assets/bangladesh-disaster-resilience-animated-abstract.svg" alt="Animated graphical abstract: PRISMA screening, topic modeling, research gaps, and resilience integration framework in Bangladesh" loading="lazy" width="960" height="590" style="display:block;width:100%;height:auto;min-height:220px;background:#101b2a;" />
+          </a>
           <figcaption class="visual-caption">Animated, portfolio-created visual abstract based on the article’s screening, topic-modeling findings and proposed integration architecture. <a href="https://doi.org/10.1016/j.pdisas.2025.100486" target="_blank" rel="noopener">Read the published review.</a></figcaption>
         </figure>
       </div>
