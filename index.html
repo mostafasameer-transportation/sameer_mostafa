@@ -662,6 +662,13 @@
   .pf.active{ background:var(--accent); border-color:var(--accent); color:#fff; }
   .paper.hidden{ display:none; }
 
+  /* ---------- research graphical abstracts ---------- */
+  .visual-summary{margin:16px 0 4px;border:1px solid var(--rule);border-radius:14px;overflow:hidden;background:linear-gradient(145deg,#0d1d30,#10151c 60%,#111a24)}
+  .visual-summary svg{display:block;width:100%;height:auto}
+  .visual-caption{padding:10px 13px;border-top:1px solid rgba(255,255,255,.09);font-size:12px;line-height:1.55;color:var(--ink-soft)}
+  .visual-caption a{color:var(--pulse)}
+  @media(max-width:640px){.visual-caption{font-size:11.5px}}
+
   .copy-btn{
     font-family:'JetBrains Mono', monospace; font-size:11.5px; background:none; border:none;
     color:var(--ink-faint); cursor:pointer; padding:0; margin-left:6px; text-decoration:underline;
@@ -1154,8 +1161,8 @@
       </div>
     </div>
     <div class="tiny-grid">
-      <div class="tiny-card"><div class="k">Top cited paper</div><div class="v">8</div><div class="s">Autonomous vehicles ML review · IEEE Access 2025</div></div>
-      <div class="tiny-card"><div class="k">Second cited paper</div><div class="v">7</div><div class="s">Disaster resilience · Bangladesh 2025</div></div>
+      <div class="tiny-card"><div class="k">Highest citation count</div><div class="v">8</div><div class="s">Historical Scholar snapshot · Jun 2026</div></div>
+      <div class="tiny-card"><div class="k">Next citation count</div><div class="v">7</div><div class="s">Historical Scholar snapshot · Jun 2026</div></div>
       <div class="tiny-card"><div class="k">Total papers tracked</div><div class="v">8</div><div class="s">All per Google Scholar profile</div></div>
       <div class="tiny-card"><div class="k">Coverage window</div><div class="v">2015–2026</div><div class="s">Earliest to latest on Scholar</div></div>
     </div>
@@ -1174,7 +1181,7 @@
     </div>
     <div class="timeline">
       <div class="t-item live"><div class="when">● Live · in review</div><div class="what">Third-round revision (figures, discussion) on the Dhaka Metro Rail study with Imran Reza, targeting <i>Public Transport</i> (Springer).</div></div>
-      <div class="t-item live"><div class="when">● Live · in review</div><div class="what">Published two Energy Engineering papers in October 2026: a national CO₂-emissions clustering study (online 26 Oct) and a multi-sector transportation fuel-consumption analysis (issue published 18 Oct).</div></div>
+      <div class="t-item live"><div class="when">● Published · Oct 2026</div><div class="what">Published two Energy Engineering articles: <a href="https://doi.org/10.32604/ee.2026.088402" target="_blank" rel="noopener">national CO₂-emissions clustering</a> (online 26 October) and <a href="https://doi.org/10.32604/ee.2026.086249" target="_blank" rel="noopener">Annex I transportation fuel consumption</a> (issue published 18 October).</div></div>
           <div class="t-item live reveal"><div class="when">● Mar 2026</div><div class="what">Passed the Ph.D. Qualifying Exam — <em>"Interpretable Network Metrics for Equity-Aware Prioritization of Bridge Rehabilitation &amp; Recovery"</em> — under Advisor Prof. Wallied Orabi, FIU.</div></div>
       <div class="t-item"><div class="when">Jun 2026</div><div class="what">Compiled a five-state AASHTO-guided bridge inspection and defect-cost dataset (TX, CA, PA, FL, NY).</div></div>
       <div class="t-item"><div class="when">May 2026</div><div class="what">Presented comparative bridge-rehabilitation analysis and a GIS-based pedestrian-safety study of Miami-Dade County school zones.</div></div>
@@ -1452,6 +1459,36 @@
         <div class="venue">Energy Engineering · Published online 26 October 2026 · DOI: 10.32604/ee.2026.088402</div>
         <div class="desc">Uses CDIAC emissions data (1960–2022) and World Bank GDP-PPP indicators to interpret four national emissions-profile clusters. K-Means with k = 4 achieved a silhouette score of 0.38; GDP-PPP was added after clustering for economic interpretation, not used as a clustering feature.</div>
         <div class="plink"><a href="https://www.techscience.com/energy/online/detail/28773" target="_blank" rel="noopener">Publisher article →</a> · <a href="https://scholar.google.com/scholar?q=%22Data-Driven+Decarbonization%22+%22Mostafa+Sameer%22" target="_blank" rel="noopener">Google Scholar citation search →</a></div>
+        <figure class="visual-summary" aria-label="Portfolio visual summary of the Data-Driven Decarbonization paper">
+          <svg viewBox="0 0 960 500" role="img" aria-labelledby="decarbTitle decarbDesc" xmlns="http://www.w3.org/2000/svg">
+            <title id="decarbTitle">Data-Driven Decarbonization: national emission profiles</title>
+            <desc id="decarbDesc">A portfolio-created visual summary of the four country groups found by K-Means clustering and the emissions and fuel-composition features used in the study.</desc>
+            <defs><linearGradient id="decarbBg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#102b48"/><stop offset="1" stop-color="#111923"/></linearGradient><linearGradient id="decarbBar" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2688d7"/><stop offset="1" stop-color="#43c6b7"/></linearGradient></defs>
+            <rect width="960" height="500" rx="18" fill="url(#decarbBg)"/>
+            <text x="38" y="48" fill="#8bc8ff" font-size="14" font-family="Inter,Arial,sans-serif" font-weight="700" letter-spacing="2">RESEARCH VISUAL SUMMARY · 2026</text>
+            <text x="38" y="88" fill="#fff" font-size="30" font-family="Inter,Arial,sans-serif" font-weight="800">Data-Driven Decarbonization</text>
+            <text x="38" y="116" fill="#d0d8e5" font-size="15" font-family="Inter,Arial,sans-serif">Clustering national CO₂ emission profiles and economic indicators</text>
+            <rect x="38" y="146" width="884" height="2" fill="#344658"/>
+            <text x="38" y="178" fill="#8edfd4" font-size="13" font-family="Inter,Arial,sans-serif" font-weight="700" letter-spacing="1.5">SELECTED MODEL</text>
+            <text x="38" y="215" fill="#fff" font-size="28" font-family="Inter,Arial,sans-serif" font-weight="800">K-Means · k = 4</text>
+            <text x="38" y="244" fill="#8bc8ff" font-size="19" font-family="Inter,Arial,sans-serif" font-weight="700">Silhouette score 0.38</text>
+            <text x="38" y="271" fill="#d0d8e5" font-size="14" font-family="Inter,Arial,sans-serif">CDIAC emissions: 1960–2022</text>
+            <text x="38" y="293" fill="#d0d8e5" font-size="14" font-family="Inter,Arial,sans-serif">World Bank GDP-PPP: 1990–2023</text>
+            <text x="38" y="326" fill="#9aaabd" font-size="12" font-family="Inter,Arial,sans-serif">GDP-PPP was added after clustering</text>
+            <text x="38" y="344" fill="#9aaabd" font-size="12" font-family="Inter,Arial,sans-serif">for economic interpretation.</text>
+            <g transform="translate(410 166)">
+              <text x="0" y="12" fill="#d7e4f1" font-size="13" font-family="Inter,Arial,sans-serif" font-weight="700">FOUR EMISSIONS PROFILES</text>
+              <rect x="0" y="30" width="238" height="110" rx="12" fill="#112c45" stroke="#2a8de2"/><rect x="0" y="30" width="7" height="110" rx="3" fill="#2a8de2"/><text x="20" y="55" fill="#84c4ff" font-size="11" font-family="Inter,Arial,sans-serif" font-weight="700">CLUSTER 0</text><text x="20" y="78" fill="#fff" font-size="15" font-family="Inter,Arial,sans-serif" font-weight="700">Developing, low-emission</text><text x="20" y="99" fill="#c9d7e6" font-size="12" font-family="Inter,Arial,sans-serif">Low totals and low per-capita</text><text x="20" y="116" fill="#c9d7e6" font-size="12" font-family="Inter,Arial,sans-serif">emissions</text>
+              <rect x="258" y="30" width="254" height="110" rx="12" fill="#342414" stroke="#e99a35"/><rect x="258" y="30" width="7" height="110" rx="3" fill="#e99a35"/><text x="278" y="55" fill="#ffc36c" font-size="11" font-family="Inter,Arial,sans-serif" font-weight="700">CLUSTER 1</text><text x="278" y="78" fill="#fff" font-size="15" font-family="Inter,Arial,sans-serif" font-weight="700">High-growth industrializing</text><text x="278" y="99" fill="#e7d6c2" font-size="12" font-family="Inter,Arial,sans-serif">Very high total emissions</text><text x="278" y="116" fill="#e7d6c2" font-size="12" font-family="Inter,Arial,sans-serif">and strong solid-fuel tendency</text>
+              <rect x="0" y="154" width="238" height="110" rx="12" fill="#123328" stroke="#36b77b"/><rect x="0" y="154" width="7" height="110" rx="3" fill="#36b77b"/><text x="20" y="179" fill="#7fe0af" font-size="11" font-family="Inter,Arial,sans-serif" font-weight="700">CLUSTER 2</text><text x="20" y="202" fill="#fff" font-size="15" font-family="Inter,Arial,sans-serif" font-weight="700">Carbon-intensive, wealthy</text><text x="20" y="223" fill="#c8e5d7" font-size="12" font-family="Inter,Arial,sans-serif">High per-capita emissions</text><text x="20" y="240" fill="#c8e5d7" font-size="12" font-family="Inter,Arial,sans-serif">and high GDP-PPP</text>
+              <rect x="258" y="154" width="254" height="110" rx="12" fill="#3a2024" stroke="#ed6267"/><rect x="258" y="154" width="7" height="110" rx="3" fill="#ed6267"/><text x="278" y="179" fill="#ff9ba0" font-size="11" font-family="Inter,Arial,sans-serif" font-weight="700">CLUSTER 3</text><text x="278" y="202" fill="#fff" font-size="15" font-family="Inter,Arial,sans-serif" font-weight="700">Transitioning developed</text><text x="278" y="223" fill="#e9d0d2" font-size="12" font-family="Inter,Arial,sans-serif">Moderate to high totals and</text><text x="278" y="240" fill="#e9d0d2" font-size="12" font-family="Inter,Arial,sans-serif">moderate per-capita levels</text>
+              <rect x="0" y="282" width="512" height="58" rx="10" fill="#17202b" stroke="#344658"/><text x="18" y="306" fill="#d9e6f5" font-size="12" font-family="Inter,Arial,sans-serif" font-weight="700">INTERPRETATION</text><text x="18" y="326" fill="#aebed0" font-size="12" font-family="Inter,Arial,sans-serif">Joint emission scale and fuel composition; not fuel-mix archetypes alone.</text>
+            </g>
+            <rect x="38" y="397" width="884" height="58" rx="10" fill="#0c1825" stroke="#2c4156"/><rect x="56" y="417" width="190" height="8" rx="4" fill="url(#decarbBar)"/><text x="265" y="425" fill="#d6e4f3" font-size="13" font-family="Inter,Arial,sans-serif">Clustering informs context-specific policy discussion, not causal claims.</text>
+            <text x="38" y="478" fill="#8a9fb5" font-size="11" font-family="Inter,Arial,sans-serif">Portfolio-created summary graphic · see publisher article for the full methods and results.</text>
+          </svg>
+          <figcaption class="visual-caption">Portfolio-created visual summary based on the published paper’s four emissions-derived country groups. <a href="https://www.techscience.com/energy/online/detail/28773" target="_blank" rel="noopener">Read the published article and full methodology.</a></figcaption>
+        </figure>
       </div>
     </div>
 
