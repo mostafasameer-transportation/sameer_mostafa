@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 1260" role="img" aria-labelledby="title desc">
+<title id="title">Mobile graphical abstract: Disaster Resilience Research in Bangladesh</title>
+<desc id="desc">Mobile-first summary of PRISMA screening of 701 records into a 301-study corpus, ten-topic LDA modeling, research gaps, and an integrated decision-support blueprint.</desc>
+<style>
+text{font-family:Inter,Arial,sans-serif}.muted{fill:#c8d7e7}.subtle{fill:#9db3c9}.white{fill:#fff}.kicker{fill:#91d5ff;font-size:12px;font-weight:700;letter-spacing:1.5px}.body{font-size:14px}.small{font-size:12.5px}.cardTitle{font-size:17px;font-weight:700}.track{stroke-dasharray:7 8;animation:dash 9s linear infinite}.pulse{transform-box:fill-box;transform-origin:center;animation:pulse 2.7s ease-in-out infinite}@keyframes dash{to{stroke-dashoffset:-140}}@keyframes pulse{0%,100%{opacity:.55;transform:scale(.88)}50%{opacity:1;transform:scale(1.1)}}@media(prefers-reduced-motion:reduce){.track,.pulse{animation:none!important}}
+</style>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#092b40"/><stop offset="1" stop-color="#121b26"/></linearGradient><linearGradient id="signal"><stop stop-color="#43a8e8"/><stop offset="1" stop-color="#6dd7b4"/></linearGradient></defs>
+<rect width="480" height="1260" rx="18" fill="url(#bg)"/>
+<text x="24" y="33" class="kicker">RESEARCH VISUAL SUMMARY · 2025</text>
+<text x="24" y="68" class="white" font-size="24" font-weight="800">Disaster Resilience Research</text>
+<text x="24" y="98" class="white" font-size="24" font-weight="800">in Bangladesh</text>
+<text x="24" y="125" class="muted body">PRISMA review and LDA topic modeling</text>
+<text x="24" y="145" class="muted body">Evidence base, themes and critical gaps · 2014–2024</text>
+<path d="M24 164H456" stroke="#344658"/>
+<text x="24" y="192" fill="#8edfd4" font-size="12" font-weight="700" letter-spacing="1.2">PRISMA SCREENING</text>
+<path d="M240 228V527" stroke="url(#signal)" stroke-width="2.5" class="track"/>
+<g><rect x="24" y="209" width="432" height="72" rx="11" fill="#142c42" stroke="#3d82b5"/><text x="42" y="233" fill="#8bc8ff" font-size="12" font-weight="700">01 · RECORDS RETRIEVED</text><text x="42" y="263" class="white" font-size="24" font-weight="800">701</text><text x="120" y="260" class="muted body">initial search results</text><circle cx="430" cy="227" r="5" fill="#8bc8ff" class="pulse"/></g>
+<g><rect x="24" y="299" width="432" height="72" rx="11" fill="#142c42" stroke="#3d82b5"/><text x="42" y="323" fill="#8bc8ff" font-size="12" font-weight="700">02 · AFTER DEDUPLICATION</text><text x="42" y="353" class="white" font-size="24" font-weight="800">652</text><text x="120" y="350" class="muted body">unique records</text></g>
+<g><rect x="24" y="389" width="432" height="72" rx="11" fill="#142c42" stroke="#3d82b5"/><text x="42" y="413" fill="#8bc8ff" font-size="12" font-weight="700">03 · FULL-TEXT REVIEW</text><text x="42" y="443" class="white" font-size="24" font-weight="800">383</text><text x="120" y="440" class="muted body">records after screening</text></g>
+<g><rect x="24" y="479" width="432" height="72" rx="11" fill="#153228" stroke="#41b67c"/><text x="42" y="503" fill="#7fe0af" font-size="12" font-weight="700">04 · FINAL CORPUS</text><text x="42" y="533" class="white" font-size="24" font-weight="800">301</text><text x="120" y="530" fill="#c2dfd1" class="body">peer-reviewed studies</text><circle cx="430" cy="497" r="5" fill="#7fe0af" class="pulse"/></g>
+<rect x="24" y="572" width="432" height="137" rx="12" fill="#14263a" stroke="#3a5976"/>
+<text x="42" y="598" fill="#8bc8ff" font-size="12" font-weight="700" letter-spacing="1">COMPUTATIONAL MAPPING</text>
+<text x="42" y="630" class="white cardTitle">10-topic LDA model</text>
+<text x="42" y="656" class="muted body">Topics map the concentration of published</text><text x="42" y="677" class="muted body">research and help identify areas needing</text><text x="42" y="698" class="muted body">more integrated evidence.</text>
+<rect x="24" y="730" width="432" height="130" rx="12" fill="#183047" stroke="#3d82b5"/>
+<text x="42" y="755" fill="#8bc8ff" font-size="12" font-weight="700" letter-spacing="1">DOMINANT RESEARCH AGENDAS</text>
+<text x="42" y="784" class="white cardTitle">Community adaptation</text><text x="42" y="806" class="muted body">Livelihoods and community resilience</text>
+<path d="M42 823H438" stroke="#31516d"/>
+<text x="42" y="845" class="white body" font-weight="700">Risk reduction policy and institutions</text>
+<rect x="24" y="881" width="432" height="143" rx="12" fill="#30251f" stroke="#9c6736"/>
+<text x="42" y="906" fill="#ffc36c" font-size="12" font-weight="700" letter-spacing="1">STRUCTURAL DIVIDE AND GAPS</text>
+<text x="42" y="934" class="white cardTitle">Social and technical research</text>
+<text x="42" y="958" fill="#e7d8c8" class="body">Community-focused studies are often</text><text x="42" y="979" fill="#e7d8c8" class="body">separate from hazard and infrastructure</text><text x="42" y="1000" fill="#e7d8c8" class="body">models. Other gaps include supply chains</text><text x="42" y="1019" fill="#e7d8c8" class="small">and salinity–health linkages.</text>
+<text x="24" y="1055" fill="#7fe0c7" font-size="12" font-weight="700" letter-spacing="1.2">PROPOSED INTEGRATION BLUEPRINT</text>
+<g><rect x="24" y="1072" width="432" height="48" rx="10" fill="#12372f" stroke="#3d9d7d"/><text x="42" y="1092" fill="#7fe0af" font-size="11" font-weight="700">LAYER 1</text><text x="42" y="1110" class="white body" font-weight="700">Participatory GIS and community indicators</text></g>
+<path d="M240 1120V1134" stroke="#6dd7b4" stroke-width="2.5" class="track"/><circle cx="240" cy="1127" r="3.5" fill="#d9fff1" class="pulse"/>
+<g><rect x="24" y="1136" width="432" height="48" rx="10" fill="#12372f" stroke="#3d9d7d"/><text x="42" y="1156" fill="#7fe0af" font-size="11" font-weight="700">LAYER 2</text><text x="42" y="1174" class="white body" font-weight="700">Hazard and critical-infrastructure data</text></g>
+<path d="M240 1184V1198" stroke="#6dd7b4" stroke-width="2.5" class="track"/><circle cx="240" cy="1191" r="3.5" fill="#d9fff1" class="pulse"/>
+<g><rect x="24" y="1200" width="432" height="42" rx="10" fill="#12372f" stroke="#3d9d7d"/><text x="42" y="1217" fill="#7fe0af" font-size="11" font-weight="700">LAYER 3</text><text x="42" y="1234" class="white body" font-weight="700">Bayesian inference for decision support</text></g>
+</svg>
