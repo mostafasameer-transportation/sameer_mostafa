@@ -2100,13 +2100,13 @@
       const data = await res.json();
       const normalized = Array.isArray(data) ? data : (data.papers || []);
       if(normalized.length){
-        status.textContent = 'live feed';
+        status.textContent = data.status || 'citation counts unverified';
         render(normalized);
         return;
       }
       throw new Error('empty feed');
     }catch(err){
-      status.textContent = 'fallback sample';
+      status.textContent = 'citation counts unverified';
       render(fallback);
     }
   }
@@ -2362,7 +2362,7 @@
             <div><strong>—</strong> citations</div>
           </div>
           <div class="bar-track"><div class="bar-fill" style="width:12%; opacity:.35"></div></div>
-        </div>`).join('') + '<div class="empty-bars">No live citation feed yet. Add <code>scholar-metrics.json</code> to populate counts from Google Scholar.</div>';
+        </div>`).join('') + '<div class="empty-bars">Citation counts have not been independently verified in this update. Open the Google Scholar profile for the latest totals.</div>';
       return;
     }
     const max = Math.max(...valid.map(d => d.citations), 1);
@@ -2400,7 +2400,7 @@
       }
       throw new Error('empty feed');
     }catch(err){
-      status.textContent = 'snapshot imported';
+      status.textContent = raw.status || 'citation counts unverified';
       renderBars(snapshotPapers);
     }
   }
