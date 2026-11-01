@@ -112,6 +112,10 @@
     mask-image:linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
   }
   .hero-inner{ position:relative; z-index:2; padding-bottom:40px; }
+  .graduation-cover{margin:0 0 34px;position:relative;overflow:hidden;border:1px solid var(--rule-strong);border-radius:18px;background:#0c1721;box-shadow:0 18px 48px rgba(0,0,0,.28);}
+  .graduation-cover img{display:block;width:100%;height:clamp(180px,30vw,390px);object-fit:cover;object-position:center 42%;}
+  .graduation-cover figcaption{padding:9px 14px;font-size:12px;letter-spacing:.04em;color:var(--ink-soft);background:rgba(7,12,18,.9);}
+  @media(max-width:620px){.graduation-cover{margin-bottom:26px;border-radius:13px}.graduation-cover img{height:180px;object-position:center}.graduation-cover figcaption{font-size:11px;padding:8px 10px}}
   .hero-grid{ display:grid; grid-template-columns:180px 1fr; gap:38px; align-items:start; }
   @media (max-width:620px){ .hero-grid{ grid-template-columns:1fr; } }
   .hero-photo{
@@ -1397,6 +1401,10 @@
 <div class="hero" id="top">
   <canvas id="netCanvas"></canvas>
   <div class="wrap hero-inner">
+    <figure class="graduation-cover reveal">
+      <img src="wayne-state-cover.jpg" alt="Mostafa Sameer at Wayne State University graduation, holding his diploma">
+      <figcaption>Wayne State University · M.S. Graduation</figcaption>
+    </figure>
     <div class="hero-grid">
       <div class="hero-photo">
         <img src="assets/profile-image-01.jpg" alt="Portrait of Mostafa Sameer">
@@ -2079,6 +2087,10 @@
       <div>
         <img class="mosaic-img" src="assets/profile-image-27.jpg" alt="FIU Graduation Ceremony" style="height:200px;">
         <div class="mosaic-caption">FIU · Miami, Florida</div>
+      </div>
+      <div>
+        <img class="mosaic-img" src="wayne-state-graduation.jpg" alt="Mostafa Sameer celebrating his Wayne State University graduation outdoors" style="height:200px;object-position:center 35%;">
+        <div class="mosaic-caption">M.S. Graduation · Wayne State University</div>
       </div>
     </div>
   </section>
