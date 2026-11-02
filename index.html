@@ -386,19 +386,17 @@
   .metrics-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:18px;align-items:start}
   .metrics-grid>.metric-panel{min-width:0;align-self:start;height:fit-content}
   .metrics-grid .bars{align-content:start}
-  .metrics-grid .reference-list{display:block;min-width:0}
-  .metrics-grid .ref-card{min-width:0;padding:18px;margin:0;animation:refSlideIn .48s ease both}
-  .metrics-grid .ref-title{overflow-wrap:anywhere;font-size:15px}
-  .metrics-grid .ref-meta{font-size:13px;overflow-wrap:anywhere}
-  .metrics-grid .ref-source{font-size:12px;overflow-wrap:anywhere}
-  .reference-controls{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px}
-  .reference-controls .ref-counter{font:12px 'JetBrains Mono',monospace;color:var(--ink-soft)}
-  .reference-controls .ref-buttons{display:flex;gap:8px}
-  .reference-controls button{border:1px solid var(--rule);background:rgba(255,255,255,.05);color:var(--ink);border-radius:10px;padding:8px 13px;font:600 12px 'Inter',sans-serif;cursor:pointer}
-  .reference-controls button:hover{border-color:var(--pulse);color:var(--pulse)}
-  .reference-controls button:focus-visible{outline:2px solid var(--pulse);outline-offset:3px}
-  @keyframes refSlideIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-  @media(prefers-reduced-motion:reduce){.metrics-grid .ref-card{animation:none}}
+  .metrics-grid .reference-list{position:relative;overflow:hidden;min-width:0;width:100%;padding:4px 0 12px;mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent)}
+  .metrics-grid .reference-track{display:flex;align-items:stretch;gap:14px;width:max-content;will-change:transform;animation:referenceScrollRight 42s linear infinite}
+  .metrics-grid .reference-group{display:flex;align-items:stretch;gap:14px;flex:0 0 auto}
+  .metrics-grid .ref-card{flex:0 0 300px;width:300px;min-width:0;padding:17px;margin:0;display:flex;flex-direction:column;justify-content:flex-start}
+  .metrics-grid .ref-title{overflow-wrap:anywhere;font-size:14px}
+  .metrics-grid .ref-meta{font-size:12px;overflow-wrap:anywhere}
+  .metrics-grid .ref-source{font-size:11px;overflow-wrap:anywhere;margin-top:auto;padding-top:8px}
+  @keyframes referenceScrollRight{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+  .metrics-grid .reference-list:hover .reference-track,.metrics-grid .reference-list:focus-within .reference-track{animation-play-state:paused}
+  @media(max-width:600px){.metrics-grid .ref-card{flex-basis:min(78vw,300px);width:min(78vw,300px)}.metrics-grid .reference-track,.metrics-grid .reference-group{gap:10px}}
+  @media(prefers-reduced-motion:reduce){.metrics-grid .reference-track{animation:none;transform:none;overflow-x:auto}.metrics-grid .reference-list{overflow-x:auto;mask-image:none;-webkit-mask-image:none}}
   @media(max-width:980px){.metrics-grid{grid-template-columns:1fr}}
   .metric-panel{
     border:1px solid var(--rule);
@@ -1504,14 +1502,7 @@
           <h3>Original references</h3>
         </div>
       </div>
-      <div class="reference-list" id="referenceList" aria-live="polite" aria-atomic="true"></div>
-      <div class="reference-controls" id="referenceControls">
-        <span class="ref-counter" id="referenceCounter">Cited papers</span>
-        <div class="ref-buttons">
-          <button type="button" id="referencePrev" aria-label="Previous cited paper">Previous</button>
-          <button type="button" id="referenceNext" aria-label="Next cited paper">Next</button>
-        </div>
-      </div>
+      <div class="reference-list" id="referenceList" aria-label="Automatically scrolling cited publications"></div>
     </div>
   </div>
 
@@ -2886,46 +2877,16 @@
       </article>`;
   }
 
-  let referenceIndex = 0;
-  let referenceTimer = null;
   let citedReferences = references.filter(item => Number.isFinite(item.citations) && item.citations > 0);
-  function showReference(index){
-    if(!referenceList || !citedReferences.length) return;
-    referenceIndex = (index + citedReferences.length) % citedReferences.length;
-    referenceList.innerHTML = referenceCard(citedReferences[referenceIndex]);
-    const counter = document.getElementById('referenceCounter');
-    if(counter) counter.textContent = 'Paper ' + (referenceIndex + 1) + ' of ' + citedReferences.length;
-  }
-  function stopReferenceRotation(){
-    if(referenceTimer){ clearInterval(referenceTimer); referenceTimer = null; }
-  }
-  function startReferenceRotation(){
-    stopReferenceRotation();
-    if(citedReferences.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-      referenceTimer = setInterval(() => showReference(referenceIndex + 1), 6500);
-    }
-  }
   function renderReferences(){
     if(!referenceList) return;
     if(!citedReferences.length){
       referenceList.innerHTML = '<div class="empty-bars">No cited papers are currently available.</div>';
-      const controls = document.getElementById('referenceControls');
-      if(controls) controls.hidden = true;
       return;
     }
-    showReference(0);
-    const prev = document.getElementById('referencePrev');
-    const next = document.getElementById('referenceNext');
-    if(prev) prev.addEventListener('click', () => { showReference(referenceIndex - 1); startReferenceRotation(); });
-    if(next) next.addEventListener('click', () => { showReference(referenceIndex + 1); startReferenceRotation(); });
-    const panel = referenceList.closest('.metric-panel');
-    if(panel){
-      panel.addEventListener('mouseenter', stopReferenceRotation);
-      panel.addEventListener('mouseleave', startReferenceRotation);
-      panel.addEventListener('focusin', stopReferenceRotation);
-      panel.addEventListener('focusout', startReferenceRotation);
-    }
-    startReferenceRotation();
+    const cards = citedReferences.map(referenceCard).join('');
+    // Two identical groups create a seamless, continuously moving horizontal track.
+    referenceList.innerHTML = '<div class="reference-track"><div class="reference-group">' + cards + '</div><div class="reference-group" aria-hidden="true">' + cards.replace(/<a /g, '<a tabindex="-1" ') + '</div></div>';
   }
 
   function renderBars(data){
