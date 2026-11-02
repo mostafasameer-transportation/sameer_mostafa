@@ -26,6 +26,22 @@
     --rule-strong:rgba(255,255,255,0.14);
   }
   *{ box-sizing:border-box; }
+  .cv-section{scroll-margin-top:90px}
+  .cv-card{display:flex;align-items:center;justify-content:space-between;gap:28px;padding:clamp(22px,4vw,38px);border:1px solid var(--rule-strong);border-radius:20px;background:linear-gradient(125deg,rgba(124,183,255,.10),rgba(102,242,222,.045) 58%,rgba(255,255,255,.025));box-shadow:0 18px 55px rgba(0,0,0,.16)}
+  .cv-copy{max-width:680px;min-width:0}
+  .cv-kicker{display:inline-block;color:var(--pulse);font:600 .72rem 'JetBrains Mono',monospace;letter-spacing:.13em}
+  .cv-copy h3{font-size:clamp(1.45rem,3vw,2rem);margin:10px 0}
+  .cv-copy p{color:var(--ink-soft);line-height:1.75;margin:8px 0}
+  .cv-copy .cv-detail{font-size:.88rem;color:var(--ink-faint)}
+  .cv-actions{display:flex;flex-direction:column;gap:10px;flex:0 0 205px}
+  .cv-button{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:12px 16px;border-radius:12px;text-decoration:none;font-weight:700;font-size:.92rem;transition:transform .2s ease,border-color .2s ease,background .2s ease}
+  .cv-button:hover{transform:translateY(-2px)}
+  .cv-button svg{width:19px;height:19px;flex:0 0 19px}
+  .cv-primary{background:var(--accent);color:#07111d;border:1px solid var(--accent)}
+  .cv-secondary{background:rgba(255,255,255,.025);color:var(--ink);border:1px solid var(--rule-strong)}
+  .cv-secondary:hover{border-color:var(--pulse)}
+  @media(max-width:640px){.cv-card{align-items:stretch;flex-direction:column;gap:20px;padding:22px}.cv-actions{flex:initial;width:100%}.cv-button{width:100%}.cv-copy p{font-size:.95rem}}
+
   html{ scroll-behavior:smooth; }
   @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } *{ animation:none !important; transition:none !important; } }
 
@@ -1402,6 +1418,7 @@
       <a href="#updates" data-t="updates">Updates</a>
       <a href="#network" data-t="network">Network</a>
       <a href="#publications" data-t="publications">Publications</a>
+      <a href="#cv" data-t="cv">CV / Resume</a>
       <a href="#education" data-t="education">Education</a>
       <a href="#experience" data-t="experience">Experience</a>
       <a href="#skills" data-t="skills">Skills</a>
@@ -2076,6 +2093,35 @@
     </div>
 
     <div class="more-note">Full list of 110+ presentations, posters, datasets, and reports: <a href="https://www.researchgate.net/profile/Mostafa-Sameer" target="_blank" rel="noopener">researchgate.net/profile/Mostafa-Sameer</a></div>
+  </section>
+
+  <!-- CV / RESUME -->
+  <section id="cv" class="cv-section">
+    <div class="section-head">
+      <svg class="route" width="22" height="12" viewBox="0 0 22 12" aria-hidden="true"><line x1="0" y1="6" x2="16" y2="6" stroke="#1356C9" stroke-width="2"/><circle cx="19" cy="6" r="3" fill="#1356C9"/></svg>
+      <div>
+        <p class="eyebrow">ACADEMIC PROFILE</p>
+        <h2>CV &amp; Resume</h2>
+      </div>
+    </div>
+    <div class="cv-card">
+      <div class="cv-copy">
+        <span class="cv-kicker">CURRICULUM VITAE</span>
+        <h3>Mostafa Sameer</h3>
+        <p>Doctoral Candidate in Civil Engineering at Florida International University. Research interests include bridge rehabilitation, infrastructure resilience, transportation systems, and data-driven risk assessment.</p>
+        <p class="cv-detail">Education · Research &amp; Publications · Professional Experience · Technical Skills</p>
+      </div>
+      <div class="cv-actions">
+        <a class="cv-button cv-primary" href="Mostafa_Sameer_Resume.pdf" download>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M5 17v4h14v-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Download CV (PDF)
+        </a>
+        <a class="cv-button cv-secondary" href="Mostafa_Sameer_Resume.pdf" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.4-6 9.5-6 9.5 6 9.5 6-3.4 6-9.5 6-9.5-6-9.5-6Z" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
+          View CV
+        </a>
+      </div>
+    </div>
   </section>
 
   <!-- EDUCATION -->
