@@ -113,8 +113,8 @@
   }
   .hero-inner{ position:relative; z-index:2; padding-bottom:40px; }
   .graduation-cover{margin:0 0 34px;position:relative;overflow:hidden;border:1px solid var(--rule-strong);border-radius:18px;background:#0c1721;box-shadow:0 18px 48px rgba(0,0,0,.28);}
-  .photo-carousel-stage{position:relative;width:100%;height:clamp(210px,34vw,430px);overflow:hidden;background:#0b121b}
-  .photo-carousel-stage .photo-slide{position:absolute;inset:0;display:block;width:100%;height:100%;max-width:none;object-fit:cover;object-position:center 42%;opacity:1;transform:translateX(0);transition:transform 1.15s cubic-bezier(.22,.72,.2,1),opacity 1.15s ease}
+  .photo-carousel-stage{position:relative;width:100%;height:clamp(210px,34vw,430px);overflow:hidden;background:radial-gradient(ellipse at center,#1c2b3a 0%,#0b121b 75%)}
+  .photo-carousel-stage .photo-slide{position:absolute;inset:0;display:block;width:100%;height:100%;max-width:100%;object-fit:contain;object-position:center;box-sizing:border-box;padding:5px;filter:contrast(1.14) brightness(1.04) saturate(1.12);opacity:1;transform:translateX(0);transition:transform 1.15s cubic-bezier(.22,.72,.2,1),opacity 1.15s ease;image-rendering:auto}
   .photo-carousel-stage .photo-slide.enter{opacity:.25;transform:translateX(-100%)}
   .photo-carousel-stage .photo-slide.active{opacity:1;transform:translateX(0)}
   .photo-carousel-stage .photo-slide.exit{opacity:.2;transform:translateX(100%)}
@@ -3136,33 +3136,30 @@
   const carousel=document.getElementById('portfolio-photo-carousel');
   if(!stage||!carousel)return;
   const photos=[
-    'assets/profile-image-01.jpg','assets/profile-image-02.jpg','assets/profile-image-03.jpg','assets/profile-image-04.jpg',
-    'assets/profile-image-05.jpg','assets/profile-image-06.jpg','assets/profile-image-07.jpg','assets/profile-image-08.jpg',
-    'assets/profile-image-09.jpg','assets/profile-image-10.jpg','assets/profile-image-11.jpg','assets/profile-image-12.jpg',
-    'assets/profile-image-13.jpg','assets/profile-image-14.jpg','assets/profile-image-15.jpg','assets/profile-image-16.jpg',
-    'assets/profile-image-17.jpg','assets/profile-image-18.jpg','assets/profile-image-19.jpg','assets/profile-image-20.jpg',
-    'assets/profile-image-21.jpg','assets/profile-image-22.jpg','assets/profile-image-23.jpg','assets/profile-image-24.jpg',
-    'assets/profile-image-25.jpg','assets/profile-image-26.jpg','assets/profile-image-27.jpg','assets/profile-image-28.jpg',
-    'assets/profile-image-29.jpg','assets/profile-image-30.gif','assets/profile-image-31.jpg','assets/profile-image-32.jpg',
-    'assets/profile-image-33.jpg','assets/profile-image-34.jpg','wayne-state-graduation.jpg'
+    {src:'wayne-state-cover.jpg',alt:'Mostafa Sameer at Wayne State University graduation',caption:'Wayne State University · M.S. Graduation'},
+    {src:'wayne-state-graduation.jpg',alt:'Mostafa Sameer celebrating his Wayne State University graduation outdoors',caption:'Wayne State University · Graduation'},
+    {src:'assets/profile-image-26.jpg',alt:'Mostafa Sameer at his FIU Ph.D. qualifying exam',caption:'Florida International University · Ph.D. Qualifying Exam'},
+    {src:'assets/profile-image-27.jpg',alt:'Mostafa Sameer at the FIU graduation ceremony',caption:'Florida International University · Graduation'},
+    {src:'assets/profile-image-24.jpg',alt:'Florida International University campus',caption:'Florida International University · Campus'},
+    {src:'assets/profile-image-29.jpg',alt:'KDS Group field inspection in Bangladesh',caption:'KDS Group · Field Experience'}
   ];
   const caption=document.getElementById('photoCarouselCaption');
   const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let index=-1,active=stage.querySelector('.photo-slide'),timer=null,paused=false;
   function advance(){
     if(paused||document.hidden)return;
-    const nextIndex=(index+1)%photos.length,src=photos[nextIndex];
+    const nextIndex=(index+1)%photos.length,photo=photos[nextIndex];
     const incoming=document.createElement('img');
     incoming.className='photo-slide enter';
-    incoming.src=src;
-    incoming.alt='Mostafa Sameer academic, research, or professional photograph';
+    incoming.src=photo.src;
+    incoming.alt=photo.alt;
     incoming.onload=function(){
       stage.appendChild(incoming);
       requestAnimationFrame(()=>requestAnimationFrame(()=>{
         incoming.classList.remove('enter');incoming.classList.add('active');
         if(active){active.classList.remove('active');active.classList.add('exit');const old=active;window.setTimeout(()=>old.remove(),1200);}
         active=incoming;index=nextIndex;
-        if(caption)caption.textContent='Academic, research, and professional milestones · Photo '+(index+2)+' of '+(photos.length+1);
+        if(caption)caption.textContent=photo.caption;
       }));
     };
     incoming.onerror=function(){incoming.remove();index=nextIndex;};
