@@ -682,6 +682,31 @@
   /* ---------- experience expansion ---------- */
   .erow .detail{ max-width:68ch; }
 
+  /* ---------- FEATURED ONGOING RESEARCH ---------- */
+  .ongoing-work{margin:24px 0 30px}
+  .ongoing-work-head{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:14px}
+  .ongoing-work-head h3{font-family:'Inter',sans-serif;font-size:clamp(1.05rem,2.5vw,1.3rem);margin:0;color:var(--ink)}
+  .ongoing-work-head p{margin:5px 0 0;color:var(--ink-soft);font-size:13px;line-height:1.6}
+  .ongoing-work-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  .ongoing-work-card{position:relative;display:flex;flex-direction:column;min-width:0;overflow:hidden;padding:21px;border:1px solid var(--rule-strong);border-radius:16px;background:linear-gradient(145deg,rgba(19,86,201,.11),rgba(255,255,255,.025) 62%);transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
+  .ongoing-work-card:nth-child(2){background:linear-gradient(145deg,rgba(37,170,145,.11),rgba(255,255,255,.025) 62%)}
+  .ongoing-work-card:before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--accent,#6da7ff);opacity:.9}
+  .ongoing-work-card:nth-child(2):before{background:#50d4b9}
+  .ongoing-work-card:hover{transform:translateY(-3px);border-color:var(--accent-dim);box-shadow:0 16px 34px rgba(0,0,0,.18)}
+  .ongoing-work-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:15px}
+  .ongoing-work-icon{display:grid;place-items:center;width:42px;height:42px;flex:0 0 42px;border:1px solid var(--rule-strong);border-radius:12px;background:rgba(255,255,255,.045);color:var(--pulse);font-size:20px}
+  .ongoing-work-status{display:inline-flex;align-items:center;gap:7px;padding:6px 9px;border:1px solid var(--rule-strong);border-radius:999px;color:var(--ink-soft);font:600 10px 'JetBrains Mono',monospace;letter-spacing:.035em}
+  .ongoing-work-status:before{content:"";width:6px;height:6px;border-radius:50%;background:#50d4b9;box-shadow:0 0 0 3px rgba(80,212,185,.12)}
+  .ongoing-work-card h4{margin:0;color:var(--ink);font-size:17px;line-height:1.4;overflow-wrap:anywhere}
+  .ongoing-work-card p{margin:9px 0 18px;color:var(--ink-soft);font-size:13.5px;line-height:1.7}
+  .ongoing-work-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;margin-bottom:18px}
+  .ongoing-work-tags span{padding:5px 8px;border:1px solid var(--rule);border-radius:7px;color:var(--ink-soft);font-size:10.5px;line-height:1.35}
+  .ongoing-work-link{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:13px;border-top:1px solid var(--rule);color:var(--pulse);font-size:13px;font-weight:650;text-decoration:none}
+  .ongoing-work-link span:last-child{font-size:18px;transition:transform .2s ease}
+  .ongoing-work-link:hover span:last-child{transform:translate(3px,-2px)}
+  @media(max-width:620px){.ongoing-work-head{align-items:flex-start;flex-direction:column}.ongoing-work-grid{grid-template-columns:minmax(0,1fr);gap:12px}.ongoing-work-card{padding:18px}.ongoing-work-card h4{font-size:16px}}
+  @media(prefers-reduced-motion:reduce){.ongoing-work-card,.ongoing-work-link span:last-child{transition:none}.ongoing-work-card:hover{transform:none}}
+
   /* ---------- PROJECTS ---------- */
   .proj-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
   @media (max-width:620px){ .proj-grid{ grid-template-columns:1fr; } }
@@ -2201,6 +2226,38 @@
       <span class="section-num">07</span><h2>Code &amp; Dashboards</h2>
     </div>
     <p class="section-intro">Interactive GIS dashboards and analysis code, mostly built around bridge condition and flood-damage datasets.</p>
+
+    <div class="ongoing-work reveal" aria-labelledby="ongoing-work-title">
+      <div class="ongoing-work-head">
+        <div>
+          <h3 id="ongoing-work-title">Ongoing Research &amp; Live Tools</h3>
+          <p>Explore selected research tools and platforms connected to my current infrastructure analytics work.</p>
+        </div>
+      </div>
+      <div class="ongoing-work-grid">
+        <article class="ongoing-work-card">
+          <div class="ongoing-work-top">
+            <div class="ongoing-work-icon" aria-hidden="true">⌁</div>
+            <span class="ongoing-work-status">Interactive tool</span>
+          </div>
+          <h4>Bridge Research Analytics &amp; Scoring</h4>
+          <p>A research dashboard for exploring bridge condition analytics and scoring to support infrastructure assessment and rehabilitation prioritization.</p>
+          <div class="ongoing-work-tags"><span>Bridge condition</span><span>Decision support</span><span>Infrastructure analytics</span></div>
+          <a class="ongoing-work-link" href="https://mostafasameer-transportation.github.io/Bridge_Research_Analytics_Scoring/" target="_blank" rel="noopener noreferrer" aria-label="Open Bridge Research Analytics and Scoring tool"><span>Explore the live tool</span><span aria-hidden="true">↗</span></a>
+        </article>
+        <article class="ongoing-work-card">
+          <div class="ongoing-work-top">
+            <div class="ongoing-work-icon" aria-hidden="true">◎</div>
+            <span class="ongoing-work-status">FIU research platform</span>
+          </div>
+          <h4>iMap · Interactive Mapping Platform</h4>
+          <p>An FIU-hosted mapping platform associated with my research environment. Open the platform to explore its available mapping and analysis features.</p>
+          <div class="ongoing-work-tags"><span>Interactive mapping</span><span>Spatial analysis</span><span>FIU</span></div>
+          <a class="ongoing-work-link" href="https://web.eng.fiu.edu/worabi/iMap/" target="_blank" rel="noopener noreferrer" aria-label="Open FIU iMap platform"><span>Visit FIU iMap</span><span aria-hidden="true">↗</span></a>
+        </article>
+      </div>
+    </div>
+
     <div class="proj-grid">
       <div class="proj-card"><h4>florida-bridge-network</h4><p>Interactive dashboard of Florida's bridge inventory and condition data.</p></div>
       <div class="proj-card"><h4>us-bridges-poor-condition</h4><p>National Bridge Inventory dashboard tracking poor-condition bridges across the U.S.</p></div>
