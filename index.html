@@ -1486,7 +1486,7 @@
           <h3>Citations by paper</h3>
           <p class="metric-note">A paper-level view pulled from the Scholar feed. The bars animate when the page loads or when the feed changes.</p>
         </div>
-        <div class="badge" id="scholarStatusSecondary">counts unverified</div>
+        
       </div>
       <div class="bars" id="citationBars"></div>
     </div>
@@ -2879,29 +2879,22 @@
 
   function renderBars(data){
     if(!bars) return;
-    const valid = data.filter(d => Number.isFinite(d.citations));
-    if(!valid.length){
-      bars.innerHTML = snapshotPapers.map((item) => `
-        <div class="bar-item">
-          <div class="bar-top">
-            <div><span class="bar-label">${item.title}</span></div>
-            <div><strong>—</strong> citations</div>
-          </div>
-          <div class="bar-track"><div class="bar-fill" style="width:12%; opacity:.35"></div></div>
-        </div>`).join('') + '<div class="empty-bars">Citation counts have not been independently verified in this update. Open the Google Scholar profile for the latest totals.</div>';
+    // Display only papers with a positive citation count.
+    const cited = data.filter(d => Number.isFinite(d.citations) && d.citations > 0);
+    if(!cited.length){
+      bars.innerHTML = '<div class="empty-bars">No cited papers are currently available in the Scholar feed.</div>';
       return;
     }
-    const max = Math.max(...valid.map(d => d.citations), 1);
-    bars.innerHTML = data.map(d => {
-      const has = Number.isFinite(d.citations);
-      const pct = has ? Math.max(8, Math.round((d.citations / max) * 100)) : 12;
+    const max = Math.max(...cited.map(d => d.citations), 1);
+    bars.innerHTML = cited.map(d => {
+      const pct = Math.max(8, Math.round((d.citations / max) * 100));
       return `
         <div class="bar-item">
           <div class="bar-top">
             <div><span class="bar-label">${d.title}</span></div>
-            <div><strong>${has ? d.citations : '—'}</strong> citations</div>
+            <div><strong>${d.citations}</strong> citations</div>
           </div>
-          <div class="bar-track"><div class="bar-fill" style="width:${pct}%; ${has ? '' : 'opacity:.35'}"></div></div>
+          <div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div>
         </div>`;
     }).join('');
   }
