@@ -1521,7 +1521,7 @@
       <div class="metric-head">
         <div>
           <h3>Scholar citation dashboard</h3>
-          <p class="metric-note">Live counts come from <span class="mono">scholar-metrics.json</span> and refresh automatically when the feed updates.</p>
+          
         </div>
         <div class="badge" id="scholarStatus">live feed ready</div>
       </div>
@@ -1648,13 +1648,13 @@
         <div class="collab-mobile-key" id="collabMobileKey" aria-label="Collaborators"></div>
         <div class="collab-detail" id="collabDetail">
           <div class="collab-kicker">Selected collaborator</div>
-          <div class="collab-name">Hover a node to preview the connection</div>
-          <div class="collab-tag">This panel can also be fed from a JSON file later to reflect live co-author data.</div>
+          
+          
         </div>
         <div class="net-legend">
           <span><span class="legend-dot" style="background:#1356C9;"></span>Mostafa Sameer</span>
           <span><span class="legend-dot" style="background:#fff; border:2px solid #1356C9; box-sizing:border-box;"></span>Collaborator</span>
-          <span>Lines pulse to show an active co-authored project</span>
+          
         </div>
       </div>
 
@@ -1861,7 +1861,7 @@
       </button>
 </div>
       <div class="recommendation-archive-bar">
-      <div class="recommendation-archive-note"><strong>Recommendation archive</strong><br>6 featured pages shown · 22 screenshot pages available</div>
+      
       <button class="recommendation-toggle" id="recommendationToggle" type="button" aria-expanded="false" aria-controls="recommendationGallery">View all 22 recommendation pages</button>
     </div>
     </section>
@@ -1997,7 +1997,7 @@
             <text x="198" y="526" fill="#b8c8d9" font-size="12" font-family="Inter,Arial,sans-serif">Groups reflect joint emission scale and composition; clustering indicates patterns, not causation.</text>
             <text x="38" y="558" fill="#91a5ba" font-size="11" font-family="Inter,Arial,sans-serif">Portfolio-created summary · See the publisher article for full methods, validation and limitations.</text>
           </svg>
-          <figcaption class="visual-caption">Portfolio-created visual summary based on the published paper’s four emissions-derived country groups. <a href="https://www.techscience.com/energy/online/detail/28773" target="_blank" rel="noopener">Read the published article and full methodology.</a></figcaption>
+          <figcaption class="visual-caption"><a href="https://www.techscience.com/energy/online/detail/28773" target="_blank" rel="noopener">Read the published article and full methodology.</a></figcaption>
         </figure>
       </div>
     </div>
@@ -2033,7 +2033,7 @@
               <img src="assets/av-machine-learning-animated-abstract.svg" alt="Animated graphical abstract: machine learning themes, challenges, and future directions in autonomous vehicles" loading="lazy" style="display:block;width:100%;height:auto;min-height:220px;background:#101b2a;" />
             </picture>
           </a>
-          <figcaption class="visual-caption">Animated, portfolio-created visual abstract based on the review’s reported themes and research agenda. <a href="https://doi.org/10.1109/ACCESS.2025.3620637" target="_blank" rel="noopener">Read the IEEE Access paper.</a></figcaption>
+          <figcaption class="visual-caption"><a href="https://doi.org/10.1109/ACCESS.2025.3620637" target="_blank" rel="noopener">Read the IEEE Access paper.</a></figcaption>
         </figure>
       </div>
     </div>
@@ -2053,7 +2053,7 @@
               <img src="assets/bangladesh-disaster-resilience-animated-abstract.svg" alt="Animated graphical abstract: PRISMA screening, topic modeling, research gaps, and resilience integration framework in Bangladesh" loading="lazy" style="display:block;width:100%;height:auto;min-height:220px;background:#101b2a;" />
             </picture>
           </a>
-          <figcaption class="visual-caption">Animated, portfolio-created visual abstract based on the article’s screening, topic-modeling findings and proposed integration architecture. <a href="https://doi.org/10.1016/j.pdisas.2025.100486" target="_blank" rel="noopener">Read the published review.</a></figcaption>
+          <figcaption class="visual-caption"><a href="https://doi.org/10.1016/j.pdisas.2025.100486" target="_blank" rel="noopener">Read the published review.</a></figcaption>
         </figure>
       </div>
     </div>
@@ -2144,7 +2144,7 @@
       </div>
     </div>
 
-    <div class="more-note">Full list of 110+ presentations, posters, datasets, and reports: <a href="https://www.researchgate.net/profile/Mostafa-Sameer" target="_blank" rel="noopener">researchgate.net/profile/Mostafa-Sameer</a></div>
+    <div class="more-note"><a href="https://www.researchgate.net/profile/Mostafa-Sameer" target="_blank" rel="noopener">View additional research outputs on ResearchGate</a></div>
   </section>
 
   <!-- CV / RESUME -->
@@ -2772,13 +2772,13 @@
       const data = await res.json();
       const normalized = Array.isArray(data) ? data : (data.papers || []);
       if(normalized.length){
-        status.textContent = data.status || 'citation counts unverified';
+        status.textContent = '';
         render(normalized);
         return;
       }
       throw new Error('empty feed');
     }catch(err){
-      status.textContent = 'citation counts unverified';
+      status.textContent = '';
       render(fallback);
     }
   }
@@ -3072,7 +3072,7 @@
       }
       throw new Error('empty feed');
     }catch(err){
-      status.textContent = raw.status || 'citation counts unverified';
+      status.textContent = '';
       renderBars(snapshotPapers);
     }
   }
@@ -3191,7 +3191,7 @@
     toggle.setAttribute('aria-expanded',String(expanded));
     toggle.textContent=expanded?'Show featured recommendations':'View all '+total+' recommendation pages';
     const note=toggle.parentElement.querySelector('.recommendation-archive-note');
-    if(note)note.innerHTML='<strong>Recommendation archive</strong><br>'+(expanded?'Showing all '+total+' screenshot pages':featured+' featured pages shown · '+total+' screenshot pages available');
+    if(note)note.textContent='';
   }
   toggle.addEventListener('click',function(){
     gallery.classList.toggle('is-expanded');
