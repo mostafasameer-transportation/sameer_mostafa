@@ -1428,6 +1428,17 @@
     }
   }
 
+
+/* Peer-review service section */
+.peer-review-panel{display:flex;align-items:center;justify-content:space-between;gap:28px;padding:clamp(20px,3vw,32px);overflow:hidden}
+.peer-review-copy{min-width:0;max-width:720px}
+.peer-review-copy h3{margin:12px 0 8px;font-size:clamp(1.2rem,2vw,1.65rem);color:var(--text,#eef3fb)}
+.peer-review-copy p{margin:0 0 20px;line-height:1.7;color:var(--muted,#b9c4d4)}
+.peer-review-link{display:inline-flex;align-items:center;gap:10px;max-width:100%;white-space:normal;text-decoration:none}
+.peer-review-mark{flex:0 0 150px;min-height:150px;border:1px solid rgba(102,242,222,.25);border-radius:22px;background:radial-gradient(circle at 50% 35%,rgba(102,242,222,.16),rgba(102,242,222,.025) 68%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;color:var(--muted,#b9c4d4);font-size:.78rem}
+.peer-review-icon{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;border:1px solid #66f2de;color:#66f2de;font-size:1.8rem}
+@media(max-width:600px){.peer-review-panel{flex-direction:column;align-items:stretch;gap:18px}.peer-review-mark{flex:0 0 auto;min-height:110px;width:100%}.peer-review-link{width:100%;justify-content:center}}
+
 </style>
 </head>
 <body>
@@ -1504,7 +1515,6 @@
     <svg class="route" width="22" height="12" viewBox="0 0 22 12"><line x1="0" y1="6" x2="16" y2="6" stroke="#7CB7FF" stroke-width="2"/><circle cx="19" cy="6" r="3" fill="#66F2DE"/></svg>
     <span class="section-num">00</span><h2>Scholar &amp; original references</h2>
   </div>
-  <p class="section-intro">This section is driven by my Scholar feed, with a clean citation dashboard and reference cards. No Google Scholar screenshots are embedded here.</p>
 
   <div class="scholar-grid">
     <div class="metric-panel">
@@ -1542,7 +1552,6 @@
       <div class="metric-head">
         <div>
           <h3>Citations by paper</h3>
-          <p class="metric-note">A paper-level view pulled from the Scholar feed. The bars animate when the page loads or when the feed changes.</p>
         </div>
         
       </div>
@@ -1563,7 +1572,6 @@
     <div class="metric-head">
       <div>
         <h3>Research snapshot</h3>
-        <p class="metric-note">A compact visual summary of the work shown in the profile.</p>
       </div>
     </div>
     <div class="tiny-grid">
@@ -1784,7 +1792,6 @@
       <svg class="route" width="22" height="12" viewBox="0 0 22 12"><line x1="0" y1="6" x2="16" y2="6" stroke="#1356C9" stroke-width="2"/><circle cx="19" cy="6" r="3" fill="#1356C9"/></svg>
       <span class="section-num">02A</span><h2>LinkedIn Recommendations</h2>
     </div>
-    <p class="section-intro recommendation-intro">A curated preview of professional recommendations. Select any image to read it at full size, or open the complete archive below.</p>
     <div class="recommendation-gallery" id="recommendationGallery">
       <button class="rec-shot" type="button" data-full="assets/profile-image-02.jpg" aria-label="Open LinkedIn recommendations page 1">
         <img src="assets/profile-image-02.jpg" alt="LinkedIn recommendations page 1" loading="lazy">
@@ -1860,13 +1867,33 @@
     </section>
 
 
+  <!-- PEER REVIEW SERVICE -->
+  <section id="peer-review">
+    <div class="section-head">
+      <svg class="route" width="22" height="12" viewBox="0 0 22 12" aria-hidden="true"><line x1="0" y1="6" x2="16" y2="6" stroke="#66F2DE" stroke-width="2"/><circle cx="19" cy="6" r="3" fill="#66F2DE"/></svg>
+      <span class="section-num">02B</span><h2>Peer Review Service</h2>
+    </div>
+    <div class="metric-panel peer-review-panel">
+      <div class="peer-review-copy">
+        <span class="badge">Research service</span>
+        <h3>Completed peer reviews</h3>
+        <p>My Web of Science researcher record provides the available record of my peer-review activity, including review entries and further details where supplied by the platform.</p>
+        <a class="primary-btn peer-review-link" href="https://www.webofscience.com/wos/author/record/OLR-3415-2025" target="_blank" rel="noopener noreferrer">View peer-review record <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="peer-review-mark" aria-hidden="true">
+        <span class="peer-review-icon">✓</span>
+        <span>Peer review</span>
+        <span>Web of Science</span>
+      </div>
+    </div>
+  </section>
+
   <!-- PUBLICATIONS -->
   <section id="publications">
     <div class="section-head">
       <svg class="route" width="22" height="12" viewBox="0 0 22 12"><line x1="0" y1="6" x2="16" y2="6" stroke="#1356C9" stroke-width="2"/><circle cx="19" cy="6" r="3" fill="#1356C9"/></svg>
       <span class="section-num">03</span><h2>Publications</h2>
     </div>
-    <p class="section-intro">ResearchGate lists more than 110 records, including presentations, posters, and technical reports. This section highlights peer-reviewed publications and substantive research outputs. Use the filters to browse by type.</p>
     <div class="pub-filters" id="pubFilters">
       <button class="pf active" data-filter="all">All</button>
       <button class="pf" data-filter="journal">Journal</button>
