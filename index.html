@@ -113,9 +113,17 @@
   }
   .hero-inner{ position:relative; z-index:2; padding-bottom:40px; }
   .graduation-cover{margin:0 0 34px;position:relative;overflow:hidden;border:1px solid var(--rule-strong);border-radius:18px;background:#0c1721;box-shadow:0 18px 48px rgba(0,0,0,.28);}
-  .graduation-cover img{display:block;width:100%;height:clamp(180px,30vw,390px);object-fit:cover;object-position:center 42%;}
+  .photo-carousel-stage{position:relative;width:100%;height:clamp(210px,34vw,430px);overflow:hidden;background:#0b121b}
+  .photo-carousel-stage .photo-slide{position:absolute;inset:0;display:block;width:100%;height:100%;max-width:none;object-fit:cover;object-position:center 42%;opacity:1;transform:translateX(0);transition:transform 1.15s cubic-bezier(.22,.72,.2,1),opacity 1.15s ease}
+  .photo-carousel-stage .photo-slide.enter{opacity:.25;transform:translateX(-100%)}
+  .photo-carousel-stage .photo-slide.active{opacity:1;transform:translateX(0)}
+  .photo-carousel-stage .photo-slide.exit{opacity:.2;transform:translateX(100%)}
   .graduation-cover figcaption{padding:9px 14px;font-size:12px;letter-spacing:.04em;color:var(--ink-soft);background:rgba(7,12,18,.9);}
-  @media(max-width:620px){.graduation-cover{margin-bottom:26px;border-radius:13px}.graduation-cover img{height:180px;object-position:center}.graduation-cover figcaption{font-size:11px;padding:8px 10px}}
+  .photo-carousel-indicator{position:absolute;right:15px;bottom:47px;display:flex;gap:5px;align-items:center}
+  .photo-carousel-indicator span{width:5px;height:5px;border-radius:10px;background:rgba(255,255,255,.5);box-shadow:0 1px 5px #0008}
+  .photo-carousel-indicator span:first-child{width:18px;background:#79e6d4}
+  @media(max-width:620px){.graduation-cover{margin-bottom:26px;border-radius:13px}.photo-carousel-stage{height:clamp(185px,58vw,260px)}.photo-carousel-stage .photo-slide{object-position:center}.graduation-cover figcaption{font-size:11px;padding:8px 10px}.photo-carousel-indicator{bottom:42px;right:10px}}
+  @media(prefers-reduced-motion:reduce){.photo-carousel-stage .photo-slide{transition:none}}
   .hero-grid{ display:grid; grid-template-columns:180px 1fr; gap:38px; align-items:start; }
   @media (max-width:620px){ .hero-grid{ grid-template-columns:1fr; } }
   .hero-photo{
@@ -1406,9 +1414,12 @@
 <div class="hero" id="top">
   <canvas id="netCanvas"></canvas>
   <div class="wrap hero-inner">
-    <figure class="graduation-cover reveal">
-      <img src="wayne-state-cover.jpg" alt="Mostafa Sameer at Wayne State University graduation, holding his diploma">
-      <figcaption>Wayne State University · M.S. Graduation</figcaption>
+    <figure class="graduation-cover reveal" id="portfolio-photo-carousel" aria-label="Academic, research, and professional photographs">
+      <div class="photo-carousel-stage" id="photoCarouselStage">
+        <img class="photo-slide active" src="wayne-state-cover.jpg" alt="Mostafa Sameer at Wayne State University graduation, holding his diploma">
+      </div>
+      <figcaption id="photoCarouselCaption">Academic, research, and professional milestones · Mostafa Sameer</figcaption>
+      <div class="photo-carousel-indicator" aria-hidden="true"><span></span><span></span><span></span></div>
     </figure>
     <div class="hero-grid">
       <div class="hero-photo">
@@ -3119,5 +3130,52 @@
 (function(){var r=document.getElementById('contact-robot'),b=document.getElementById('cr-launch'),p=document.getElementById('cr-panel');if(!r||!b||!p)return;function toggle(v){r.classList.toggle('cr-open',v);b.setAttribute('aria-expanded',String(v));p.setAttribute('aria-hidden',String(!v));}b.addEventListener('click',function(){toggle(!r.classList.contains('cr-open'));});document.getElementById('cr-close').addEventListener('click',function(){toggle(false);b.focus();});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&r.classList.contains('cr-open')){toggle(false);b.focus();}});var f=p.querySelector('form'),email=document.getElementById('cr-email');f.addEventListener('submit',function(){f.querySelector('[name="_replyto"]').value=email.value;});})();
 </script>
 
+<script>
+(function(){
+  const stage=document.getElementById('photoCarouselStage');
+  const carousel=document.getElementById('portfolio-photo-carousel');
+  if(!stage||!carousel)return;
+  const photos=[
+    'assets/profile-image-01.jpg','assets/profile-image-02.jpg','assets/profile-image-03.jpg','assets/profile-image-04.jpg',
+    'assets/profile-image-05.jpg','assets/profile-image-06.jpg','assets/profile-image-07.jpg','assets/profile-image-08.jpg',
+    'assets/profile-image-09.jpg','assets/profile-image-10.jpg','assets/profile-image-11.jpg','assets/profile-image-12.jpg',
+    'assets/profile-image-13.jpg','assets/profile-image-14.jpg','assets/profile-image-15.jpg','assets/profile-image-16.jpg',
+    'assets/profile-image-17.jpg','assets/profile-image-18.jpg','assets/profile-image-19.jpg','assets/profile-image-20.jpg',
+    'assets/profile-image-21.jpg','assets/profile-image-22.jpg','assets/profile-image-23.jpg','assets/profile-image-24.jpg',
+    'assets/profile-image-25.jpg','assets/profile-image-26.jpg','assets/profile-image-27.jpg','assets/profile-image-28.jpg',
+    'assets/profile-image-29.jpg','assets/profile-image-30.gif','assets/profile-image-31.jpg','assets/profile-image-32.jpg',
+    'assets/profile-image-33.jpg','assets/profile-image-34.jpg','wayne-state-graduation.jpg'
+  ];
+  const caption=document.getElementById('photoCarouselCaption');
+  const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let index=-1,active=stage.querySelector('.photo-slide'),timer=null,paused=false;
+  function advance(){
+    if(paused||document.hidden)return;
+    const nextIndex=(index+1)%photos.length,src=photos[nextIndex];
+    const incoming=document.createElement('img');
+    incoming.className='photo-slide enter';
+    incoming.src=src;
+    incoming.alt='Mostafa Sameer academic, research, or professional photograph';
+    incoming.onload=function(){
+      stage.appendChild(incoming);
+      requestAnimationFrame(()=>requestAnimationFrame(()=>{
+        incoming.classList.remove('enter');incoming.classList.add('active');
+        if(active){active.classList.remove('active');active.classList.add('exit');const old=active;window.setTimeout(()=>old.remove(),1200);}
+        active=incoming;index=nextIndex;
+        if(caption)caption.textContent='Academic, research, and professional milestones · Photo '+(index+2)+' of '+(photos.length+1);
+      }));
+    };
+    incoming.onerror=function(){incoming.remove();index=nextIndex;};
+  }
+  function start(){if(reduceMotion||timer||paused)return;timer=window.setInterval(advance,6500);}
+  function stop(){if(timer){window.clearInterval(timer);timer=null;}}
+  carousel.addEventListener('mouseenter',()=>{paused=true;stop();});
+  carousel.addEventListener('mouseleave',()=>{paused=false;start();});
+  carousel.addEventListener('focusin',()=>{paused=true;stop();});
+  carousel.addEventListener('focusout',()=>{paused=false;start();});
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();else start();});
+  start();
+})();
+</script>
 </body>
 </html>
