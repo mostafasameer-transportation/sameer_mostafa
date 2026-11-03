@@ -1,7 +1,7 @@
 {
-  "updated": "2026-10-31",
-  "status": "Google Scholar metrics · 31 citations · h-index 3 · i10-index 2",
-  "source": "Transcribed from a Google Scholar profile screenshot supplied by the profile owner on 31 October 2026. Total citations were 31 in both the All and Since 2021 columns. Per-paper citations are set only for records whose counts were visible in the supplied screenshot; all other counts remain null pending direct verification.",
+  "updated": "2026-11-03",
+  "status": "Google Scholar metrics · 32 citations · h-index 3 · i10-index 2",
+  "source": "Updated from the Google Scholar profile screenshot supplied by the profile owner on 3 November 2026. Total citations are 32 in both the All and Since 2021 columns. Per-paper citations are set only for records whose counts are visible in the supplied screenshot; other counts remain null pending direct verification.",
   "papers": [
     {
       "title": "Data-Driven Decarbonization: Clustering of National CO₂ Emission Profiles and Economic Indicators for Sustainable Energy Transitions",
@@ -15,7 +15,7 @@
     },
     {
       "title": "Mapping the Machine Learning Landscape in Autonomous Vehicles: A Scientometric Review of Research Trends, Applications, Challenges, and Future Directions",
-      "citations": 11,
+      "citations": 12,
       "year": 2025
     },
     {
@@ -70,12 +70,12 @@
     }
   ],
   "metrics": {
-    "totalCitations": 31,
-    "citationsAll": 31,
-    "citationsSince2021": 31,
+    "totalCitations": 32,
+    "citationsAll": 32,
+    "citationsSince2021": 32,
     "hIndex": 3,
     "i10Index": 2,
-    "verifiedDate": "2026-10-31",
+    "verifiedDate": "2026-11-03",
     "verifiedFrom": "User-provided Google Scholar profile screenshot"
   }
 }
