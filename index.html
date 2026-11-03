@@ -740,15 +740,19 @@
   .paper.hidden{ display:none; }
 
   /* ---------- research graphical abstracts ---------- */
-  .visual-summary{margin:16px 0 4px;border:1px solid var(--rule);border-radius:14px;overflow:hidden;background:linear-gradient(145deg,#0d1d30,#10151c 60%,#111a24)}
-  .visual-summary svg{display:block;width:100%;height:auto}
-  .visual-caption{padding:10px 13px;border-top:1px solid rgba(255,255,255,.09);font-size:12px;line-height:1.55;color:var(--ink-soft)}
+  .visual-summary{display:block;width:100%;max-width:100%;min-width:0;box-sizing:border-box;margin:16px 0 4px;border:1px solid var(--rule);border-radius:14px;overflow:hidden;background:linear-gradient(145deg,#0d1d30,#10151c 60%,#111a24)}
+  .visual-summary svg{display:block;width:100%;max-width:100%;height:auto;min-width:0}
+  .visual-caption{max-width:100%;min-width:0;overflow-wrap:anywhere;padding:10px 13px;border-top:1px solid rgba(255,255,255,.09);font-size:12px;line-height:1.55;color:var(--ink-soft)}
   .visual-caption a{color:var(--pulse)}
-  .animated-visual svg,.animated-visual img{overflow:hidden;display:block;width:100%;height:auto}
-  .animated-abstract-open{display:block;line-height:0;background:#101b2a}
+  .animated-visual svg,.animated-visual img{overflow:hidden;display:block;width:100%;max-width:100%;height:auto;min-width:0}
+  .animated-abstract-open{display:block;max-width:100%;min-width:0;line-height:0;background:#101b2a}
   .animated-abstract-open:focus-visible{outline:2px solid var(--pulse);outline-offset:3px}
   .animated-visual .visual-caption{font-size:12px}
-  @media(max-width:640px){.visual-caption{font-size:11.5px}}
+  @media(max-width:640px){
+    .visual-summary{margin-left:0;margin-right:0;border-radius:12px}
+    .visual-summary svg{width:100%;height:auto}
+    .visual-caption{font-size:11.5px;padding:9px 10px}
+  }
   @media(prefers-reduced-motion:reduce){.animated-visual svg *{animation:none!important}}
 
   .copy-btn{
@@ -1925,7 +1929,7 @@
             <rect width="960" height="570" rx="18" fill="url(#decarbBg)"/>
 
             <text x="38" y="39" fill="#8bc8ff" font-size="13" font-family="Inter,Arial,sans-serif" font-weight="700" letter-spacing="2">RESEARCH VISUAL SUMMARY · 2026</text>
-            <text x="38" y="76" fill="#fff" font-size="29" font-family="Inter,Arial,sans-serif" font-weight="800">Data-Driven Decarbonization</text>
+            <text x="38" y="76" fill="#fff" font-size="25" font-family="Inter,Arial,sans-serif" font-weight="800" textLength="520" lengthAdjust="spacingAndGlyphs">Data-Driven Decarbonization</text>
             <text x="38" y="103" fill="#d0d8e5" font-size="14" font-family="Inter,Arial,sans-serif">Clustering national CO₂ emission profiles and economic indicators</text>
             <rect x="38" y="126" width="884" height="1.5" fill="#344658"/>
 
@@ -1934,7 +1938,7 @@
             <rect x="38" y="172" width="272" height="112" rx="12" fill="#14283d" stroke="#315a7a"/>
             <text x="56" y="207" fill="#fff" font-size="27" font-family="Inter,Arial,sans-serif" font-weight="800">K-Means · k = 4</text>
             <text x="56" y="234" fill="#8bc8ff" font-size="19" font-family="Inter,Arial,sans-serif" font-weight="700">Silhouette 0.38</text>
-            <text x="56" y="257" fill="#c7d4e2" font-size="12" font-family="Inter,Arial,sans-serif">Selected for interpretability and policy relevance</text>
+            <text x="56" y="257" fill="#c7d4e2" font-size="10.5" font-family="Inter,Arial,sans-serif">Selected for interpretability and policy relevance</text>
             <text x="56" y="274" fill="#91a5ba" font-size="11" font-family="Inter,Arial,sans-serif">Alternative validation metrics did not fully agree.</text>
 
             <rect x="38" y="299" width="272" height="91" rx="12" fill="#121f2e" stroke="#2c4156"/>
