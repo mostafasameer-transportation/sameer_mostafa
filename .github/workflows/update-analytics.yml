@@ -93,6 +93,16 @@ jobs:
             }
             const cities = Array.from(cityTotals.values()).sort((a, b) => b.visits - a.visits);
 
+            // Location breakdowns include the city events too. Remove those event
+            // counts from country totals to keep the original country pageview
+            // markers comparable with the dashboard's pageview-only counters.
+            for (const country of countries) {
+              const cityEventVisits = cities
+                .filter(city => city.country_code === country.code)
+                .reduce((sum, city) => sum + (Number(city.visits) || 0), 0);
+              country.visits = Math.max(0, (Number(country.visits) || 0) - cityEventVisits);
+            }
+
             // GoatCounter's totals include custom events. Subtract event totals so
             // the dashboard's existing pageview/visit counters remain pageview-only.
             const daily = Math.max(0,
