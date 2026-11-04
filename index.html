@@ -1773,27 +1773,12 @@
 @keyframes ambientOrbit{to{rotate:360deg}}
 @keyframes ambientTwinkle{from{opacity:.25}to{opacity:.62}}
 @media(max-width:1250px){
-  #ambientResearchField{display:block;opacity:.3}
-  #ambientResearchField>svg>g:nth-of-type(1),
-  #ambientResearchField>svg>g:nth-of-type(3),
-  #ambientResearchField>svg>g:nth-of-type(5),
-  #ambientResearchField>svg>g:nth-of-type(6),
-  #ambientResearchField>svg>g:nth-of-type(7),
-  #ambientResearchField>svg>g:nth-of-type(8),
-  #ambientResearchField>svg>g:nth-of-type(10),
-  #ambientResearchField>svg>g:nth-of-type(12),
-  #ambientResearchField>svg>g:nth-of-type(13),
-  #ambientResearchField>svg>g:nth-of-type(14),
-  #ambientResearchField>svg>g:nth-of-type(15),
-  #ambientResearchField>svg>g:nth-of-type(16),
-  #ambientResearchField>svg>g:nth-of-type(17){display:none}
-  #ambientResearchField>svg>g:nth-of-type(2),
-  #ambientResearchField>svg>g:nth-of-type(4),
-  #ambientResearchField>svg>g:nth-of-type(9),
-  #ambientResearchField>svg>g:nth-of-type(11),
-  #ambientResearchField>svg>g:nth-of-type(18){display:inline}
-  #ambientResearchField .drift-a,#ambientResearchField .drift-b,#ambientResearchField .drift-c,#ambientResearchField .twinkle{will-change:transform;animation-play-state:running}
+  #ambientResearchField{display:block;opacity:.34}
+  #ambientResearchField>svg>g{display:none}
+  #ambientResearchField>svg>g.mobile-ambient{display:inline}
+  #ambientResearchField .mobile-motion{display:inline}
 }
+
 @media(max-width:760px){
   #ambientResearchField{inset:64px 0 0;opacity:.2}
   #ambientResearchField>svg{width:100%;height:100%;preserveAspectRatio:none}
@@ -1809,6 +1794,7 @@
 .nav-cv-quick:hover .nav-item-icon{filter:drop-shadow(0 0 7px rgba(130,201,239,.7))}
 @media(max-width:760px){.nav-links .nav-cv-quick{color:#A9DFFF;font-weight:700}}
 @media(prefers-reduced-motion:reduce){#ambientResearchField .drift-a,#ambientResearchField .drift-b,#ambientResearchField .drift-c,#ambientResearchField .orbit,#ambientResearchField .twinkle{animation:none!important}}
+@media(prefers-reduced-motion:reduce){#ambientResearchField .mobile-motion{display:none!important}}
 </style>
 </head>
 <body>
@@ -1824,7 +1810,7 @@
  <path d="M38 285c85-36 145-36 224 0s130 35 205-3M8 555c90-34 150-35 235 0s135 35 205 0M1150 280c95-42 155-42 235 0s150 38 215-2M1160 555c85-38 150-38 230 0s145 38 205 0"/>
 </g>
 <!-- Left: storm, flood, bridge, city, construction, computing and mobility. -->
-<g class="drift-a line glow" transform="translate(52 76)">
+<g class="drift-a line glow mobile-ambient" transform="translate(52 76)"><animateTransform class="mobile-motion" attributeName="transform" type="translate" additive="sum" values="0 0; 8 -5; 0 0" dur="27s" repeatCount="indefinite"/>
  <path d="M78 10C24 5-7 52 9 91c13 32 56 39 80 17 18-17 15-44-4-53-15-7-31 1-31 15 0 10 10 17 20 12"/>
  <path d="M78 10c39 3 67 31 64 65-3 31-31 53-62 48M36 29c-20 18-25 43-12 61m83-66c17 14 23 34 17 51M49 65c7-17 24-26 42-22"/>
  <circle cx="77" cy="74" r="4" class="soft"/>
@@ -1833,7 +1819,7 @@
  <g class="line glow"><path d="M6 44c9-18 27-19 39-8 12-24 48-21 53 7 20 0 27 29 5 34H20C1 77-3 56 6 44Z"/><path d="m24 87-7 14m32-14-7 14m32-14-7 14"/></g>
  <g class="line" transform="translate(70 52)"><path d="m0 36 42-29 42 29v39H0zM33 75V49h19v26M-8 38 42 2l50 36"/><path d="M-8 88c12-6 22-6 34 0s22 6 34 0 22-6 34 0"/></g>
 </g>
-<g class="drift-c line glow" transform="translate(52 322)">
+<g class="drift-c line glow mobile-ambient" transform="translate(52 322)"><animateTransform class="mobile-motion" attributeName="transform" type="translate" additive="sum" values="0 0; 8 -5; 0 0" dur="27s" repeatCount="indefinite"/>
  <path d="M5 54h190M15 54V24m170 30V24M15 24l85 30 85-30M15 24h170M30 30v24m30-13v13m40-1V54m40-13v13m30-24v24"/>
  <path d="M15 24V8m170 16V8M15 8h170M100 8v46M15 8l85 46 85-46" class="fine"/>
  <path d="M0 68c24-8 44-8 68 0s44 8 68 0 36-8 58 0" class="fine"/>
@@ -1842,7 +1828,7 @@
  <path d="M4 86V28h35v58M47 86V6h48v80M104 86V42h34v44M146 86V20h34v66M0 86h190"/>
  <path d="M57 19h8m14 0h8M57 34h8m14 0h8M57 49h8m14 0h8M57 64h8m14 0h8M155 34h8m-8 14h8m-8 14h8" class="fine"/>
 </g>
-<g class="drift-a line glow" transform="translate(58 590)">
+<g class="drift-a line glow mobile-ambient" transform="translate(58 590)"><animateTransform class="mobile-motion" attributeName="transform" type="translate" additive="sum" values="0 0; 8 -5; 0 0" dur="27s" repeatCount="indefinite"/>
  <path d="M10 20h145M26 20V9h105v11M42 20v10m77-10v10M82 20v60M82 80H67m15 0h15M18 30h125M18 30v8m125-8v8"/>
  <path d="M82 80 69 90m13-10 13 10M12 38h140" class="fine"/>
  <path d="M162 28v52m-8-8 8 8 8-8M148 80h28" class="fine"/>
@@ -1859,7 +1845,7 @@
  <path d="M20 5v-17m-7 7 7-7 7 7M245 20V3m-7 7 7-7 7 7" class="fine"/>
 </g>
 <!-- Right: galaxy, solar system, satellite, globe, analytics, books and learning. -->
-<g class="drift-a line glow" transform="translate(1370 70)">
+<g class="drift-a line glow mobile-ambient" transform="translate(1370 70)"><animateTransform class="mobile-motion" attributeName="transform" type="translate" additive="sum" values="0 0; 8 6; 0 0" dur="33s" repeatCount="indefinite"/>
  <path d="M4 53c36-44 104-58 157-32 37 18 37 52 5 69-35 18-88 12-111-12-18-19-6-41 19-47 21-5 39 7 35 22-3 11-17 17-28 10"/>
  <path d="M14 70c47 26 103 27 148 2M40 23c42-23 86-22 119-5" class="fine"/>
  <ellipse cx="86" cy="51" rx="23" ry="8" transform="rotate(-22 86 51)" class="soft"/>
@@ -1879,12 +1865,12 @@
  <circle cx="55" cy="55" r="43"/><path d="M12 55h86M55 12c-15 13-22 27-22 43s7 30 22 43m0-86c15 13 22 27 22 43s-7 30-22 43M20 31h70M20 79h70"/>
  <path d="M31 17c10 10 38 10 48 0M31 93c10-10 38-10 48 0" class="fine"/>
 </g>
-<g class="drift-a line" transform="translate(1390 500)">
+<g class="drift-a line mobile-ambient" transform="translate(1390 500)"><animateTransform class="mobile-motion" attributeName="transform" type="translate" additive="sum" values="0 0; -8 6; 0 0" dur="33s" repeatCount="indefinite"/>
  <path d="M5 96h130M15 88V59h19v29M49 88V36h19v52M83 88V12h19v76"/>
  <path d="m9 44 29-18 26 8 39-27m-9 0h9v9" class="fine"/>
  <circle cx="38" cy="26" r="3" class="soft"/><circle cx="64" cy="34" r="3" class="soft"/>
 </g>
-<g class="drift-c line" transform="translate(1300 630)">
+<g class="drift-c line mobile-ambient" transform="translate(1300 630)"><animateTransform class="mobile-motion" attributeName="transform" type="translate" additive="sum" values="0 0; -8 -5; 0 0" dur="27s" repeatCount="indefinite"/>
  <path d="M10 30 65 8l55 22-55 22zM10 30v30l55 22 55-22V30M65 52v30"/>
  <path d="m23 57 42 17 42-17M65 8v44" class="fine"/>
  <path d="M22 94h86" class="fine"/>
@@ -1893,15 +1879,15 @@
  <path d="M5 27h92v8H5zM12 18h78v9H12zM20 9h62v9H20zM12 35v38m78-38v38M5 73h92"/>
  <path d="M18 46h66m-66 10h66" class="fine"/>
 </g>
-<g class="drift-a line" transform="translate(1480 760)">
+<g class="drift-a line mobile-ambient" transform="translate(1480 760)"><animateTransform class="mobile-motion" attributeName="transform" type="translate" additive="sum" values="0 0; -8 -5; 0 0" dur="27s" repeatCount="indefinite"/>
  <path d="M4 45h100M16 45V31h25v14M29 31V17m0 0-8 8m8-8 8 8M62 45c0-18 12-31 27-31s27 13 27 31"/>
  <path d="M78 14c-5-9-3-15 3-19m8 19c5-9 3-15-3-19M89 45v22m-11 0h22" class="fine"/>
 </g>
-<g class="drift-c line" transform="translate(1285 780)">
+<g class="drift-c line mobile-ambient" transform="translate(1285 780)"><animateTransform class="mobile-motion" attributeName="transform" type="translate" additive="sum" values="0 0; -8 6; 0 0" dur="33s" repeatCount="indefinite"/>
  <path d="M10 37h80l-7-20H18zM17 37l-7 10h80l-7-10M24 47l-8 16m52-16 8 16M8 63h84"/>
  <circle cx="32" cy="33" r="3" class="soft"/><circle cx="65" cy="33" r="3" class="soft"/>
 </g>
-<g class="twinkle line">
+<g class="twinkle line mobile-ambient"><animateTransform class="mobile-motion" attributeName="transform" type="translate" additive="sum" values="0 0; -8 -5; 0 0" dur="27s" repeatCount="indefinite"/>
  <path d="M214 86v12m-6-6h12M1240 100v14m-7-7h14M1540 320v12m-6-6h12M1260 600v10m-5-5h10M380 520v10m-5-5h10"/>
  <circle cx="175" cy="270" r="2" class="soft"/><circle cx="360" cy="800" r="2" class="soft"/><circle cx="1520" cy="690" r="2" class="soft"/><circle cx="1270" cy="430" r="2" class="soft"/>
 </g>
@@ -1920,7 +1906,7 @@
       <a href="#network" data-t="network"><svg class="nav-item-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="--nav-icon-color:#55E7D2"><circle cx="12" cy="5" r="2.4"/><circle cx="5" cy="18" r="2.4"/><circle cx="19" cy="18" r="2.4"/><path d="m10.8 7-4.3 8.8m6.7-8.8 4.3 8.8M7.5 18h9"/></svg><span>Network</span></a>
       <a href="#publications" data-t="publications"><svg class="nav-item-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="--nav-icon-color:#F2C879"><path d="M4 4.5A3.5 3.5 0 0 1 7.5 1H20v18H7.5A3.5 3.5 0 0 0 4 22zM4 4.5v17M8 6h8M8 10h8M8 14h6"/></svg><span>Publications</span></a>
       <a href="#cv" data-t="cv"><svg class="nav-item-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="--nav-icon-color:#B8C5FF"><path d="M6 2h9l4 4v16H6zM15 2v5h5M9 12h7M9 16h7"/></svg><span>CV / Resume</span></a>
-      <a href="Mostafa_Sameer_Resume.pdf" class="nav-cv-quick" target="_blank" rel="noopener" aria-label="Open CV PDF in a new tab" title="Open CV PDF"><svg class="nav-item-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="--nav-icon-color:#82C9EF"><path d="M6 2h9l4 4v16H6zM15 2v5h5M8.5 12h7M8.5 16h7"/><path d="M8.5 9h4"/></svg><span>View CV PDF</span></a>
+      <a href="Mostafa_Sameer_Resume.pdf" class="nav-cv-quick" target="_blank" rel="noopener" aria-label="Open CV PDF in a new tab" title="Open CV PDF"><svg class="nav-item-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="--nav-icon-color:#82C9EF"><path d="M6 2h9l4 4v16H6zM15 2v5h5M8.5 12h7M8.5 16h7"/><path d="M8.5 9h4"/></svg><span>CV PDF</span></a>
       <a href="#education" data-t="education"><svg class="nav-item-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="--nav-icon-color:#FFD166"><path d="m2 9 10-5 10 5-10 5zM6 11v5c3.5 3 8.5 3 12 0v-5M22 9v7"/></svg><span>Education</span></a>
       <a href="#experience" data-t="experience"><svg class="nav-item-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="--nav-icon-color:#91D6B5"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V4h8v3M3 12h18M10 12v2h4v-2"/></svg><span>Experience</span></a>
       <a href="#skills" data-t="skills"><svg class="nav-item-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="--nav-icon-color:#D7A6FF"><path d="m14 6 4-4 4 4-4 4M13 7l4 4-9 9a2.8 2.8 0 0 1-4-4zM4 4l5 5"/></svg><span>Skills</span></a>
