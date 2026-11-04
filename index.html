@@ -89,7 +89,7 @@
     from{ transform:translate3d(-1%, -1%, 0) scale(1); }
     to{ transform:translate3d(1.5%, 1%, 0) scale(1.05); }
   }
-  #navbar, .hero, .wrap, footer{ position:relative; z-index:1; }
+  #navbar, .hero, .wrap, footer{ position:relative; z-index:2; }
 
   h1,h2,h3,h4{ font-family:'Source Serif 4', Georgia, serif; color:var(--ink); margin:0; }
   a{ color:var(--accent); text-decoration:none; }
@@ -1656,28 +1656,40 @@
 
 
 <style id="ambient-research-visuals">
-/* Subtle animated research illustrations in the wide page gutters. */
-#ambientResearchField{position:fixed;inset:72px 0 0;z-index:0;pointer-events:none;overflow:hidden;contain:layout paint}
-#ambientResearchField .ambient-figure{position:absolute;width:clamp(42px,4.5vw,76px);height:auto;overflow:visible;color:#8ebcff;opacity:.19;filter:drop-shadow(0 0 7px currentColor);animation:ambientDrift 19s ease-in-out infinite alternate;will-change:transform}
+/* Low-contrast animated research illustrations occupy the outer page gutters. */
+#ambientResearchField{position:fixed;inset:72px 0 0;z-index:1;pointer-events:none;overflow:hidden;contain:layout paint}
+#ambientResearchField .ambient-figure{position:absolute;width:clamp(48px,4.2vw,72px);height:auto;overflow:visible;color:#91bfff;opacity:.23;filter:drop-shadow(0 0 8px currentColor);animation:ambientRoam 26s ease-in-out infinite;will-change:transform}
 #ambientResearchField .ambient-figure svg{display:block;width:100%;height:auto;overflow:visible;fill:none;stroke:currentColor;stroke-width:1.35;stroke-linecap:round;stroke-linejoin:round}
-#ambientResearchField .ambient-figure .soft-fill{fill:currentColor;fill-opacity:.12;stroke-opacity:.65}
+#ambientResearchField .ambient-figure .soft-fill{fill:currentColor;fill-opacity:.13;stroke-opacity:.7}
 #ambientResearchField .ambient-figure .fine{stroke-width:.9;opacity:.72}
-#ambientResearchField .a-hurricane{left:3.2%;top:12%;width:clamp(48px,5vw,78px);color:#83c8ff;animation-duration:23s}
-#ambientResearchField .a-flood{left:7.4%;top:43%;width:clamp(48px,5vw,78px);color:#66d9d0;animation-duration:20s;animation-delay:-8s}
-#ambientResearchField .a-bridge{left:2.1%;top:72%;width:clamp(55px,5.7vw,88px);color:#9dbbff;animation-duration:25s;animation-delay:-12s}
-#ambientResearchField .a-building{right:4.2%;top:15%;width:clamp(48px,5vw,76px);color:#d0b6ff;animation-duration:22s;animation-delay:-5s}
-#ambientResearchField .a-transport{right:2.4%;top:43%;width:clamp(54px,5.4vw,84px);color:#79d9c5;animation-duration:19s;animation-delay:-10s}
-#ambientResearchField .a-rail{right:7.3%;top:72%;width:clamp(54px,5.4vw,84px);color:#ffc982;animation-duration:24s;animation-delay:-3s}
-#ambientResearchField .a-solar{left:13%;top:25%;width:clamp(44px,4.4vw,68px);color:#f0cc7b;opacity:.15;animation:ambientOrbit 34s linear infinite}
-#ambientResearchField .a-galaxy{right:12%;top:26%;width:clamp(54px,5.5vw,82px);color:#b7a7ff;opacity:.17;animation:ambientGalaxy 28s ease-in-out infinite alternate}
-#ambientResearchField .a-book{left:12%;top:84%;width:clamp(42px,4.2vw,64px);color:#8fd9c7;opacity:.15;animation-duration:21s;animation-delay:-14s}
-#ambientResearchField .a-data{right:13%;top:87%;width:clamp(46px,4.6vw,70px);color:#9bc8ff;opacity:.16;animation-duration:26s;animation-delay:-7s}
-#ambientResearchField .a-wind{left:4.8%;top:6%;width:clamp(38px,3.8vw,58px);color:#b0d2ef;opacity:.13;animation-duration:27s;animation-delay:-16s}
-#ambientResearchField .a-satellite{right:4.8%;top:6%;width:clamp(38px,3.8vw,58px);color:#d8c0ff;opacity:.14;animation-duration:30s;animation-delay:-19s}
-@keyframes ambientDrift{0%{transform:translate3d(0,0,0) rotate(-4deg)}50%{transform:translate3d(8px,-13px,0) rotate(3deg)}100%{transform:translate3d(-5px,9px,0) rotate(-2deg)}}
-@keyframes ambientOrbit{0%{transform:translate3d(0,0,0) rotate(0deg)}50%{transform:translate3d(10px,-10px,0) rotate(180deg)}100%{transform:translate3d(0,0,0) rotate(360deg)}}
-@keyframes ambientGalaxy{0%{transform:translate3d(0,0,0) rotate(-12deg) scale(.96)}100%{transform:translate3d(-10px,12px,0) rotate(12deg) scale(1.04)}}
-@media(max-width:1050px){#ambientResearchField .a-solar,#ambientResearchField .a-galaxy,#ambientResearchField .a-book,#ambientResearchField .a-data,#ambientResearchField .a-wind,#ambientResearchField .a-satellite{display:none}#ambientResearchField .a-hurricane{left:1.5%}#ambientResearchField .a-flood{left:1.5%}#ambientResearchField .a-bridge{left:1%}#ambientResearchField .a-building{right:1.5%}#ambientResearchField .a-transport{right:1%}#ambientResearchField .a-rail{right:1.5%}}
+#ambientResearchField .a-hurricane{left:3.2%;top:12%;width:clamp(52px,4.8vw,76px);color:#83c8ff;animation-duration:29s}
+#ambientResearchField .a-flood{left:7.4%;top:43%;width:clamp(50px,4.7vw,74px);color:#66d9d0;animation-duration:24s;animation-delay:-8s}
+#ambientResearchField .a-bridge{left:2.1%;top:72%;width:clamp(58px,5.2vw,84px);color:#9dbbff;animation-duration:31s;animation-delay:-12s}
+#ambientResearchField .a-building{right:4.2%;top:15%;width:clamp(50px,4.7vw,74px);color:#d0b6ff;animation-duration:27s;animation-delay:-5s}
+#ambientResearchField .a-transport{right:2.4%;top:43%;width:clamp(56px,5vw,80px);color:#79d9c5;animation-duration:23s;animation-delay:-10s}
+#ambientResearchField .a-rail{right:7.3%;top:72%;width:clamp(56px,5vw,80px);color:#ffc982;animation-duration:30s;animation-delay:-3s}
+#ambientResearchField .a-solar{left:13%;top:25%;width:clamp(46px,4vw,66px);color:#f0cc7b;opacity:.19;animation:ambientOrbit 42s linear infinite}
+#ambientResearchField .a-galaxy{right:12%;top:26%;width:clamp(58px,5vw,82px);color:#b7a7ff;opacity:.21;animation:ambientGalaxy 36s ease-in-out infinite alternate}
+#ambientResearchField .a-book{left:12%;top:84%;width:clamp(46px,4vw,64px);color:#8fd9c7;opacity:.19;animation-duration:25s;animation-delay:-14s}
+#ambientResearchField .a-data{right:13%;top:87%;width:clamp(48px,4.2vw,68px);color:#9bc8ff;opacity:.2;animation-duration:32s;animation-delay:-7s}
+#ambientResearchField .a-wind{left:4.8%;top:6%;width:clamp(42px,3.6vw,58px);color:#b0d2ef;opacity:.18;animation-duration:34s;animation-delay:-16s}
+#ambientResearchField .a-satellite{right:4.8%;top:6%;width:clamp(42px,3.6vw,58px);color:#d8c0ff;opacity:.19;animation-duration:38s;animation-delay:-19s}
+#ambientResearchField .a-crane{left:5.5%;top:30%;width:clamp(48px,4.1vw,66px);color:#f0c58c;animation-duration:33s;animation-delay:-6s}
+#ambientResearchField .a-road{left:8.5%;top:59%;width:clamp(48px,4.1vw,66px);color:#83d9cf;animation-duration:28s;animation-delay:-17s}
+#ambientResearchField .a-hardhat{right:5.5%;top:31%;width:clamp(48px,4.1vw,66px);color:#e8c77f;animation-duration:30s;animation-delay:-11s}
+#ambientResearchField .a-laptop{right:8.5%;top:59%;width:clamp(48px,4.1vw,66px);color:#91c5ff;animation-duration:26s;animation-delay:-4s}
+#ambientResearchField .a-cap{left:15%;top:8%;width:clamp(42px,3.7vw,58px);color:#c2b1ff;opacity:.17;animation-duration:35s;animation-delay:-20s}
+#ambientResearchField .a-globe{right:15%;top:82%;width:clamp(46px,4vw,64px);color:#77d9d0;opacity:.18;animation-duration:37s;animation-delay:-13s}
+#ambientResearchField .a-stars{left:14%;top:68%;width:clamp(44px,3.8vw,60px);color:#b5a9ff;opacity:.18;animation:ambientGalaxy 44s ease-in-out infinite alternate}
+#ambientResearchField .a-city{right:14%;top:9%;width:clamp(50px,4.2vw,68px);color:#9ac4ed;opacity:.18;animation-duration:32s;animation-delay:-22s}
+@keyframes ambientRoam{0%,100%{transform:translate3d(0,0,0) rotate(-4deg)}25%{transform:translate3d(15px,-17px,0) rotate(3deg)}50%{transform:translate3d(-9px,-28px,0) rotate(-2deg)}75%{transform:translate3d(-17px,12px,0) rotate(4deg)}}
+@keyframes ambientOrbit{0%{transform:rotate(0deg) translate3d(0,0,0)}50%{transform:rotate(180deg) translate3d(13px,-13px,0)}100%{transform:rotate(360deg) translate3d(0,0,0)}}
+@keyframes ambientGalaxy{0%{transform:translate3d(0,0,0) rotate(-13deg) scale(.96)}50%{transform:translate3d(-13px,15px,0) rotate(4deg) scale(1.03)}100%{transform:translate3d(9px,-9px,0) rotate(13deg) scale(.98)}}
+@media(max-width:1250px){
+  #ambientResearchField .a-solar,#ambientResearchField .a-galaxy,#ambientResearchField .a-book,#ambientResearchField .a-data,#ambientResearchField .a-wind,#ambientResearchField .a-satellite,#ambientResearchField .a-crane,#ambientResearchField .a-road,#ambientResearchField .a-hardhat,#ambientResearchField .a-laptop,#ambientResearchField .a-cap,#ambientResearchField .a-globe,#ambientResearchField .a-stars,#ambientResearchField .a-city{display:none}
+  #ambientResearchField .a-hurricane{left:1.5%}#ambientResearchField .a-flood{left:1.5%}#ambientResearchField .a-bridge{left:1%}
+  #ambientResearchField .a-building{right:1.5%}#ambientResearchField .a-transport{right:1%}#ambientResearchField .a-rail{right:1.5%}
+}
 @media(max-width:700px){#ambientResearchField{display:none}}
 @media(prefers-reduced-motion:reduce){#ambientResearchField .ambient-figure{animation:none!important;will-change:auto}}
 </style>
@@ -1697,6 +1709,15 @@
   <div class="ambient-figure a-data"><svg viewBox="0 0 78 76"><path d="M9 62h60M15 56V39h10v17M34 56V24h10v32M53 56V10h10v46"/><path d="m12 30 16-9 14 4 19-16M56 9h5v5" class="fine"/><circle cx="28" cy="21" r="2"/><circle cx="42" cy="25" r="2"/><circle cx="61" cy="9" r="2"/></svg></div>
   <div class="ambient-figure a-wind"><svg viewBox="0 0 70 70"><path d="M35 35V66M35 35 14 16m21 19 26-9M35 35 30 7"/><circle cx="35" cy="35" r="4"/><path d="M14 16c-5-3-7-7-7-11 7 0 12 4 14 11M61 26c4 0 8 2 10 6-5 4-11 4-16 0M30 7c-2-5-1-9 2-12 6 5 7 10 4 16" class="fine"/></svg></div>
   <div class="ambient-figure a-satellite"><svg viewBox="0 0 72 72"><path d="m28 28 16 16m-12-22 22 22m-34-10 22 22M24 24l24 24M18 18l9-9 12 12-9 9zM45 45l9-9 9 9-9 9z"/><path d="m8 8 10 10m36 36 10 10M10 48l8-8m36-30 8-8" class="fine"/></svg></div>
+
+  <div class="ambient-figure a-crane"><svg viewBox="0 0 76 76"><path d="M8 18h58M38 18v49M14 18v8m48-8v8M38 18 16 8M38 18 60 8M16 8h44M22 8v10m32-10v10M28 67h20M32 67l-5 6m22-6 5 6"/><path d="M54 18v24l-5 6m5-6 5 6M12 18v12" class="fine"/><path d="M48 48h12v8H48z" class="soft-fill"/></svg></div>
+  <div class="ambient-figure a-road"><svg viewBox="0 0 76 76"><path d="M8 66 27 8h22l19 58M27 8l11 58M49 8 38 66"/><path d="M38 14v9m0 9v9m0 9v9m0 4v3M14 48h10m28 0h10" class="fine"/></svg></div>
+  <div class="ambient-figure a-hardhat"><svg viewBox="0 0 76 68"><path d="M12 48h52M18 48v-8c0-13 9-23 20-23s20 10 20 23v8M38 17v23M29 20l-3-8m21 8 3-8M8 48v6h60v-6"/><path d="M12 57h52" class="fine"/></svg></div>
+  <div class="ambient-figure a-laptop"><svg viewBox="0 0 76 68"><path d="M13 12h50v37H13zM7 55h62l-5 6H12z"/><path d="m24 31 8-8m-8 8 8 8m20-16-8 8 8 8M36 42l5-22" class="fine"/><circle cx="38" cy="30" r="2" class="soft-fill"/></svg></div>
+  <div class="ambient-figure a-cap"><svg viewBox="0 0 76 64"><path d="m6 25 32-16 32 16-32 16zM18 31v15c12 9 28 9 40 0V31M70 25v20"/><circle cx="70" cy="48" r="3" class="soft-fill"/><path d="M27 39v9m22-9v9" class="fine"/></svg></div>
+  <div class="ambient-figure a-globe"><svg viewBox="0 0 76 76"><circle cx="38" cy="35" r="27"/><path d="M11 35h54M38 8c-9 9-13 18-13 27s4 18 13 27m0-54c9 9 13 18 13 27s-4 18-13 27M17 19h42M17 51h42"/><path d="M29 65h18m-9-3v-8" class="fine"/></svg></div>
+  <div class="ambient-figure a-stars"><svg viewBox="0 0 76 76"><path d="m38 5 5 19 19-5-12 15 14 13-20-3-6 20-7-19-19 7 12-16L9 23l20 2z" class="fine"/><circle cx="38" cy="36" r="7" class="soft-fill"/><circle cx="10" cy="9" r="2" class="soft-fill"/><circle cx="65" cy="9" r="1.8" class="soft-fill"/><circle cx="67" cy="64" r="2" class="soft-fill"/></svg></div>
+  <div class="ambient-figure a-city"><svg viewBox="0 0 84 72"><path d="M7 64V34h15v30M27 64V17h18v47M49 64V28h13v36M66 64V8h11v56M4 64h76"/><path d="M32 25h4m-4 8h4m-4 8h4m-4 8h4m-4 8h4M70 16h3m-3 8h3m-3 8h3m-3 8h3m-3 8h3" class="fine"/></svg></div>
 </div>
 <div id="progressBar"></div>
 <div id="toast"></div>
