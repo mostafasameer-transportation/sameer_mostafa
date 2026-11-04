@@ -1445,6 +1445,23 @@
 .peer-review-icon{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;border:1px solid #66f2de;color:#66f2de;font-size:1.8rem}
 @media(max-width:600px){.peer-review-panel{flex-direction:column;align-items:stretch;gap:18px}.peer-review-mark{flex:0 0 auto;min-height:110px;width:100%}.peer-review-link{width:100%;justify-content:center}}
 
+
+  /* ---------- PUBLIC WEBSITE ANALYTICS ---------- */
+  .analytics-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:20px 0}
+  .analytics-card,.analytics-panel{border:1px solid var(--rule-strong);border-radius:16px;background:rgba(255,255,255,.035);padding:18px}
+  .analytics-card .a-label{font-size:12px;color:var(--ink-soft);letter-spacing:.04em;text-transform:uppercase}
+  .analytics-card .a-value{font:700 clamp(1.65rem,4vw,2.2rem) 'Source Serif 4',Georgia,serif;color:var(--pulse);margin-top:5px}
+  .analytics-card .a-note{font-size:12px;color:var(--ink-faint);margin-top:3px}
+  .analytics-panels{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .analytics-panel h3{font-size:1.05rem;margin-bottom:14px}
+  .analytics-country{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;padding:9px 0;border-bottom:1px solid var(--rule);font-size:13px}
+  .analytics-country:last-child{border-bottom:0}
+  .analytics-country strong{color:var(--ink)}
+  .analytics-bar{height:5px;background:rgba(255,255,255,.08);border-radius:8px;overflow:hidden;margin-top:6px}
+  .analytics-bar span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--pulse));border-radius:8px}
+  .analytics-status{font-size:12px;color:var(--ink-faint);margin-top:16px}
+  .analytics-privacy{font-size:12.5px;color:var(--ink-soft);margin-top:16px;line-height:1.65}
+  @media(max-width:650px){.analytics-grid{grid-template-columns:1fr 1fr}.analytics-panels{grid-template-columns:1fr}.analytics-card:last-child{grid-column:1/-1}}
 </style>
 </head>
 <body>
@@ -1457,6 +1474,7 @@
     <button class="nav-toggle" id="navToggle" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="Open navigation menu"><span class="nav-toggle-mark" aria-hidden="true"><i></i><i></i><i></i></span><span class="nav-toggle-label">Menu</span></button>
     <nav class="nav-links" id="navLinks">
       <a href="#metrics" data-t="metrics">Scholar</a>
+      <a href="#analytics" data-t="analytics">Analytics</a>
       <a href="#updates" data-t="updates">Updates</a>
       <a href="#network" data-t="network">Network</a>
       <a href="#publications" data-t="publications">Publications</a>
@@ -2390,6 +2408,25 @@
       </div>
 
     </div>
+  </section>
+
+
+  <!-- PUBLIC WEBSITE ANALYTICS -->
+  <section id="analytics">
+    <div class="section-head">
+      <svg class="route" width="22" height="12" viewBox="0 0 22 12"><line x1="0" y1="6" x2="16" y2="6" stroke="#1356C9" stroke-width="2"/><circle cx="19" cy="6" r="3" fill="#1356C9"/></svg>
+      <span class="section-num">10</span><h2>Website Analytics</h2>
+    </div>
+    <div class="analytics-grid">
+      <article class="analytics-card"><div class="a-label">All-time page views</div><div class="a-value" id="analytics-total">—</div><div class="a-note">Since analytics activation</div></article>
+      <article class="analytics-card"><div class="a-label">Last 30 days</div><div class="a-value" id="analytics-month">—</div><div class="a-note">Recorded visits</div></article>
+      <article class="analytics-card"><div class="a-label">Countries / regions</div><div class="a-value" id="analytics-country-count">—</div><div class="a-note">Locations represented in the last 30 days</div></article>
+    </div>
+    <div class="analytics-panels">
+      <div class="analytics-panel"><h3>Visitors by country</h3><div id="analytics-countries"><div class="empty-bars">Analytics will appear here after the tracking account is connected.</div></div></div>
+      <div class="analytics-panel"><h3>About these statistics</h3><p style="color:var(--ink-soft);font-size:13.5px;margin:0">This dashboard reports aggregated website activity. Country estimates are approximate and may not identify a visitor’s exact location.</p><div class="analytics-status" id="analytics-updated">Waiting for analytics setup.</div></div>
+    </div>
+    <p class="analytics-privacy">Privacy: this site uses GoatCounter for lightweight, privacy-conscious traffic measurement. No names, email addresses, or precise visitor locations are displayed here.</p>
   </section>
 
   <!-- FOOTER / CONTACT -->
@@ -3340,6 +3377,36 @@
   carousel.addEventListener('focusout',()=>{paused=false;start();});
   document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();else start();});
   start();
+})();
+</script>
+
+<script>
+/* ---------- public analytics dashboard ---------- */
+(function(){
+  const fmt = n => Number(n || 0).toLocaleString();
+  const totalEl=document.getElementById('analytics-total');
+  const monthEl=document.getElementById('analytics-month');
+  const countEl=document.getElementById('analytics-country-count');
+  const countriesEl=document.getElementById('analytics-countries');
+  const updatedEl=document.getElementById('analytics-updated');
+  fetch('analytics.json?ts='+Date.now(),{cache:'no-store'})
+    .then(r=>{if(!r.ok)throw new Error('Analytics feed unavailable');return r.json();})
+    .then(data=>{
+      if(data.status!=='ready')throw new Error('Analytics setup is not complete');
+      totalEl.textContent=fmt(data.all_time_pageviews);
+      monthEl.textContent=fmt(data.last_30_days_visits);
+      const countries=Array.isArray(data.countries)?data.countries:[];
+      countEl.textContent=fmt(countries.length);
+      if(!countries.length){countriesEl.innerHTML='<div class="empty-bars">No country data is available yet.</div>';return;}
+      const max=Math.max(...countries.map(x=>Number(x.visits)||0),1);
+      countriesEl.innerHTML=countries.slice(0,10).map(x=>{
+        const n=Number(x.visits)||0,p=Math.max(2,Math.round(n/max*100));
+        const name=String(x.country||'Unknown').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+        return '<div class="analytics-country"><div><strong>'+name+'</strong><div class="analytics-bar"><span style="width:'+p+'%"></span></div></div><strong>'+fmt(n)+'</strong></div>';
+      }).join('');
+      updatedEl.textContent='Last updated: '+(data.updated_at?new Date(data.updated_at).toLocaleString():'not available');
+    })
+    .catch(()=>{updatedEl.textContent='Analytics setup is pending. Live statistics will appear after the tracking service and repository secrets are configured.';});
 })();
 </script>
 </body>
