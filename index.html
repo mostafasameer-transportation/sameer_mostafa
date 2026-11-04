@@ -1490,12 +1490,12 @@
   .analytics-privacy{font-size:12.5px;color:var(--ink-soft);margin-top:16px;line-height:1.65}
   @media(max-width:650px){.analytics-grid{grid-template-columns:1fr 1fr}.analytics-panels{grid-template-columns:1fr}.analytics-card:last-child{grid-column:1/-1}}
 
-  /* Compact publication cards: concise text left, figure preview right. */
-  .paper{padding:15px 0;gap:7px;transition:border-color .25s ease}
+  /* Publication cards: paper details stay left, compact visual preview stays right. */
+  .paper{padding:13px 0;gap:7px;transition:border-color .25s ease}
   .paper:has(figure):hover{border-top-color:rgba(105,183,255,.55)}
   .paper>div:last-child:has(figure){
-    display:grid;grid-template-columns:minmax(0,1fr) 190px;grid-template-rows:auto;
-    align-items:start;column-gap:22px;row-gap:4px;min-width:0
+    display:grid;grid-template-columns:minmax(0,1fr) 124px;grid-template-rows:auto;
+    align-items:start;column-gap:18px;row-gap:4px;min-width:0
   }
   .paper>div:last-child:has(figure)>.title,
   .paper>div:last-child:has(figure)>.authors,
@@ -1504,31 +1504,34 @@
   .paper>div:last-child:has(figure)>.plink{grid-column:1;min-width:0}
   .paper>div:last-child:has(figure)>figure{
     grid-column:2;grid-row:1 / span 6;align-self:center;justify-self:end;
-    width:100%;max-width:190px;height:122px;margin:0!important;overflow:hidden;
-    border:1px solid rgba(124,183,255,.28);border-radius:10px;
-    background:#0b1420;box-shadow:0 5px 18px rgba(0,0,0,.28);
+    width:124px;max-width:124px;height:80px;margin:0!important;overflow:hidden;
+    border:1px solid rgba(124,183,255,.34);border-radius:8px;
+    background:#0b1420;box-shadow:0 4px 13px rgba(0,0,0,.25);
     transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease
   }
   .paper>div:last-child:has(figure)>figure:hover{
-    transform:translateY(-3px) scale(1.025);border-color:rgba(105,231,210,.75);
-    box-shadow:0 10px 24px rgba(0,0,0,.42),0 0 18px rgba(105,231,210,.12)
+    transform:translateY(-2px) scale(1.035);border-color:rgba(105,231,210,.8);
+    box-shadow:0 8px 18px rgba(0,0,0,.4),0 0 15px rgba(105,231,210,.16)
   }
-  .paper figure.visual-summary svg,.paper figure img{
-    display:block;width:100%!important;max-width:none!important;height:122px!important;
+  .paper figure.visual-summary svg,.paper figure img,.paper figure .abstract-picture img{
+    display:block;width:100%!important;max-width:none!important;height:80px!important;
     min-height:0!important;object-fit:cover;object-position:center
   }
   .paper figure .visual-caption{
-    padding:5px 7px;font-size:9.5px;line-height:1.3;white-space:nowrap;
+    padding:4px 6px;font-size:9px;line-height:1.2;white-space:nowrap;
     overflow:hidden;text-overflow:ellipsis
   }
+  .paper figure.paper-topic-preview{display:flex;align-items:center;justify-content:center;position:relative}
+  .paper figure.paper-topic-preview svg{display:block;width:100%;height:100%;padding:8px}
+  .paper figure.paper-topic-preview .visual-caption{position:absolute;left:0;right:0;bottom:0;background:rgba(4,10,18,.82);text-align:center}
   .paper .desc{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
-  .paper .title{line-height:1.42}
-  .paper .authors,.paper .venue{line-height:1.4}
-  .paper .plink{font-size:11.5px;line-height:1.5}
+  .paper .title{line-height:1.38}
+  .paper .authors,.paper .venue{line-height:1.35}
+  .paper .plink{font-size:11px;line-height:1.45}
   @media(max-width:640px){
-    .paper>div:last-child:has(figure){grid-template-columns:minmax(0,1fr) 112px;column-gap:12px}
-    .paper>div:last-child:has(figure)>figure{max-width:112px;height:82px}
-    .paper figure.visual-summary svg,.paper figure img{height:82px!important}
+    .paper>div:last-child:has(figure){grid-template-columns:minmax(0,1fr) 94px;column-gap:10px}
+    .paper>div:last-child:has(figure)>figure{width:94px;max-width:94px;height:64px}
+    .paper figure.visual-summary svg,.paper figure img,.paper figure .abstract-picture img{height:64px!important}
     .paper figure .visual-caption{display:none}
     .paper .desc{-webkit-line-clamp:2}
   }
@@ -2238,6 +2241,7 @@
         <div class="authors">Md. Salman Siam, Md. Kamrul Islam, Marium Binte Monir, Mahbub Hassan, et al.</div>
         <div class="venue">10th IET Smart Cities Symposium · October 2026</div>
         <div class="desc">ResearchGate lists this as a new conference paper. The listing does not independently confirm its peer-review decision.</div>
+        <figure class="paper-topic-preview" aria-label="Autonomous vehicle sensor reliability; illustrative topic preview, not an extracted paper figure"><svg viewBox="0 0 160 90" role="img" aria-label="Illustrative sensor reliability topic preview"><path d="M17 58h126l-10-20H45L31 48H17z" fill="#173b5b" stroke="#79bfff" stroke-width="2"/><circle cx="48" cy="61" r="8" fill="#0b1420" stroke="#8edfd4" stroke-width="3"/><circle cx="111" cy="61" r="8" fill="#0b1420" stroke="#8edfd4" stroke-width="3"/><path d="M80 17v13m-15-8 8 9m22-9-8 9" stroke="#79bfff" stroke-width="3" stroke-linecap="round"/><path d="M64 14q16-14 32 0M56 7q24-22 48 0" fill="none" stroke="#55e7d2" stroke-width="2" stroke-linecap="round"/><circle cx="80" cy="31" r="4" fill="#ffc36c"/></svg><figcaption class="visual-caption">Topic illustration</figcaption></figure>
         <div class="plink"><a href="https://www.researchgate.net/publication/416822893_A_Multi-Model_Reliability_Assessment_Approach_for_Autonomous_Vehicle_Sensors_under_Electromagnetic_Interference_EMI_Conditions" target="_blank" rel="noopener noreferrer">View ResearchGate record →</a></div>
       </div>
     </div>
@@ -2249,6 +2253,7 @@
         <div class="authors">Md. Kamrul Islam, Imran Reza, <b>Mostafa Sameer</b>, et al.</div>
         <div class="venue">ResearchGate listing · October 2026</div>
         <div class="desc">A recent research output on AI-supported crowd-flow analysis and transportation logistics during Hajj. The public listing identifies it as a preprint.</div>
+        <figure class="paper-topic-preview" aria-label="Crowd flow and transport logistics; illustrative topic preview, not an extracted paper figure"><svg viewBox="0 0 160 90" role="img" aria-label="Illustrative crowd flow and transport logistics topic preview"><g fill="#183c55" stroke="#69b7ff" stroke-width="1.5"><circle cx="25" cy="22" r="8"/><circle cx="25" cy="66" r="8"/><circle cx="80" cy="44" r="10"/><circle cx="135" cy="22" r="8"/><circle cx="135" cy="66" r="8"/></g><g fill="none" stroke="#55e7d2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M36 24 67 39l-31 24M91 39l33-15M91 50l33 13"/><path d="m60 34 8 5-8 5m58-26 8 6-9 2m-1 24 9 8-10 1"/></g><circle cx="80" cy="44" r="3" fill="#ffc36c"/></svg><figcaption class="visual-caption">Topic illustration</figcaption></figure>
         <div class="plink"><a href="https://www.researchgate.net/publication/415108303_A_Multi-Agent_AI_Framework_for_Crowd_Flow_and_Transportation_Logistics_During_Hajj" target="_blank" rel="noopener noreferrer">View ResearchGate record →</a></div>
       </div>
     </div>
@@ -2260,6 +2265,7 @@
         <div class="authors">Md. Kamrul Islam, <b>Mostafa Sameer</b>, Md. Salman Siam, et al.</div>
         <div class="venue">ResearchGate listing · October 2026</div>
         <div class="desc">Examines regulatory and technical considerations affecting autonomous-vehicle adoption across Gulf Cooperation Council countries. The public listing identifies it as a preprint.</div>
+        <figure class="paper-topic-preview" aria-label="Autonomous vehicle policy and regulation; illustrative topic preview, not an extracted paper figure"><svg viewBox="0 0 160 90" role="img" aria-label="Illustrative autonomous vehicle regulation topic preview"><path d="M80 10 117 23v21c0 18-15 29-37 38-22-9-37-20-37-38V23z" fill="#172f48" stroke="#69b7ff" stroke-width="2.5"/><path d="m61 45 13 12 26-27" fill="none" stroke="#55e7d2" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 70h25M118 70h25" stroke="#ffc36c" stroke-width="3" stroke-linecap="round"/><circle cx="26" cy="70" r="5" fill="#ffc36c"/><circle cx="134" cy="70" r="5" fill="#ffc36c"/></svg><figcaption class="visual-caption">Topic illustration</figcaption></figure>
         <div class="plink"><a href="https://www.researchgate.net/publication/415099508_Regulatory_and_Technical_Challenges_of_Autonomous_Vehicle_Adoption_in_GCC_Countries" target="_blank" rel="noopener noreferrer">View ResearchGate record →</a></div>
       </div>
     </div>
@@ -2270,6 +2276,7 @@
         <div class="title"><a href="https://www.researchgate.net/publication/414022926_Commuter_Perceptions_of_Service_Quality_on_Dhaka's_MRT-Line-6_A_Descriptive_Survey_Analysis" target="_blank" rel="noopener noreferrer">Commuter Perceptions of Service Quality on Dhaka’s MRT Line-6: A Descriptive Survey Analysis</a></div>
         <div class="venue">ResearchGate listing · September 2026</div>
         <div class="desc">A descriptive survey analysis of commuter perceptions of service quality on Dhaka Metro Rail Line-6. The public listing identifies it as a preprint.</div>
+        <figure class="paper-topic-preview" aria-label="Dhaka MRT commuter service quality; illustrative topic preview, not an extracted paper figure"><svg viewBox="0 0 160 90" role="img" aria-label="Illustrative Dhaka MRT commuter service quality topic preview"><rect x="25" y="20" width="110" height="48" rx="9" fill="#173b5b" stroke="#69b7ff" stroke-width="2"/><path d="M39 20v-7h82v7M40 40h80" stroke="#55e7d2" stroke-width="2"/><rect x="43" y="28" width="23" height="10" rx="2" fill="#8bc8ff"/><rect x="72" y="28" width="23" height="10" rx="2" fill="#8bc8ff"/><rect x="101" y="28" width="20" height="10" rx="2" fill="#8bc8ff"/><circle cx="50" cy="69" r="6" fill="#0b1420" stroke="#ffc36c" stroke-width="2"/><circle cx="110" cy="69" r="6" fill="#0b1420" stroke="#ffc36c" stroke-width="2"/><path d="M67 53h26" stroke="#d7e4f1" stroke-width="2" stroke-linecap="round"/></svg><figcaption class="visual-caption">Topic illustration</figcaption></figure>
         <div class="plink"><a href="https://www.researchgate.net/publication/414022926_Commuter_Perceptions_of_Service_Quality_on_Dhaka's_MRT-Line-6_A_Descriptive_Survey_Analysis" target="_blank" rel="noopener noreferrer">View ResearchGate record →</a></div>
       </div>
     </div>
