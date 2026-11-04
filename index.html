@@ -978,6 +978,8 @@
   .recommendation-gallery{
     display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:14px;align-items:start;
   }
+  .recommendation-gallery.is-rotating .rec-shot{opacity:.25;transition:opacity .35s ease}
+  @media(prefers-reduced-motion:reduce){.recommendation-gallery.is-rotating .rec-shot{transition:none}}
   .recommendation-gallery:not(.is-expanded) .rec-shot:nth-child(n+7){display:none}
   .rec-shot{
     appearance:none;display:flex;align-items:center;justify-content:center;width:100%;min-width:0;aspect-ratio:1.58;
@@ -3352,6 +3354,27 @@
     toggle.textContent=expanded?'Show featured recommendations':'View all '+total+' recommendation pages';
     const note=toggle.parentElement.querySelector('.recommendation-archive-note');
     if(note)note.textContent='';
+  }
+  // Automatically cycle the featured six while the visitor remains on the page.
+  // Pause while the archive is expanded, hovered, keyboard-focused, or the tab is hidden.
+  const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduceMotion){
+    window.setInterval(function(){
+      if(gallery.classList.contains('is-expanded') ||
+         gallery.matches(':hover') ||
+         gallery.contains(document.activeElement) ||
+         document.hidden) return;
+      const visibleCount=Math.min(6,gallery.querySelectorAll('.rec-shot').length);
+      if(visibleCount<2)return;
+      gallery.classList.add('is-rotating');
+      window.setTimeout(function(){
+        for(let i=0;i<visibleCount;i++){
+          const first=gallery.querySelector('.rec-shot');
+          if(first)gallery.appendChild(first);
+        }
+        window.requestAnimationFrame(function(){gallery.classList.remove('is-rotating');});
+      },220);
+    },8000);
   }
   toggle.addEventListener('click',function(){
     gallery.classList.toggle('is-expanded');
