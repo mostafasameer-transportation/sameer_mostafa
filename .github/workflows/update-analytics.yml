@@ -58,10 +58,10 @@ jobs:
             const counter = await counterResponse.json();
 
             const countries = (locations.stats || [])
-              .map(item => ({ country: item.name || 'Unknown', visits: Number(item.count) || 0 }))
+              .map(item => ({ code: item.id || '', country: item.name || 'Unknown', visits: Number(item.count) || 0 }))
               .sort((a, b) => b.visits - a.visits);
 
-            const daily = (total.stats || []).reduce((sum, item) => sum + (Number(item.daily) || 0), 0);
+            const daily = Number(total.total) || (total.stats || []).reduce((sum, item) => sum + (Number(item.daily) || 0), 0);
             const output = {
               status: 'ready',
               all_time_pageviews: Number(String(counter.count || '0').replace(/[^0-9]/g, '')) || 0,
