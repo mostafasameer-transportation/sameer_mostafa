@@ -414,6 +414,28 @@
   .erow .detail{ color:var(--ink-soft); font-size:13.5px; margin-top:5px; }
   .erow .when{ font-family:'JetBrains Mono', monospace; text-align:right; font-size:12.5px; color:var(--ink-faint); font-weight:500; padding-top:3px; }
   @media (max-width:560px){ .erow .when{ text-align:left; } }
+  .education-list{display:grid;gap:12px}
+  .education-card{display:grid;grid-template-columns:76px minmax(0,1fr) auto;gap:17px;align-items:start;padding:19px 18px;border:1px solid var(--rule-strong);border-radius:15px;background:linear-gradient(115deg,rgba(255,255,255,.045),rgba(255,255,255,.015));transition:border-color .2s ease,transform .2s ease}
+  .education-card:hover{border-color:rgba(124,183,255,.48);transform:translateY(-2px)}
+  .university-mark{width:68px;height:68px;display:flex;align-items:center;justify-content:center;border-radius:13px;background:#fff;border:1px solid rgba(255,255,255,.18);font-family:'Inter',sans-serif;font-weight:800;letter-spacing:-.07em;font-size:19px;line-height:1;text-align:center;box-shadow:0 5px 18px rgba(0,0,0,.22)}
+  .university-mark.fiu{color:#002D62;border-bottom:5px solid #B6862C}
+  .university-mark.wsu{color:#006B54;border-bottom:5px solid #FFC72C}
+  .university-mark.kfupm{color:#008540;border-bottom:5px solid #E5B500;font-size:15px;letter-spacing:-.04em}
+  .university-mark.cu{color:#0A477A;border-bottom:5px solid #D9A62E}
+  .university-mark.aust{color:#16834A;border-bottom:5px solid #E87524}
+  .education-main{min-width:0}
+  .education-main .what{font-size:16px;font-weight:700;color:var(--ink)}
+  .education-main .where{font-size:13.5px;color:var(--ink-soft);margin-top:3px}
+  .education-main .edu-note{font-size:13px;color:var(--ink-soft);line-height:1.65;margin-top:8px}
+  .education-main .edu-note a{font-weight:600}
+  .education-main .edu-links{display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:8px;font-size:12.5px}
+  .education-main .edu-links a{color:var(--accent)}
+  .education-date{font:500 11.5px 'JetBrains Mono',monospace;color:var(--ink-faint);white-space:nowrap;padding-top:4px}
+  .coursework-panel{margin-top:18px;padding:18px;border:1px solid var(--rule-strong);border-radius:15px;background:rgba(255,255,255,.025)}
+  .coursework-panel h3{font:600 13px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--pulse);margin-bottom:12px}
+  .coursework-list{display:flex;flex-wrap:wrap;gap:8px}
+  .coursework-list span{font-size:12.5px;color:#E8EDF4;border:1px solid rgba(255,255,255,.11);background:rgba(255,255,255,.035);border-radius:20px;padding:6px 10px}
+  @media(max-width:620px){.education-card{grid-template-columns:54px minmax(0,1fr);gap:12px;padding:15px 13px}.university-mark{width:52px;height:52px;border-radius:11px;font-size:16px}.university-mark.kfupm{font-size:12px}.education-date{grid-column:2;grid-row:2;padding-top:0}.education-main .what{font-size:15px}.education-main .where{font-size:12.5px}}
 
   /* ---------- SKILLS ---------- */
   .skillblock{ margin-bottom:22px; }
@@ -2394,11 +2416,78 @@
       <span class="section-num">04</span><h2>Education</h2>
     </div>
     <div class="campus-banner reveal" style="margin-bottom:24px;border-radius:10px;overflow:hidden;max-height:200px;"><img src="assets/profile-image-24.jpg" alt="Florida International University campus aerial view" style="width:100%;object-fit:cover;max-height:200px;display:block;"></div>
-    <div class="erow reveal"><div><div class="what">Ph.D., Civil Engineering</div><div class="where">Florida International University — Moss School of Construction</div></div><div class="when">2024 – present</div></div>
-    <div class="erow reveal"><div><div class="what">M.S., Civil Engineering</div><div class="where">Wayne State University — College of Engineering</div></div><div class="when">2023 – 2024</div></div>
-    <div class="erow reveal"><div><div class="what">M.S., Civil Engineering (Transportation)</div><div class="where">King Fahd University of Petroleum &amp; Minerals</div></div><div class="when">2022 – 2023</div></div>
-    <div class="erow reveal"><div><div class="what">MBA</div><div class="where">University of Chittagong</div></div><div class="when">2017 – 2019</div></div>
-    <div class="erow reveal"><div><div class="what">B.Sc., Civil Engineering</div><div class="where">Ahsanullah University of Science &amp; Technology</div></div><div class="when">2011 – 2016</div></div>
+
+    <div class="education-list">
+      <article class="education-card reveal">
+        <div class="university-mark fiu" role="img" aria-label="Florida International University monogram">FIU</div>
+        <div class="education-main">
+          <div class="what">Ph.D., Civil Engineering</div>
+          <div class="where">Florida International University · Moss School of Construction</div>
+          <div class="edu-note">Major: Structural Engineering. Research focuses on infrastructure resilience, bridge rehabilitation and recovery, flood risk, and digital-twin approaches for the built environment. <strong>Advisor:</strong> Dr. Wallied Orabi, Associate Professor, Moss School of Construction.</div>
+          <div class="edu-links"><a href="https://cec.fiu.edu/about/directory/profiles/wallied-orabi.html" target="_blank" rel="noopener">Advisor’s FIU faculty profile ↗</a><a href="https://www.researchgate.net/profile/Wallied-Orabi" target="_blank" rel="noopener">Advisor’s research profile ↗</a></div>
+        </div>
+        <div class="education-date">2024 – present</div>
+      </article>
+
+      <article class="education-card reveal">
+        <div class="university-mark wsu" role="img" aria-label="Wayne State University monogram">WSU</div>
+        <div class="education-main">
+          <div class="what">M.S., Civil Engineering</div>
+          <div class="where">Wayne State University · College of Engineering</div>
+          <div class="edu-note">Major: Transportation Engineering · GPA: 3.47/4.00. Research interests included emerging mobility, transportation safety, demographic impacts of mobility services, and geospatial artificial intelligence. <strong>Advisor:</strong> Dr. Xiaodong Qian, Assistant Professor, Civil and Environmental Engineering.</div>
+          <div class="edu-links"><a href="https://engineering.wayne.edu/profile/hm8925" target="_blank" rel="noopener">Advisor’s WSU faculty profile ↗</a><a href="https://www.researchgate.net/profile/Xiaodong-Qian-2" target="_blank" rel="noopener">Advisor’s research profile ↗</a></div>
+        </div>
+        <div class="education-date">2023 – 2024</div>
+      </article>
+
+      <article class="education-card reveal">
+        <div class="university-mark kfupm" role="img" aria-label="King Fahd University of Petroleum and Minerals monogram">KFUPM</div>
+        <div class="education-main">
+          <div class="what">M.S., Civil Engineering (Transportation)</div>
+          <div class="where">King Fahd University of Petroleum &amp; Minerals</div>
+          <div class="edu-note">Major: Transportation Engineering · CGPA: 3.00/4.00. Transportation research interests included traffic impact assessment, traffic safety, network modeling, simulation, signal control, autonomous vehicles, pedestrian safety, and travel-demand modeling. Graduate teaching included CE 343-51 (Transportation Engineering Lab), CE 216 (Computer Graphics Lab), and CE 341 (Transportation Engineering).</div>
+          <div class="edu-links"><a href="https://www.kfupm.edu.sa/" target="_blank" rel="noopener">University website ↗</a></div>
+        </div>
+        <div class="education-date">2022 – 2023</div>
+      </article>
+
+      <article class="education-card reveal">
+        <div class="university-mark cu" role="img" aria-label="University of Chittagong monogram">CU</div>
+        <div class="education-main">
+          <div class="what">M.B.A., Operations &amp; Supply Chain Management</div>
+          <div class="where">University of Chittagong</div>
+          <div class="edu-note">Master’s thesis: <em>Water Consumption and Efficient Reduction Planning in the Footwear Industry of Bangladesh.</em> <strong>Thesis supervisor:</strong> Dr. Sajib Kumar Ghosh, Professor of Marketing.</div>
+          <div class="edu-links"><a href="https://admission.cu.ac.bd/" target="_blank" rel="noopener">University website ↗</a></div>
+        </div>
+        <div class="education-date">2017 – 2019</div>
+      </article>
+
+      <article class="education-card reveal">
+        <div class="university-mark aust" role="img" aria-label="Ahsanullah University of Science and Technology monogram">AUST</div>
+        <div class="education-main">
+          <div class="what">B.Sc., Civil Engineering</div>
+          <div class="where">Ahsanullah University of Science &amp; Technology</div>
+          <div class="edu-note">Major: Transportation Engineering. Undergraduate thesis: <em>Determination of Trip Attraction Rates of Different-Sized Hospitals in Dhaka City.</em></div>
+          <div class="edu-links"><a href="https://www.aust.edu/" target="_blank" rel="noopener">University website ↗</a></div>
+        </div>
+        <div class="education-date">2011 – 2016</div>
+      </article>
+    </div>
+
+    <div class="coursework-panel reveal">
+      <h3>Relevant Coursework</h3>
+      <div class="coursework-list">
+        <span>Geographic Information Systems</span>
+        <span>Urban Transportation Planning</span>
+        <span>Traffic Engineering Control &amp; Operation</span>
+        <span>Advanced Highway Design</span>
+        <span>Highway Safety &amp; Risk Management</span>
+        <span>Applied Engineering Statistics</span>
+        <span>Traffic Flow Theory</span>
+        <span>Integrated Solid Waste Management</span>
+      </div>
+      <p class="edu-note">Coursework listed from the academic profile and LinkedIn résumé description.</p>
+    </div>
 
     <div class="photo-mosaic cols3 reveal" style="margin-top:24px;">
       <div>
