@@ -1504,6 +1504,16 @@
   section { padding-top: 30px; padding-bottom: 30px; }
   .section-head { margin-bottom: 16px; }
 }
+
+/* Volunteer cards use directional reveal classes, not .reveal. */
+.reveal-left,
+.reveal-left:not(.visible),
+.reveal-right,
+.reveal-right:not(.visible) {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
 </style>
 
 </head>
