@@ -1,0 +1,86 @@
+name: Refresh public website analytics
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 6 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Fetch aggregated GoatCounter statistics
+        env:
+          GOATCOUNTER_SITE_CODE: ${{ secrets.GOATCOUNTER_SITE_CODE }}
+          GOATCOUNTER_API_TOKEN: ${{ secrets.GOATCOUNTER_API_TOKEN }}
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const https = require('node:https');
+
+          const code = process.env.GOATCOUNTER_SITE_CODE;
+          const token = process.env.GOATCOUNTER_API_TOKEN;
+          if (!code || !token) {
+            console.error('Add GOATCOUNTER_SITE_CODE and GOATCOUNTER_API_TOKEN in repository Actions secrets.');
+            process.exit(1);
+          }
+
+          const base = `https://${code}.goatcounter.com/api/v0`;
+          const end = new Date();
+          const start = new Date(end.getTime() - 30 * 24 * 60 * 60 * 1000);
+          const iso = d => d.toISOString().replace(/\.\d{3}Z$/, 'Z');
+
+          async function api(path) {
+            const response = await fetch(base + path, {
+              headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json'
+              }
+            });
+            if (!response.ok) throw new Error(`GoatCounter API ${response.status}: ${await response.text()}`);
+            return response.json();
+          }
+
+          (async () => {
+            const query = `?start=${encodeURIComponent(iso(start))}&end=${encodeURIComponent(iso(end))}`;
+            const [total, locations] = await Promise.all([
+              api('/stats/total' + query),
+              api('/stats/locations' + query)
+            ]);
+            const counterResponse = await fetch(`https://${code}.goatcounter.com/counter//.json`);
+            if (!counterResponse.ok) throw new Error(`GoatCounter public counter ${counterResponse.status}`);
+            const counter = await counterResponse.json();
+
+            const countries = (locations.stats || [])
+              .map(item => ({ country: item.name || 'Unknown', visits: Number(item.count) || 0 }))
+              .sort((a, b) => b.visits - a.visits);
+
+            const daily = (total.stats || []).reduce((sum, item) => sum + (Number(item.daily) || 0), 0);
+            const output = {
+              status: 'ready',
+              all_time_pageviews: Number(String(counter.count || '0').replace(/[^0-9]/g, '')) || 0,
+              last_30_days_visits: daily,
+              countries,
+              updated_at: new Date().toISOString()
+            };
+            fs.writeFileSync('analytics.json', JSON.stringify(output, null, 2) + '\n');
+          })().catch(error => { console.error(error); process.exit(1); });
+          NODE
+
+      - name: Publish updated public dashboard data
+        run: |
+          if git diff --quiet -- analytics.json; then
+            echo "Analytics data has not changed."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add analytics.json
+          git commit -m "Refresh public website analytics"
+          git push
