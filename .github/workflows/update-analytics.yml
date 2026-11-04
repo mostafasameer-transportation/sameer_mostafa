@@ -50,15 +50,48 @@ jobs:
           (async () => {
             const query = `?start=${encodeURIComponent(iso(start))}&end=${encodeURIComponent(iso(end))}`;
             const allTimeQuery = `?start=${encodeURIComponent('2000-01-01T00:00:00Z')}&end=${encodeURIComponent(iso(end))}`;
-            const [total, locations, allTime] = await Promise.all([
+            const [total, locations, allTime, hitStats] = await Promise.all([
               api('/stats/total' + query),
               api('/stats/locations' + query),
-              api('/stats/total' + allTimeQuery)
+              api('/stats/total' + allTimeQuery),
+              api('/stats/hits' + query + '&limit=100')
             ]);
 
             const countries = (locations.stats || [])
               .map(item => ({ code: item.id || '', country: item.name || 'Unknown', visits: Number(item.count) || 0 }))
               .sort((a, b) => b.visits - a.visits);
+
+            // City-level events are deliberately separate from ordinary pageviews.
+            // Their path contains only a coarse city/region label and coordinates
+            // rounded to 0.1 degrees; no raw IP address is collected or published.
+            const cityTotals = new Map();
+            for (const hit of (hitStats.hits || [])) {
+              if (!hit.event || !String(hit.path || '').startsWith('visitor-location/')) continue;
+              const parts = String(hit.path).split('/');
+              if (parts.length < 6) continue;
+              let countryCode, region, city, coordinates;
+              try {
+                countryCode = decodeURIComponent(parts[1]);
+                region = decodeURIComponent(parts[2]);
+                city = decodeURIComponent(parts[3]);
+                coordinates = decodeURIComponent(parts[4]) + '/' + decodeURIComponent(parts[5]);
+              } catch { continue; }
+              const [latitude, longitude] = coordinates.split('/').map(Number);
+              if (!countryCode || !city || !Number.isFinite(latitude) || !Number.isFinite(longitude)) continue;
+              const key = [countryCode, region, city, latitude.toFixed(1), longitude.toFixed(1)].join('|');
+              const current = cityTotals.get(key) || {
+                country_code: countryCode,
+                country: (countries.find(c => c.code === countryCode) || {}).country || countryCode,
+                region,
+                city,
+                latitude,
+                longitude,
+                visits: 0
+              };
+              current.visits += Number(hit.count) || 0;
+              cityTotals.set(key, current);
+            }
+            const cities = Array.from(cityTotals.values()).sort((a, b) => b.visits - a.visits);
 
             const daily = Number(total.total) || (total.stats || []).reduce((sum, item) => sum + (Number(item.daily) || 0), 0);
             const output = {
@@ -66,6 +99,7 @@ jobs:
               all_time_pageviews: Number(allTime.total) || 0,
               last_30_days_visits: daily,
               countries,
+              cities,
               updated_at: new Date().toISOString()
             };
             fs.writeFileSync('analytics.json', JSON.stringify(output, null, 2) + '\n');
