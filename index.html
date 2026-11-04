@@ -1796,6 +1796,114 @@
 @media(prefers-reduced-motion:reduce){#ambientResearchField .drift-a,#ambientResearchField .drift-b,#ambientResearchField .drift-c,#ambientResearchField .orbit,#ambientResearchField .twinkle{animation:none!important}}
 @media(prefers-reduced-motion:reduce){#ambientResearchField .mobile-motion{display:none!important}}
 </style>
+
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style id="sitewide-readable-type">
+/* One consistent, highly legible type system from the first section to the footer. */
+:root{
+  --reading-font:'Atkinson Hyperlegible',Arial,sans-serif;
+  --display-font:'Source Serif 4',Georgia,serif;
+}
+html{font-size:18px!important;text-size-adjust:100%;-webkit-text-size-adjust:100%}
+body,button,input,select,textarea{
+  font-family:var(--reading-font)!important;
+  font-size:18px!important;
+  line-height:1.72!important;
+  font-weight:400;
+  letter-spacing:.005em;
+}
+body{color:#f3f6fb!important}
+h1,h2,h3,h4,h5,h6,.section-head h2,.hero h1{
+  font-family:var(--display-font)!important;
+  font-weight:700!important;
+  line-height:1.2!important;
+  letter-spacing:-.025em;
+}
+h1{font-size:clamp(2.65rem,4.2vw,3.8rem)!important}
+h2,.section-head h2{font-size:clamp(1.85rem,2.7vw,2.35rem)!important}
+h3{font-size:1.35rem!important}
+p,li,dd,dt,label,figcaption,summary,blockquote,
+.section-intro,.net-intro,.hero .bio,.hero .role,
+.paper .authors,.paper .venue,.paper .desc,
+.erow .where,.erow .detail,.education-main .where,
+.education-main .edu-note,.proj-card p,.vol-card p,
+.cv-copy p,.cv-copy .cv-detail,.peer-review-panel p,
+footer p,footer li{
+  font-family:var(--reading-font)!important;
+  font-size:1rem!important;
+  line-height:1.75!important;
+}
+strong,b,.paper .title,.erow .what,.education-main .what,
+.proj-card h3,.vol-card h3,.metric-title,.panel-title,
+.stat .num,.cv-copy h3,.nav-name{
+  font-weight:700!important;
+}
+.paper .title,.erow .what,.education-main .what,
+.proj-card h3,.vol-card h3,.metric-title,.panel-title{
+  font-size:1.12rem!important;line-height:1.5!important;
+}
+small,.small,.mono,.section-num,.erow .when,.education-date,
+.cv-kicker,.t-item .when,.paper .plink,.paper .visual-caption,
+.stat .lbl,.metric-note,.tiny-card .k,.tiny-card .s,
+.mini-k,.mini-s,.nav-links a{
+  font-family:var(--reading-font)!important;
+  font-size:.84rem!important;
+  line-height:1.55!important;
+}
+.nav-links a{font-weight:700!important}
+.nav-name{font-size:1.05rem!important}
+button,a,.cv-button,.badge,.tag,.chip{font-family:var(--reading-font)!important}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
+  outline:3px solid #82c9ef!important;outline-offset:3px!important;
+}
+img,svg,video,canvas{max-width:100%}
+section img,figure img,.photo-mosaic img,.paper figure img{
+  image-rendering:auto;
+}
+.paper figure img,.photo-mosaic img,.education-gallery img,
+.experience-gallery img,.proj-card img,.vol-card img{
+  object-fit:cover;
+}
+@media(min-width:761px){
+  .wrap{width:100%!important;max-width:1360px!important;padding-left:38px!important;padding-right:38px!important}
+  section{padding-top:64px!important;padding-bottom:64px!important}
+  .section-head{margin-bottom:30px!important}
+  .paper{padding-top:24px!important;padding-bottom:24px!important}
+  .paper .desc{font-size:1rem!important}
+}
+@media(max-width:1000px){
+  html{font-size:17.5px!important}
+  .wrap{max-width:100%!important;padding-left:28px!important;padding-right:28px!important}
+}
+@media(max-width:760px){
+  html{font-size:17px!important}
+  body,button,input,select,textarea{font-size:16.5px!important;line-height:1.7!important}
+  h1{font-size:clamp(2.35rem,9vw,3rem)!important}
+  h2,.section-head h2{font-size:clamp(1.65rem,6vw,2rem)!important}
+  h3{font-size:1.2rem!important}
+  p,li,dd,dt,label,figcaption,summary,blockquote,
+  .section-intro,.net-intro,.hero .bio,.hero .role,
+  .paper .authors,.paper .venue,.paper .desc,
+  .erow .where,.erow .detail,.education-main .where,
+  .education-main .edu-note,.proj-card p,.vol-card p,
+  .cv-copy p,.cv-copy .cv-detail,.peer-review-panel p,
+  footer p,footer li{font-size:.96rem!important;line-height:1.72!important}
+  .paper .title,.erow .what,.education-main .what,
+  .proj-card h3,.vol-card h3,.metric-title,.panel-title{
+    font-size:1.02rem!important;line-height:1.48!important;
+  }
+  small,.small,.mono,.section-num,.erow .when,.education-date,
+  .cv-kicker,.t-item .when,.paper .plink,.paper .visual-caption,
+  .stat .lbl,.metric-note,.tiny-card .k,.tiny-card .s,
+  .mini-k,.mini-s,.nav-links a{font-size:.82rem!important}
+  .wrap{padding-left:20px!important;padding-right:20px!important}
+  section{padding-top:52px!important;padding-bottom:52px!important}
+}
+@media(max-width:390px){
+  html{font-size:16.5px!important}
+  .wrap{padding-left:16px!important;padding-right:16px!important}
+}
+</style>
 </head>
 <body>
 
