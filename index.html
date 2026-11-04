@@ -1485,6 +1485,27 @@
 #visitor-world-map .leaflet-popup-content{margin:12px 16px;font-size:14px}
 @media(max-width:650px){#visitor-world-map{height:400px!important}}
 </style>
+
+<style>
+/* Keep portfolio content visible even if the scroll-reveal observer is delayed or unavailable.
+   Hidden reveal elements retain their layout height and create large empty gaps. */
+.reveal,
+.reveal:not(.visible),
+.reveal.visible {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
+@media (min-width: 761px) {
+  section { padding-top: 42px; padding-bottom: 42px; }
+  .section-head { margin-bottom: 20px; }
+}
+@media (max-width: 760px) {
+  section { padding-top: 30px; padding-bottom: 30px; }
+  .section-head { margin-bottom: 16px; }
+}
+</style>
+
 </head>
 <body>
 <div id="progressBar"></div>
