@@ -184,6 +184,21 @@
   @media (max-width:620px){ .stat:nth-child(2n+1){ border-left:none; } }
   .stat .num{ font-family:'Source Serif 4', serif; font-size:1.7rem; font-weight:700; color:var(--accent); }
   .stat .lbl{ font-size:12.5px; color:var(--ink-soft); margin-top:2px; }
+  .stat-marquee{position:relative;overflow:hidden;height:36px;margin-top:10px;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+  .stat-track{display:flex;align-items:center;gap:22px;width:max-content;height:100%;animation:statTickerRight 34s linear infinite}
+  .stat-track:hover{animation-play-state:paused}
+  .stat-track.universities{gap:25px;animation-duration:28s}
+  .stat-track.countries{gap:25px;animation-duration:31s}
+  .stat-track.papers{gap:25px;animation-duration:42s}
+  @keyframes statTickerRight{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+  .stat-marquee-item{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;color:#cbd5e1;font-size:11px;line-height:1.2}
+  .stat-marquee-item svg{width:27px;height:24px;flex:0 0 auto;display:block}
+  .stat-marquee-item .mini-mark{width:27px;height:25px;display:inline-flex;align-items:center;justify-content:center;background:#f7f8fa;color:#132238;border-radius:5px;font-size:9px;font-weight:800;letter-spacing:-.04em;border-bottom:2px solid #8ab7e8}
+  .stat-marquee-item .country-map{width:30px;height:28px;fill:#91bde8;stroke:#c6dcf2;stroke-width:.8}
+  .stat-marquee-item .rg-mark{width:25px;height:25px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:#00ccbb;color:#071a1a;font-weight:900;font-size:13px}
+  .stat-marquee-item .paper-dot{width:5px;height:5px;border-radius:50%;background:#7cb7ff;box-shadow:0 0 7px #7cb7ff}
+  @media(prefers-reduced-motion:reduce){.stat-track{animation:none!important;transform:none!important}.stat-marquee{overflow-x:auto;mask-image:none;-webkit-mask-image:none}}
+  @media(max-width:620px){.stat{min-width:0}.stat-marquee{height:32px}.stat-marquee-item{font-size:10px}}
 
   /* ---------- SECTIONS ---------- */
   section{ padding:60px 0; border-bottom:1px solid var(--rule); scroll-margin-top:70px; }
@@ -1741,11 +1756,47 @@
     </div>
   </div>
 
-  <div class="stats wrap" style="max-width:920px; margin:40px auto 0; padding-left:28px; padding-right:28px;">
-    <div class="stat"><div class="num count" data-target="112">0</div><div class="lbl">Research outputs (ResearchGate)</div></div>
-    <div class="stat"><div class="num count" data-target="2">0</div><div class="lbl">Manuscripts in active review</div></div>
-    <div class="stat"><div class="num count" data-target="5">0</div><div class="lbl">Universities — FIU, WSU, KFUPM, U. Chittagong, AUST</div></div>
-    <div class="stat"><div class="num count" data-target="3">0</div><div class="lbl">Countries of academic work</div></div>
+  <div class="stats wrap" style="max-width:1120px; margin:40px auto 0; padding-left:28px; padding-right:28px;">
+    <div class="stat">
+      <div class="num count" data-target="112">0</div><div class="lbl">Research outputs (ResearchGate)</div>
+      <div class="stat-marquee" aria-label="ResearchGate and selected research titles">
+        <div class="stat-track papers">
+          <span class="stat-marquee-item"><span class="rg-mark">R</span>ResearchGate</span><span class="stat-marquee-item"><i class="paper-dot"></i>Machine Learning in Autonomous Vehicles</span><span class="stat-marquee-item"><i class="paper-dot"></i>Data-Driven Decarbonization</span><span class="stat-marquee-item"><i class="paper-dot"></i>Bridge Rehabilitation and Recovery</span><span class="stat-marquee-item"><i class="paper-dot"></i>AI for Hajj Crowd Logistics</span><span class="stat-marquee-item"><i class="paper-dot"></i>Dhaka MRT Line-6</span>
+          <span class="stat-marquee-item" aria-hidden="true"><span class="rg-mark">R</span>ResearchGate</span><span class="stat-marquee-item" aria-hidden="true"><i class="paper-dot"></i>Machine Learning in Autonomous Vehicles</span><span class="stat-marquee-item" aria-hidden="true"><i class="paper-dot"></i>Data-Driven Decarbonization</span><span class="stat-marquee-item" aria-hidden="true"><i class="paper-dot"></i>Bridge Rehabilitation and Recovery</span><span class="stat-marquee-item" aria-hidden="true"><i class="paper-dot"></i>AI for Hajj Crowd Logistics</span><span class="stat-marquee-item" aria-hidden="true"><i class="paper-dot"></i>Dhaka MRT Line-6</span>
+        </div>
+      </div>
+    </div>
+    <div class="stat">
+      <div class="num count" data-target="2">0</div><div class="lbl">Manuscripts in active review</div>
+      <div class="stat-marquee" aria-label="Selected manuscripts">
+        <div class="stat-track papers">
+          <span class="stat-marquee-item"><i class="paper-dot"></i>Autonomous Vehicle Sensor Reliability</span><span class="stat-marquee-item"><i class="paper-dot"></i>AI Crowd Flow at Hajj</span><span class="stat-marquee-item"><i class="paper-dot"></i>Autonomous Vehicles in GCC</span><span class="stat-marquee-item"><i class="paper-dot"></i>Dhaka MRT Service Quality</span>
+          <span class="stat-marquee-item" aria-hidden="true"><i class="paper-dot"></i>Autonomous Vehicle Sensor Reliability</span><span class="stat-marquee-item" aria-hidden="true"><i class="paper-dot"></i>AI Crowd Flow at Hajj</span><span class="stat-marquee-item" aria-hidden="true"><i class="paper-dot"></i>Autonomous Vehicles in GCC</span><span class="stat-marquee-item" aria-hidden="true"><i class="paper-dot"></i>Dhaka MRT Service Quality</span>
+        </div>
+      </div>
+    </div>
+    <div class="stat">
+      <div class="num count" data-target="5">0</div><div class="lbl">Universities — FIU, WSU, KFUPM, U. Chittagong, AUST</div>
+      <div class="stat-marquee" aria-label="Five universities">
+        <div class="stat-track universities">
+          <span class="stat-marquee-item"><b class="mini-mark">FIU</b>Florida International</span><span class="stat-marquee-item"><b class="mini-mark">WSU</b>Wayne State</span><span class="stat-marquee-item"><b class="mini-mark">KFUPM</b>KFUPM</span><span class="stat-marquee-item"><b class="mini-mark">CU</b>Chittagong</span><span class="stat-marquee-item"><b class="mini-mark">AUST</b>AUST</span>
+          <span class="stat-marquee-item" aria-hidden="true"><b class="mini-mark">FIU</b>Florida International</span><span class="stat-marquee-item" aria-hidden="true"><b class="mini-mark">WSU</b>Wayne State</span><span class="stat-marquee-item" aria-hidden="true"><b class="mini-mark">KFUPM</b>KFUPM</span><span class="stat-marquee-item" aria-hidden="true"><b class="mini-mark">CU</b>Chittagong</span><span class="stat-marquee-item" aria-hidden="true"><b class="mini-mark">AUST</b>AUST</span>
+        </div>
+      </div>
+    </div>
+    <div class="stat">
+      <div class="num count" data-target="3">0</div><div class="lbl">Countries of academic work</div>
+      <div class="stat-marquee" aria-label="United States, Saudi Arabia and Bangladesh">
+        <div class="stat-track countries">
+          <span class="stat-marquee-item"><svg class="country-map" viewBox="0 0 64 48" aria-label="United States map" role="img"><path d="m5 9 8-4 7 3 5-2 7 4 6-1 5 4 7-1 5 4 8 1-2 7-5 3-3 8-7 2-5-5-7 2-6-4-7 1-4-5-6-1-2-7-5-2z"/></svg>United States</span>
+          <span class="stat-marquee-item"><svg class="country-map" viewBox="0 0 64 48" aria-label="Saudi Arabia map" role="img"><path d="m11 7 11 2 8-3 8 5 10-1 7 9-4 7-7 2-3 9-9 4-8-5-8-1-2-8-7-4z"/></svg>Saudi Arabia</span>
+          <span class="stat-marquee-item"><svg class="country-map" viewBox="0 0 64 48" aria-label="Bangladesh map" role="img"><path d="m25 4 10 2 7 7-3 6 7 6-4 6-7 1-4 9-7-3-3-8-7-5 3-8-3-7z"/></svg>Bangladesh</span>
+          <span class="stat-marquee-item" aria-hidden="true"><svg class="country-map" viewBox="0 0 64 48"><path d="m5 9 8-4 7 3 5-2 7 4 6-1 5 4 7-1 5 4 8 1-2 7-5 3-3 8-7 2-5-5-7 2-6-4-7 1-4-5-6-1-2-7-5-2z"/></svg>United States</span>
+          <span class="stat-marquee-item" aria-hidden="true"><svg class="country-map" viewBox="0 0 64 48"><path d="m11 7 11 2 8-3 8 5 10-1 7 9-4 7-7 2-3 9-9 4-8-5-8-1-2-8-7-4z"/></svg>Saudi Arabia</span>
+          <span class="stat-marquee-item" aria-hidden="true"><svg class="country-map" viewBox="0 0 64 48"><path d="m25 4 10 2 7 7-3 6 7 6-4 6-7 1-4 9-7-3-3-8-7-5 3-8-3-7z"/></svg>Bangladesh</span>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
