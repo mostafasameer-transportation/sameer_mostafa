@@ -1674,7 +1674,46 @@
 @keyframes ambientDriftC{0%,100%{translate:0 0;rotate:1deg}50%{translate:8px 7px;rotate:-1deg}}
 @keyframes ambientOrbit{to{rotate:360deg}}
 @keyframes ambientTwinkle{from{opacity:.25}to{opacity:.62}}
-@media(max-width:1250px){#ambientResearchField{display:none}}
+@media(max-width:1250px){
+  #ambientResearchField{display:block;opacity:.3}
+  #ambientResearchField>svg>g:nth-of-type(1),
+  #ambientResearchField>svg>g:nth-of-type(3),
+  #ambientResearchField>svg>g:nth-of-type(4),
+  #ambientResearchField>svg>g:nth-of-type(5),
+  #ambientResearchField>svg>g:nth-of-type(7),
+  #ambientResearchField>svg>g:nth-of-type(8),
+  #ambientResearchField>svg>g:nth-of-type(9),
+  #ambientResearchField>svg>g:nth-of-type(10),
+  #ambientResearchField>svg>g:nth-of-type(11),
+  #ambientResearchField>svg>g:nth-of-type(12),
+  #ambientResearchField>svg>g:nth-of-type(14),
+  #ambientResearchField>svg>g:nth-of-type(16),
+  #ambientResearchField>svg>g:nth-of-type(17),
+  #ambientResearchField>svg>g:nth-of-type(18),
+  #ambientResearchField>svg>g:nth-of-type(19),
+  #ambientResearchField>svg>g:nth-of-type(20),
+  #ambientResearchField>svg>g:nth-of-type(21){display:none}
+  #ambientResearchField>svg>g:nth-of-type(2),
+  #ambientResearchField>svg>g:nth-of-type(6),
+  #ambientResearchField>svg>g:nth-of-type(13),
+  #ambientResearchField>svg>g:nth-of-type(15),
+  #ambientResearchField>svg>g:nth-of-type(22){display:inline}
+  #ambientResearchField .drift-a,#ambientResearchField .drift-b,#ambientResearchField .drift-c,#ambientResearchField .twinkle{will-change:transform;animation-play-state:running}
+}
+@media(max-width:760px){
+  #ambientResearchField{inset:64px 0 0;opacity:.2}
+  #ambientResearchField>svg{width:100%;height:100%;preserveAspectRatio:none}
+  #ambientResearchField .line{stroke-width:1.25;opacity:.42}
+  #ambientResearchField .fine{stroke-width:.85;opacity:.28}
+  #ambientResearchField .glow{filter:none}
+  #ambientResearchField .drift-a{animation-duration:24s}
+  #ambientResearchField .drift-b{animation-duration:29s}
+  #ambientResearchField .drift-c{animation-duration:32s}
+  #ambientResearchField .twinkle{animation-duration:6s}
+}
+.nav-cv-quick .nav-item-icon{color:#82C9EF}
+.nav-cv-quick:hover .nav-item-icon{filter:drop-shadow(0 0 7px rgba(130,201,239,.7))}
+@media(max-width:760px){.nav-links .nav-cv-quick{color:#A9DFFF;font-weight:700}}
 @media(prefers-reduced-motion:reduce){#ambientResearchField .drift-a,#ambientResearchField .drift-b,#ambientResearchField .drift-c,#ambientResearchField .orbit,#ambientResearchField .twinkle{animation:none!important}}
 </style>
 </head>
@@ -1787,6 +1826,7 @@
       <a href="#network" data-t="network"><svg class="nav-item-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="--nav-icon-color:#55E7D2"><circle cx="12" cy="5" r="2.4"/><circle cx="5" cy="18" r="2.4"/><circle cx="19" cy="18" r="2.4"/><path d="m10.8 7-4.3 8.8m6.7-8.8 4.3 8.8M7.5 18h9"/></svg><span>Network</span></a>
       <a href="#publications" data-t="publications"><svg class="nav-item-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="--nav-icon-color:#F2C879"><path d="M4 4.5A3.5 3.5 0 0 1 7.5 1H20v18H7.5A3.5 3.5 0 0 0 4 22zM4 4.5v17M8 6h8M8 10h8M8 14h6"/></svg><span>Publications</span></a>
       <a href="#cv" data-t="cv"><svg class="nav-item-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="--nav-icon-color:#B8C5FF"><path d="M6 2h9l4 4v16H6zM15 2v5h5M9 12h7M9 16h7"/></svg><span>CV / Resume</span></a>
+      <a href="Mostafa_Sameer_Resume.pdf" class="nav-cv-quick" target="_blank" rel="noopener" aria-label="Open CV PDF in a new tab" title="Open CV PDF"><svg class="nav-item-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="--nav-icon-color:#82C9EF"><path d="M6 2h9l4 4v16H6zM15 2v5h5M8.5 12h7M8.5 16h7"/><path d="M8.5 9h4"/></svg><span>View CV PDF</span></a>
       <a href="#education" data-t="education"><svg class="nav-item-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="--nav-icon-color:#FFD166"><path d="m2 9 10-5 10 5-10 5zM6 11v5c3.5 3 8.5 3 12 0v-5M22 9v7"/></svg><span>Education</span></a>
       <a href="#experience" data-t="experience"><svg class="nav-item-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="--nav-icon-color:#91D6B5"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V4h8v3M3 12h18M10 12v2h4v-2"/></svg><span>Experience</span></a>
       <a href="#skills" data-t="skills"><svg class="nav-item-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="--nav-icon-color:#D7A6FF"><path d="m14 6 4-4 4 4-4 4M13 7l4 4-9 9a2.8 2.8 0 0 1-4-4zM4 4l5 5"/></svg><span>Skills</span></a>
