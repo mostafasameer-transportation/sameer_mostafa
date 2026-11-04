@@ -49,13 +49,12 @@ jobs:
 
           (async () => {
             const query = `?start=${encodeURIComponent(iso(start))}&end=${encodeURIComponent(iso(end))}`;
-            const [total, locations] = await Promise.all([
+            const allTimeQuery = `?start=${encodeURIComponent('2000-01-01T00:00:00Z')}&end=${encodeURIComponent(iso(end))}`;
+            const [total, locations, allTime] = await Promise.all([
               api('/stats/total' + query),
-              api('/stats/locations' + query)
+              api('/stats/locations' + query),
+              api('/stats/total' + allTimeQuery)
             ]);
-            const counterResponse = await fetch(`https://${code}.goatcounter.com/counter//.json`);
-            if (!counterResponse.ok) throw new Error(`GoatCounter public counter ${counterResponse.status}`);
-            const counter = await counterResponse.json();
 
             const countries = (locations.stats || [])
               .map(item => ({ code: item.id || '', country: item.name || 'Unknown', visits: Number(item.count) || 0 }))
@@ -64,7 +63,7 @@ jobs:
             const daily = Number(total.total) || (total.stats || []).reduce((sum, item) => sum + (Number(item.daily) || 0), 0);
             const output = {
               status: 'ready',
-              all_time_pageviews: Number(String(counter.count || '0').replace(/[^0-9]/g, '')) || 0,
+              all_time_pageviews: Number(allTime.total) || 0,
               last_30_days_visits: daily,
               countries,
               updated_at: new Date().toISOString()
