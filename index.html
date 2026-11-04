@@ -1465,6 +1465,15 @@
 </style>
 <!-- GoatCounter visitor tracking -->
 <script data-goatcounter="https://mostafasameer334.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<style>
+#visitor-world-map .leaflet-container{font:inherit}
+.visitor-map-marker{background:#1558c0;color:#fff;border:2px solid #fff;border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;box-shadow:0 2px 10px rgba(0,0,0,.28)}
+.visitor-map-marker span{line-height:1}
+#visitor-world-map .leaflet-popup-content-wrapper{border-radius:10px}
+#visitor-world-map .leaflet-popup-content{margin:12px 16px;font-size:14px}
+@media(max-width:650px){#visitor-world-map{height:360px!important}}
+</style>
 </head>
 <body>
 <div id="progressBar"></div>
@@ -2417,18 +2426,23 @@
   <section id="analytics">
     <div class="section-head">
       <svg class="route" width="22" height="12" viewBox="0 0 22 12"><line x1="0" y1="6" x2="16" y2="6" stroke="#1356C9" stroke-width="2"/><circle cx="19" cy="6" r="3" fill="#1356C9"/></svg>
-      <span class="section-num">10</span><h2>Website Analytics</h2>
+      <span class="section-num">10</span><h2>Visitor Locations</h2>
     </div>
     <div class="analytics-grid">
       <article class="analytics-card"><div class="a-label">All-time page views</div><div class="a-value" id="analytics-total">—</div><div class="a-note">Since analytics activation</div></article>
-      <article class="analytics-card"><div class="a-label">Last 30 days</div><div class="a-value" id="analytics-month">—</div><div class="a-note">Recorded visits</div></article>
-      <article class="analytics-card"><div class="a-label">Countries / regions</div><div class="a-value" id="analytics-country-count">—</div><div class="a-note">Locations represented in the last 30 days</div></article>
+      <article class="analytics-card"><div class="a-label">Visitors in last 30 days</div><div class="a-value" id="analytics-month">—</div><div class="a-note">Recorded visits</div></article>
+      <article class="analytics-card"><div class="a-label">Countries represented</div><div class="a-value" id="analytics-country-count">—</div><div class="a-note">Approximate visitor locations</div></article>
     </div>
-    <div class="analytics-panels">
-      <div class="analytics-panel"><h3>Visitors by country</h3><div id="analytics-countries"><div class="empty-bars">Analytics will appear here after the tracking account is connected.</div></div></div>
-      <div class="analytics-panel"><h3>About these statistics</h3><p style="color:var(--ink-soft);font-size:13.5px;margin:0">This dashboard reports aggregated website activity. Country estimates are approximate and may not identify a visitor’s exact location.</p><div class="analytics-status" id="analytics-updated">Waiting for analytics setup.</div></div>
+    <div class="analytics-panel" style="margin-top:22px">
+      <h3>Where visitors are from</h3>
+      <p style="color:var(--ink-soft);font-size:13.5px;margin:0 0 14px">Each numbered marker represents visits from a country. Select a marker to see its visitor count.</p>
+      <div id="visitor-world-map" role="img" aria-label="World map showing approximate visitor counts by country" style="height:480px;width:100%;border-radius:12px;overflow:hidden;background:#e8eef5">
+        <div class="empty-bars" style="padding:35px;text-align:center">The visitor map will appear here when analytics data is available.</div>
+      </div>
+      <div id="analytics-countries" style="margin-top:18px"></div>
+      <div class="analytics-status" id="analytics-updated">Waiting for analytics data.</div>
     </div>
-    <p class="analytics-privacy">Privacy: this site uses GoatCounter for lightweight, privacy-conscious traffic measurement. No names, email addresses, or precise visitor locations are displayed here.</p>
+    <p class="analytics-privacy">Locations are approximate country-level estimates provided by GoatCounter. They do not show a visitor’s exact address or GPS location. The map displays aggregated counts, not individual visitors.</p>
   </section>
 
   <!-- FOOTER / CONTACT -->
@@ -3382,15 +3396,48 @@
 })();
 </script>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
-/* ---------- public analytics dashboard ---------- */
+/* ---------- public visitor location map ---------- */
 (function(){
-  const fmt = n => Number(n || 0).toLocaleString();
+  const fmt=n=>Number(n||0).toLocaleString();
   const totalEl=document.getElementById('analytics-total');
   const monthEl=document.getElementById('analytics-month');
   const countEl=document.getElementById('analytics-country-count');
-  const countriesEl=document.getElementById('analytics-countries');
+  const listEl=document.getElementById('analytics-countries');
   const updatedEl=document.getElementById('analytics-updated');
+  const mapEl=document.getElementById('visitor-world-map');
+  const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  let map=null;
+  function showEmpty(message){mapEl.innerHTML='<div class="empty-bars" style="padding:35px;text-align:center">'+esc(message)+'</div>';}
+  function renderMap(countries){
+    if(!window.L){showEmpty('The map library could not be loaded. Please refresh the page.');return;}
+    mapEl.innerHTML='';
+    map=L.map(mapEl,{scrollWheelZoom:false}).setView([20,0],2);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+      maxZoom:6,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+    fetch('https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson')
+      .then(r=>{if(!r.ok)throw new Error('Map geography unavailable');return r.json();})
+      .then(geo=>{
+        const lookup={};
+        countries.forEach(c=>{if(c.code)lookup[String(c.code).toUpperCase()]=c;});
+        L.geoJSON(geo,{style:{color:'#8293a8',weight:.5,fillColor:'#dce5ef',fillOpacity:.24}}).eachLayer(layer=>{
+          const props=layer.feature.properties||{};
+          const code=String(props['ISO3166-1-Alpha-2']||props.ISO_A2||props.iso_a2||'').toUpperCase();
+          const item=lookup[code];
+          if(!item||!item.visits)return;
+          const center=layer.getBounds().getCenter();
+          const label=item.country+' · '+fmt(item.visits)+' visits';
+          const marker=L.marker(center,{icon:L.divIcon({className:'',html:'<div class="visitor-map-marker"><span>'+fmt(item.visits)+'</span></div>',iconSize:[38,38],iconAnchor:[19,19]})});
+          marker.bindPopup('<strong>'+esc(item.country)+'</strong><br>'+fmt(item.visits)+' visits');
+          marker.bindTooltip(label);
+          marker.addTo(map);
+        });
+      })
+      .catch(()=>showEmpty('Country markers could not be loaded. Please try again later.'));
+    setTimeout(()=>map&&map.invalidateSize(),250);
+  }
   fetch('analytics.json?ts='+Date.now(),{cache:'no-store'})
     .then(r=>{if(!r.ok)throw new Error('Analytics feed unavailable');return r.json();})
     .then(data=>{
@@ -3399,16 +3446,13 @@
       monthEl.textContent=fmt(data.last_30_days_visits);
       const countries=Array.isArray(data.countries)?data.countries:[];
       countEl.textContent=fmt(countries.length);
-      if(!countries.length){countriesEl.innerHTML='<div class="empty-bars">No country data is available yet.</div>';return;}
-      const max=Math.max(...countries.map(x=>Number(x.visits)||0),1);
-      countriesEl.innerHTML=countries.slice(0,10).map(x=>{
-        const n=Number(x.visits)||0,p=Math.max(2,Math.round(n/max*100));
-        const name=String(x.country||'Unknown').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-        return '<div class="analytics-country"><div><strong>'+name+'</strong><div class="analytics-bar"><span style="width:'+p+'%"></span></div></div><strong>'+fmt(n)+'</strong></div>';
-      }).join('');
+      if(!countries.length){showEmpty('No visitor location data has been recorded yet.');}
+      else renderMap(countries);
+      const sorted=countries.slice().sort((a,b)=>(Number(b.visits)||0)-(Number(a.visits)||0));
+      listEl.innerHTML=sorted.slice(0,10).map(c=>'<div class="analytics-country"><div><strong>'+esc(c.country)+'</strong></div><strong>'+fmt(c.visits)+'</strong></div>').join('');
       updatedEl.textContent='Last updated: '+(data.updated_at?new Date(data.updated_at).toLocaleString():'not available');
     })
-    .catch(()=>{updatedEl.textContent='Analytics setup is pending. Live statistics will appear after the tracking service and repository secrets are configured.';});
+    .catch(()=>{showEmpty('Visitor map is waiting for GoatCounter statistics.');updatedEl.textContent='Analytics setup is pending. The map will populate after the API connection is configured and the first statistics refresh succeeds.';});
 })();
 </script>
 </body>
