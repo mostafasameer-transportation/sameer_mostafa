@@ -4336,5 +4336,88 @@ section img,figure img,.photo-mosaic img,.paper figure img{
   recordApproximateCity();
 })();
 </script>
+
+<style id="final-readable-type-boost">
+/* Final sitewide size override: deliberately larger than the earlier compact theme rules. */
+html{font-size:20px!important}
+body{font-size:20px!important;line-height:1.78!important}
+body :is(p,li,dd,dt,label,figcaption,summary,blockquote,caption,
+  .bio,.role,.section-intro,.net-intro,.desc,.description,.detail,.where,
+  .authors,.venue,.note,.subtitle,.cv-detail,.edu-note,.project-description,
+  .vol-description,.recommendation-text,.review-text,.publication-description,
+  .paper .desc,.paper .authors,.paper .venue,.erow .where,.erow .detail,
+  .education-main .where,.education-main .edu-note,.proj-card p,.vol-card p,
+  .cv-copy p,.cv-copy .cv-detail,footer p,footer li){
+  font-size:19px!important;line-height:1.78!important;
+}
+body :is(.paper .title,.erow .what,.education-main .what,
+  .proj-card h3,.vol-card h3,.metric-title,.panel-title,
+  .publication-title,.card-title,.experience-title){
+  font-size:21px!important;line-height:1.48!important;font-weight:700!important;
+}
+body :is(small,.small,.mono,.section-num,.erow .when,.education-date,
+  .cv-kicker,.t-item .when,.paper .plink,.paper .visual-caption,
+  .stat .lbl,.metric-note,.tiny-card .k,.tiny-card .s,.mini-k,.mini-s,
+  .meta,.metadata,.date,.eyebrow,.kicker,.caption,.tag,.badge,.chip,.pill){
+  font-size:16px!important;line-height:1.6!important;
+}
+body :is(.nav-links a,.nav-name){font-size:16px!important;font-weight:700!important}
+body :is(button,input,select,textarea){font-size:18px!important}
+body :is(h1,.hero h1){font-size:clamp(48px,5vw,66px)!important;line-height:1.12!important}
+body :is(h2,.section-head h2){font-size:clamp(34px,3.2vw,44px)!important;line-height:1.2!important}
+body :is(h3){font-size:26px!important;line-height:1.3!important}
+@media(max-width:1000px){
+  html{font-size:19px!important}
+  body{font-size:19px!important}
+  body :is(p,li,dd,dt,label,figcaption,summary,blockquote,
+    .bio,.role,.section-intro,.net-intro,.desc,.description,.detail,.where,
+    .authors,.venue,.note,.subtitle,.cv-detail,.edu-note,.project-description,
+    .vol-description,.recommendation-text,.review-text,.publication-description,
+    .paper .desc,.paper .authors,.paper .venue,.erow .where,.erow .detail,
+    .education-main .where,.education-main .edu-note,.proj-card p,.vol-card p,
+    .cv-copy p,.cv-copy .cv-detail,footer p,footer li){
+    font-size:18px!important;line-height:1.75!important;
+  }
+  body :is(.paper .title,.erow .what,.education-main .what,
+    .proj-card h3,.vol-card h3,.metric-title,.panel-title,
+    .publication-title,.card-title,.experience-title){font-size:20px!important}
+}
+@media(max-width:760px){
+  html{font-size:18px!important}
+  body{font-size:18px!important;line-height:1.75!important}
+  body :is(p,li,dd,dt,label,figcaption,summary,blockquote,
+    .bio,.role,.section-intro,.net-intro,.desc,.description,.detail,.where,
+    .authors,.venue,.note,.subtitle,.cv-detail,.edu-note,.project-description,
+    .vol-description,.recommendation-text,.review-text,.publication-description,
+    .paper .desc,.paper .authors,.paper .venue,.erow .where,.erow .detail,
+    .education-main .where,.education-main .edu-note,.proj-card p,.vol-card p,
+    .cv-copy p,.cv-copy .cv-detail,footer p,footer li){
+    font-size:17.5px!important;line-height:1.72!important;
+  }
+  body :is(.paper .title,.erow .what,.education-main .what,
+    .proj-card h3,.vol-card h3,.metric-title,.panel-title,
+    .publication-title,.card-title,.experience-title){font-size:19px!important}
+  body :is(small,.small,.mono,.section-num,.erow .when,.education-date,
+    .cv-kicker,.t-item .when,.paper .plink,.paper .visual-caption,
+    .stat .lbl,.metric-note,.tiny-card .k,.tiny-card .s,.mini-k,.mini-s,
+    .meta,.metadata,.date,.eyebrow,.kicker,.caption,.tag,.badge,.chip,.pill){
+    font-size:15px!important;line-height:1.55!important;
+  }
+  body :is(.nav-links a,.nav-name){font-size:15px!important}
+  body :is(h1,.hero h1){font-size:clamp(40px,10vw,52px)!important}
+  body :is(h2,.section-head h2){font-size:clamp(29px,7vw,36px)!important}
+  body :is(h3){font-size:23px!important}
+}
+@media(max-width:390px){
+  body :is(p,li,dd,dt,label,figcaption,summary,blockquote,
+    .bio,.role,.section-intro,.net-intro,.desc,.description,.detail,.where,
+    .authors,.venue,.note,.subtitle,.cv-detail,.edu-note,
+    .paper .desc,.paper .authors,.paper .venue,.erow .where,.erow .detail,
+    .education-main .where,.education-main .edu-note,footer p,footer li){
+    font-size:17px!important;
+  }
+}
+</style>
+
 </body>
 </html>
