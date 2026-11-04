@@ -1893,7 +1893,7 @@
 </g>
 </svg></div>
 <div id="progressBar"></div>
-<div id="toast"></div>
+<div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
 <div id="navbar">
   <div class="nav-inner">
@@ -4001,6 +4001,40 @@
     .paper>div:last-child:has(figure)>figure{width:96px!important;max-width:96px!important;height:68px!important}
     .paper figure.visual-summary svg,.paper figure img,.paper figure .abstract-picture img{height:68px!important}
     .section-head h2{font-size:1.55rem!important}
+  }
+
+
+  /* High-contrast email-copy confirmation, matched to the portfolio palette */
+  #toast{
+    position:fixed!important;left:50%!important;bottom:28px!important;
+    z-index:10000!important;display:flex!important;align-items:center!important;justify-content:center!important;
+    gap:11px!important;max-width:calc(100vw - 32px)!important;width:max-content!important;
+    min-height:58px!important;padding:16px 24px!important;
+    border:1px solid rgba(124,183,255,.78)!important;border-radius:16px!important;
+    background:linear-gradient(135deg,#101d30 0%,#14283b 58%,#10353c 100%)!important;
+    color:#f3f9ff!important;-webkit-text-fill-color:#f3f9ff!important;
+    font-family:Inter,system-ui,sans-serif!important;font-size:17px!important;
+    font-weight:750!important;line-height:1.35!important;letter-spacing:.01em!important;
+    text-align:center!important;text-shadow:0 1px 8px rgba(124,183,255,.22)!important;
+    box-shadow:0 12px 38px rgba(0,0,0,.58),0 0 0 3px rgba(124,183,255,.10),0 0 24px rgba(102,242,222,.12)!important;
+    opacity:0!important;visibility:hidden!important;pointer-events:none!important;
+    transform:translateX(-50%) translateY(16px)!important;
+    transition:opacity .22s ease,transform .22s ease,visibility .22s ease!important;
+  }
+  #toast::before{
+    content:"✓"!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;
+    flex:0 0 25px!important;width:25px!important;height:25px!important;border-radius:50%!important;
+    background:rgba(102,242,222,.16)!important;border:1px solid rgba(102,242,222,.65)!important;
+    color:#72f3df!important;-webkit-text-fill-color:#72f3df!important;
+    font-size:16px!important;font-weight:900!important;text-shadow:none!important;
+  }
+  #toast.show{
+    opacity:1!important;visibility:visible!important;
+    transform:translateX(-50%) translateY(0)!important;
+  }
+  @media(max-width:600px){
+    #toast{bottom:20px!important;min-height:54px!important;padding:14px 18px!important;font-size:15px!important;border-radius:14px!important}
+    #toast::before{flex-basis:23px!important;width:23px!important;height:23px!important}
   }
 
 </style>
