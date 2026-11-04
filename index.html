@@ -3446,7 +3446,15 @@
           const code=String(props['ISO3166-1-Alpha-2']||props.ISO_A2||props.iso_a2||'').toUpperCase();
           const item=lookup[code];
           if(!item||!item.visits)return;
-          const center=layer.getBounds().getCenter();
+          // The United States GeoJSON includes Alaska's Aleutian Islands,
+          // which can make its overall bounds cross the International Date Line.
+          // Use a representative point for the contiguous U.S. instead.
+          const countryCenters = {
+            US: [39.8283, -98.5795]
+          };
+          const center = countryCenters[code]
+            ? L.latLng(countryCenters[code][0], countryCenters[code][1])
+            : layer.getBounds().getCenter();
           const label=item.country+' · '+fmt(item.visits)+' visits';
           const marker=L.marker(center,{icon:L.divIcon({className:'',html:'<div class="visitor-map-marker"><span>'+fmt(item.visits)+'</span></div>',iconSize:[38,38],iconAnchor:[19,19]})});
           marker.bindPopup('<strong>'+esc(item.country)+'</strong><br>'+fmt(item.visits)+' visits');
