@@ -397,6 +397,7 @@
   }
 
   /* ---------- PUBLICATIONS ---------- */
+  .pub-selection-note{ margin:10px 0 18px; color:var(--ink-faint); font-size:12.5px; }
   .pub-cat{ font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:var(--ink-soft); margin:34px 0 14px; }
   .pub-cat:first-child{ margin-top:0; }
   .paper{ display:grid; grid-template-columns:minmax(0,1fr); gap:8px; padding:16px 0; border-top:1px solid var(--rule); min-width:0; }
@@ -2184,17 +2185,18 @@
       <span class="section-num">03</span><h2>Publications</h2>
     </div>
     <div class="pub-filters" id="pubFilters">
-      <button class="pf active" data-filter="all">All</button>
+      <button class="pf active" data-filter="featured">Featured</button>
       <button class="pf" data-filter="journal">Journal</button>
       <button class="pf" data-filter="review">In Review</button>
       <button class="pf" data-filter="conf">Conference</button>
       <button class="pf" data-filter="report">Report</button>
       <button class="pf" data-filter="working">Working Paper</button>
     </div>
+    <p class="pub-selection-note">Showing four selected publications. Additional research outputs are available through ResearchGate.</p>
 
     <div class="pub-cat">Journal Articles</div>
 
-    <div class="paper" data-type="journal">
+    <div class="paper" data-type="journal" data-featured="true">
       <div class="ptag">Journal</div>
       <div>
         <div class="title"><a href="https://doi.org/10.32604/ee.2026.088402" target="_blank" rel="noopener">Data-Driven Decarbonization: Clustering of National CO₂ Emission Profiles and Economic Indicators for Sustainable Energy Transitions</a></div>
@@ -2308,7 +2310,7 @@
       </div>
     </div>
 
-    <div class="paper" data-type="journal">
+    <div class="paper" data-type="journal" data-featured="true">
       <div class="ptag">Journal</div>
       <div>
         <div class="title"><a href="https://www.researchgate.net/publication/396512434" target="_blank" rel="noopener">Mapping the Machine Learning Landscape in Autonomous Vehicles: A Scientometric Review of Research Trends, Applications, Challenges, and Future Directions</a></div>
@@ -2433,7 +2435,7 @@
 
     <div class="pub-cat">Selected Reports, Data &amp; Working Papers</div>
 
-    <div class="paper" data-type="working">
+    <div class="paper" data-type="working" data-featured="true">
       <div class="ptag">Working</div>
       <div>
         <div class="title">Energy and Emission Implications of Electric and Autonomous Vehicle Deployment in Saudi Arabia's Urban Transport Systems</div>
@@ -2452,7 +2454,7 @@
       </div>
     </div>
 
-    <div class="paper" data-type="working">
+    <div class="paper" data-type="working" data-featured="true">
       <div class="ptag">Working</div>
       <div>
         <div class="title">GIS-Based Analysis of Safe Pedestrian Crossings in School Zones: Miami-Dade County, Florida</div>
@@ -3083,19 +3085,43 @@
 
 /* ---------- publication filters ---------- */
 (function(){
-  var btns = document.querySelectorAll('.pf');
-  var papers = document.querySelectorAll('.paper');
+  var root = document.getElementById('publications');
+  if(!root) return;
+  var btns = root.querySelectorAll('.pf');
+  var papers = root.querySelectorAll('.paper');
+  var categories = root.querySelectorAll('.pub-cat');
+
+  function updateCategories(){
+    categories.forEach(function(cat){
+      var node = cat.nextElementSibling;
+      var hasVisiblePaper = false;
+      while(node && !node.classList.contains('pub-cat')){
+        if(node.classList.contains('paper') && !node.classList.contains('hidden')) hasVisiblePaper = true;
+        node = node.nextElementSibling;
+      }
+      cat.classList.toggle('hidden', !hasVisiblePaper);
+    });
+  }
+
+  function applyFilter(filter){
+    papers.forEach(function(p){
+      var show = filter === 'featured'
+        ? p.dataset.featured === 'true'
+        : p.dataset.type === filter;
+      p.classList.toggle('hidden', !show);
+    });
+    updateCategories();
+  }
+
   btns.forEach(function(btn){
     btn.addEventListener('click', function(){
       btns.forEach(function(b){ b.classList.remove('active'); });
       btn.classList.add('active');
-      var f = btn.dataset.filter;
-      papers.forEach(function(p){
-        if(f==='all' || p.dataset.type===f){ p.classList.remove('hidden'); }
-        else { p.classList.add('hidden'); }
-      });
+      applyFilter(btn.dataset.filter);
     });
   });
+
+  applyFilter('featured');
 })();
 
 /* ---------- copy email ---------- */
