@@ -1656,14 +1656,123 @@
 
 
 <style id="ambient-research-visuals">
-/* Animated sky-blue technical line art, inspired by the supplied visual reference. */
-#ambientResearchField{position:fixed;inset:72px 0 0;z-index:1;pointer-events:none;overflow:hidden;contain:layout paint;background-image:url('assets/ambient-research-gutters.svg');background-repeat:no-repeat;background-position:center top;background-size:100% 100%;opacity:.86}
+/* Inline SVG artwork lets each research illustration animate independently. */
+#ambientResearchField{position:fixed;inset:72px 0 0;z-index:1;pointer-events:none;overflow:hidden;contain:layout paint;opacity:.68}
+#ambientResearchField>svg{display:block;width:100%;height:100%;overflow:visible}
+#ambientResearchField .line{stroke:#82c9ef;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;opacity:.48}
+#ambientResearchField .fine{stroke:#82c9ef;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;opacity:.34}
+#ambientResearchField .soft{fill:#82c9ef;fill-opacity:.07;stroke:#82c9ef;stroke-width:1.5;stroke-linejoin:round;opacity:.5}
+#ambientResearchField .route{stroke:#82c9ef;stroke-width:1.1;stroke-dasharray:2 9;stroke-linecap:round;opacity:.2}
+#ambientResearchField .glow{filter:drop-shadow(0 0 2px rgba(130,201,239,.22))}
+#ambientResearchField .drift-a{animation:ambientDriftA 29s ease-in-out infinite}
+#ambientResearchField .drift-b{animation:ambientDriftB 34s ease-in-out infinite}
+#ambientResearchField .drift-c{animation:ambientDriftC 39s ease-in-out infinite}
+#ambientResearchField .orbit{transform-box:fill-box;transform-origin:center;animation:ambientOrbit 55s linear infinite}
+#ambientResearchField .twinkle{animation:ambientTwinkle 7s ease-in-out infinite alternate}
+@keyframes ambientDriftA{0%,100%{transform:translate(0,0) rotate(-1deg)}50%{transform:translate(10px,-12px) rotate(1.5deg)}}
+@keyframes ambientDriftB{0%,100%{transform:translate(0,0)}50%{transform:translate(-9px,10px)}}
+@keyframes ambientDriftC{0%,100%{transform:translate(0,0) rotate(1deg)}50%{transform:translate(8px,7px) rotate(-1deg)}}
+@keyframes ambientOrbit{to{transform:rotate(360deg)}}
+@keyframes ambientTwinkle{from{opacity:.25}to{opacity:.62}}
 @media(max-width:1250px){#ambientResearchField{display:none}}
+@media(prefers-reduced-motion:reduce){#ambientResearchField .drift-a,#ambientResearchField .drift-b,#ambientResearchField .drift-c,#ambientResearchField .orbit,#ambientResearchField .twinkle{animation:none!important}}
 </style>
 </head>
 <body>
 
-<div id="ambientResearchField" aria-hidden="true"></div>
+<div id="ambientResearchField" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="none" viewBox="0 0 1600 900" fill="none">
+<defs>
+  
+  
+</defs>
+<!-- Fine orbital and research paths connect the side illustrations without entering the reading column. -->
+<g class="fine">
+ <path class="route" d="M12 190C120 230 185 110 310 145S380 230 405 250M8 420C130 370 230 465 360 415S390 390 410 390M10 680C140 620 240 750 400 690M1190 160C1300 115 1400 210 1590 150M1200 390C1310 450 1440 350 1590 420M1190 700C1310 640 1450 760 1590 690"/>
+ <path d="M38 285c85-36 145-36 224 0s130 35 205-3M8 555c90-34 150-35 235 0s135 35 205 0M1150 280c95-42 155-42 235 0s150 38 215-2M1160 555c85-38 150-38 230 0s145 38 205 0"/>
+</g>
+<!-- Left: storm, flood, bridge, city, construction, computing and mobility. -->
+<g class="drift-a line glow" transform="translate(52 76)">
+ <path d="M78 10C24 5-7 52 9 91c13 32 56 39 80 17 18-17 15-44-4-53-15-7-31 1-31 15 0 10 10 17 20 12"/>
+ <path d="M78 10c39 3 67 31 64 65-3 31-31 53-62 48M36 29c-20 18-25 43-12 61m83-66c17 14 23 34 17 51M49 65c7-17 24-26 42-22"/>
+ <circle cx="77" cy="74" r="4" class="soft"/>
+</g>
+<g class="drift-b" transform="translate(220 205)">
+ <g class="line glow"><path d="M6 44c9-18 27-19 39-8 12-24 48-21 53 7 20 0 27 29 5 34H20C1 77-3 56 6 44Z"/><path d="m24 87-7 14m32-14-7 14m32-14-7 14"/></g>
+ <g class="line" transform="translate(70 52)"><path d="m0 36 42-29 42 29v39H0zM33 75V49h19v26M-8 38 42 2l50 36"/><path d="M-8 88c12-6 22-6 34 0s22 6 34 0 22-6 34 0"/></g>
+</g>
+<g class="drift-c line glow" transform="translate(52 322)">
+ <path d="M5 54h190M15 54V24m170 30V24M15 24l85 30 85-30M15 24h170M30 30v24m30-13v13m40-1V54m40-13v13m30-24v24"/>
+ <path d="M15 24V8m170 16V8M15 8h170M100 8v46M15 8l85 46 85-46" class="fine"/>
+ <path d="M0 68c24-8 44-8 68 0s44 8 68 0 36-8 58 0" class="fine"/>
+</g>
+<g class="drift-b line" transform="translate(230 410)">
+ <path d="M4 86V28h35v58M47 86V6h48v80M104 86V42h34v44M146 86V20h34v66M0 86h190"/>
+ <path d="M57 19h8m14 0h8M57 34h8m14 0h8M57 49h8m14 0h8M57 64h8m14 0h8M155 34h8m-8 14h8m-8 14h8" class="fine"/>
+</g>
+<g class="drift-a line glow" transform="translate(58 590)">
+ <path d="M10 20h145M26 20V9h105v11M42 20v10m77-10v10M82 20v60M82 80H67m15 0h15M18 30h125M18 30v8m125-8v8"/>
+ <path d="M82 80 69 90m13-10 13 10M12 38h140" class="fine"/>
+ <path d="M162 28v52m-8-8 8 8 8-8M148 80h28" class="fine"/>
+</g>
+<g class="drift-c line" transform="translate(240 575)">
+ <path d="M10 14h95v62H10zM2 85h111l-9 8H11zM24 30h67M24 42h50"/>
+ <path d="m37 65 14-15 13 7 19-21M75 36h8v8" class="fine"/>
+ <rect x="18" y="22" width="79" height="47" rx="3" class="fine"/>
+</g>
+<g class="drift-b line" transform="translate(35 745)">
+ <path d="M5 54c45-20 90-20 135 0s90 20 135 0" class="fine"/>
+ <g transform="translate(40 8)"><path d="M0 31h53l-5-15H12zM8 31l-5 9h51l-5-9"/><circle cx="14" cy="41" r="6"/><circle cx="42" cy="41" r="6"/></g>
+ <g transform="translate(150 17)"><path d="M0 19h70l-6-16H12zM7 19l-5 12h69l-6-12"/><circle cx="17" cy="32" r="6"/><circle cx="56" cy="32" r="6"/></g>
+ <path d="M20 5v-17m-7 7 7-7 7 7M245 20V3m-7 7 7-7 7 7" class="fine"/>
+</g>
+<!-- Right: galaxy, solar system, satellite, globe, analytics, books and learning. -->
+<g class="drift-a line glow" transform="translate(1370 70)">
+ <path d="M4 53c36-44 104-58 157-32 37 18 37 52 5 69-35 18-88 12-111-12-18-19-6-41 19-47 21-5 39 7 35 22-3 11-17 17-28 10"/>
+ <path d="M14 70c47 26 103 27 148 2M40 23c42-23 86-22 119-5" class="fine"/>
+ <ellipse cx="86" cy="51" rx="23" ry="8" transform="rotate(-22 86 51)" class="soft"/>
+ <circle cx="86" cy="51" r="4" class="soft"/>
+</g>
+<g class="orbit line" transform="translate(1300 215)">
+ <circle cx="70" cy="60" r="12" class="soft"/>
+ <ellipse cx="70" cy="60" rx="63" ry="24" transform="rotate(-20 70 60)"/>
+ <ellipse cx="70" cy="60" rx="42" ry="62" transform="rotate(40 70 60)" class="fine"/>
+ <circle cx="126" cy="37" r="4" class="soft"/><circle cx="36" cy="101" r="3" class="soft"/>
+</g>
+<g class="drift-c line" transform="translate(1500 185)">
+ <path d="m20 8 34 34m-24-44 34 34m-48-13 34 34M12 8l14-14 18 18-14 14zM44 40 58 26l18 18-14 14z"/>
+ <path d="m4 4 10 10m49 49 10 10" class="fine"/>
+</g>
+<g class="drift-b line glow" transform="translate(1455 345)">
+ <circle cx="55" cy="55" r="43"/><path d="M12 55h86M55 12c-15 13-22 27-22 43s7 30 22 43m0-86c15 13 22 27 22 43s-7 30-22 43M20 31h70M20 79h70"/>
+ <path d="M31 17c10 10 38 10 48 0M31 93c10-10 38-10 48 0" class="fine"/>
+</g>
+<g class="drift-a line" transform="translate(1390 500)">
+ <path d="M5 96h130M15 88V59h19v29M49 88V36h19v52M83 88V12h19v76"/>
+ <path d="m9 44 29-18 26 8 39-27m-9 0h9v9" class="fine"/>
+ <circle cx="38" cy="26" r="3" class="soft"/><circle cx="64" cy="34" r="3" class="soft"/>
+</g>
+<g class="drift-c line" transform="translate(1300 630)">
+ <path d="M10 30 65 8l55 22-55 22zM10 30v30l55 22 55-22V30M65 52v30"/>
+ <path d="m23 57 42 17 42-17M65 8v44" class="fine"/>
+ <path d="M22 94h86" class="fine"/>
+</g>
+<g class="drift-b line" transform="translate(1490 600)">
+ <path d="M5 27h92v8H5zM12 18h78v9H12zM20 9h62v9H20zM12 35v38m78-38v38M5 73h92"/>
+ <path d="M18 46h66m-66 10h66" class="fine"/>
+</g>
+<g class="drift-a line" transform="translate(1480 760)">
+ <path d="M4 45h100M16 45V31h25v14M29 31V17m0 0-8 8m8-8 8 8M62 45c0-18 12-31 27-31s27 13 27 31"/>
+ <path d="M78 14c-5-9-3-15 3-19m8 19c5-9 3-15-3-19M89 45v22m-11 0h22" class="fine"/>
+</g>
+<g class="drift-c line" transform="translate(1285 780)">
+ <path d="M10 37h80l-7-20H18zM17 37l-7 10h80l-7-10M24 47l-8 16m52-16 8 16M8 63h84"/>
+ <circle cx="32" cy="33" r="3" class="soft"/><circle cx="65" cy="33" r="3" class="soft"/>
+</g>
+<g class="twinkle line">
+ <path d="M214 86v12m-6-6h12M1240 100v14m-7-7h14M1540 320v12m-6-6h12M1260 600v10m-5-5h10M380 520v10m-5-5h10"/>
+ <circle cx="175" cy="270" r="2" class="soft"/><circle cx="360" cy="800" r="2" class="soft"/><circle cx="1520" cy="690" r="2" class="soft"/><circle cx="1270" cy="430" r="2" class="soft"/>
+</g>
+</svg></div>
 <div id="progressBar"></div>
 <div id="toast"></div>
 
