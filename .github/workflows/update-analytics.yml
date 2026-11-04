@@ -68,15 +68,15 @@ jobs:
             for (const hit of (hitStats.hits || [])) {
               if (!hit.event || !String(hit.path || '').startsWith('visitor-location/')) continue;
               const parts = String(hit.path).split('/');
-              if (parts.length < 6) continue;
+              if (parts.length < 5) continue;
               let countryCode, region, city, coordinates;
               try {
                 countryCode = decodeURIComponent(parts[1]);
                 region = decodeURIComponent(parts[2]);
                 city = decodeURIComponent(parts[3]);
-                coordinates = decodeURIComponent(parts[4]) + '/' + decodeURIComponent(parts[5]);
+                coordinates = decodeURIComponent(parts[4]);
               } catch { continue; }
-              const [latitude, longitude] = coordinates.split('/').map(Number);
+              const [latitude, longitude] = coordinates.split(',').map(Number);
               if (!countryCode || !city || !Number.isFinite(latitude) || !Number.isFinite(longitude)) continue;
               const key = [countryCode, region, city, latitude.toFixed(1), longitude.toFixed(1)].join('|');
               const current = cityTotals.get(key) || {
