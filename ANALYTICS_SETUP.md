@@ -5,18 +5,18 @@ The portfolio dashboard uses GoatCounter for traffic measurement and a scheduled
 ## 1. Create a GoatCounter site
 
 1. Create a site at https://www.goatcounter.com/ and add the portfolio URL: https://mostafasameer-transportation.github.io/sameer_mostafa/
-2. Choose a GoatCounter site code. The hosted statistics address will look like `https://YOUR_CODE.goatcounter.com/`.
+2. Your configured site code is `mostafasameer334`; its hosted statistics address is `https://mostafasameer334.goatcounter.com/`.
 3. In GoatCounter, create an API token with read access to statistics.
 
 ## 2. Enable tracking in index.html
 
-Replace `YOUR_SITE_CODE` in the GoatCounter tracking script with the actual site code. The tracking script is intentionally not active until this is configured.
+The tracking script in `index.html` is configured for `mostafasameer334`. After GitHub Pages deploys, visit the portfolio once with content blockers disabled. GoatCounter should begin showing pageviews after it receives the first event.
 
 ## 3. Add GitHub Actions secrets
 
 In the repository, open **Settings → Secrets and variables → Actions → New repository secret** and add:
 
-- `GOATCOUNTER_SITE_CODE`: the site code only, without the domain.
+- `GOATCOUNTER_SITE_CODE`: `mostafasameer334`.
 - `GOATCOUNTER_API_TOKEN`: the API token from GoatCounter.
 
 Do not put the API token in `index.html`, a public JSON file, or any client-side JavaScript.
@@ -25,4 +25,4 @@ Do not put the API token in `index.html`, a public JSON file, or any client-side
 
 Open **Actions → Refresh public website analytics → Run workflow**. The workflow also runs once daily. It writes aggregated counts and country-level totals to `analytics.json`, which the public dashboard reads.
 
-The country breakdown is approximate and represents the last 30 days. The all-time counter starts when GoatCounter tracking is activated. Until the account and secrets are configured, the dashboard intentionally shows no fabricated statistics.
+The country breakdown is approximate and represents the last 30 days. The all-time counter starts when GoatCounter tracking is activated. Until the API token and repository secrets are configured and the workflow runs successfully, the dashboard intentionally shows no fabricated statistics.
