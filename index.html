@@ -3888,6 +3888,121 @@
 #contact-robot label{display:block;font-size:12px;color:#d8e2f1;margin:10px 0 5px}#contact-robot input,#contact-robot textarea{width:100%;min-width:0;border:1px solid #3b4b61;border-radius:9px;background:#0a111a;color:#fff;padding:10px;font:inherit;font-size:14px}#contact-robot textarea{min-height:100px;resize:vertical}
 #contact-robot .cr-send{width:100%;margin-top:12px;border:0;border-radius:9px;padding:12px;background:linear-gradient(100deg,#76e4d2,#8abaff);color:#0a1724;font-weight:700;cursor:pointer}#contact-robot .cr-close{float:right;border:1px solid #40516a;border-radius:8px;background:#1b2838;color:#fff;padding:5px 10px;cursor:pointer}
 @keyframes cr-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}@media(max-width:600px){#contact-robot{right:12px;bottom:12px}#contact-robot .cr-launch{width:56px;height:56px}#contact-robot .cr-panel{bottom:66px;padding:15px}}@media(prefers-reduced-motion:reduce){#contact-robot .cr-launch{animation:none}}
+
+  /* ---------- GLOBAL READABILITY PASS ---------- */
+  html{font-size:18px}
+  body{font-size:18px!important;line-height:1.78!important}
+  .wrap{width:100%!important;max-width:1360px!important;padding-left:38px!important;padding-right:38px!important}
+  .nav-inner{width:100%!important;max-width:1360px!important;padding:16px 38px!important;gap:14px 24px!important}
+  .nav-name{font-size:19px!important}
+  .nav-links{gap:18px!important}
+  .nav-links a{font-size:14.5px!important;gap:8px!important;padding:9px 0!important}
+  .nav-item-icon{width:18px!important;height:18px!important;flex-basis:18px!important}
+  .hero{padding-top:64px!important}
+  .hero-inner{padding-bottom:48px!important}
+  .graduation-cover{margin-bottom:42px!important}
+  .photo-carousel-stage{height:clamp(360px,38vw,560px)!important}
+  .graduation-cover figcaption{font-size:14px!important;padding:12px 17px!important}
+  .hero-grid{grid-template-columns:220px minmax(0,1fr)!important;gap:48px!important}
+  .hero-photo{width:214px!important;height:214px!important}
+  .eyebrow{font-size:14.5px!important;line-height:1.6!important}
+  .hero h1{font-size:clamp(3rem,4.2vw,3.7rem)!important;line-height:1.12!important}
+  .hero .role{font-size:1.2rem!important;line-height:1.6!important}
+  .hero .bio{font-size:1.08rem!important;line-height:1.85!important;max-width:76ch!important}
+  .linkrow{gap:13px!important;margin-top:24px!important}
+  .linkrow a,.copy-btn{font-size:15px!important;min-height:44px!important;padding:10px 16px!important}
+  section{padding:78px 0!important;scroll-margin-top:100px!important}
+  .section-head{gap:16px!important;margin-bottom:32px!important}
+  .section-head h2{font-size:2rem!important;line-height:1.28!important}
+  .section-num{font-size:14px!important}
+  .section-intro,.net-intro{font-size:17px!important;line-height:1.8!important;max-width:78ch!important}
+  .metric-head h3,.metric-title,.panel-title{font-size:18px!important;line-height:1.45!important}
+  .metric-note,.tiny-card .k,.tiny-card .s,.mini-k,.mini-s{font-size:14px!important;line-height:1.6!important}
+  .stat{padding:22px 20px!important}
+  .stat .num{font-size:2.1rem!important}
+  .stat .lbl{font-size:15px!important;line-height:1.5!important}
+  .paper{padding:22px 0!important;gap:12px!important}
+  .paper .title{font-size:19px!important;line-height:1.5!important}
+  .paper .authors,.paper .venue{font-size:16px!important;line-height:1.55!important}
+  .paper .desc{font-size:17px!important;line-height:1.75!important;-webkit-line-clamp:4!important}
+  .paper .plink{font-size:14.5px!important;line-height:1.6!important}
+  .paper>div:last-child:has(figure){grid-template-columns:minmax(0,1fr) 196px!important;column-gap:24px!important}
+  .paper>div:last-child:has(figure)>figure{width:196px!important;max-width:196px!important;height:126px!important}
+  .paper figure.visual-summary svg,.paper figure img,.paper figure .abstract-picture img{height:126px!important}
+  .paper figure .visual-caption{font-size:11px!important}
+  .erow{padding:23px 0!important}
+  .erow .what,.education-main .what{font-size:18px!important;line-height:1.55!important}
+  .erow .where,.education-main .where{font-size:16px!important;line-height:1.6!important}
+  .erow .detail,.education-main .edu-note{font-size:15.5px!important;line-height:1.75!important}
+  .erow .when,.education-date{font-size:14px!important}
+  .proj-card,.vol-card{padding:22px!important}
+  .proj-card h3,.vol-card h3{font-size:19px!important}
+  .proj-card p,.vol-card p,.proj-card .detail,.vol-card .detail{font-size:16px!important;line-height:1.75!important}
+  .cv-copy p{font-size:1.08rem!important;line-height:1.8!important}
+  .cv-copy .cv-detail,.more-note{font-size:16px!important;line-height:1.75!important}
+  .photo-mosaic img,.photo-mosaic picture,.proj-card img,.vol-card img{max-width:100%;height:auto}
+  @media(max-width:1000px){
+    .wrap{max-width:100%!important;padding-left:28px!important;padding-right:28px!important}
+    .nav-inner{max-width:100%!important;padding-left:24px!important;padding-right:24px!important}
+    .hero-grid{grid-template-columns:180px minmax(0,1fr)!important;gap:30px!important}
+    .hero-photo{width:176px!important;height:176px!important}
+    .photo-carousel-stage{height:clamp(300px,44vw,460px)!important}
+    .hero h1{font-size:clamp(2.5rem,5vw,3.2rem)!important}
+    .paper>div:last-child:has(figure){grid-template-columns:minmax(0,1fr) 160px!important;column-gap:16px!important}
+    .paper>div:last-child:has(figure)>figure{width:160px!important;max-width:160px!important;height:104px!important}
+    .paper figure.visual-summary svg,.paper figure img,.paper figure .abstract-picture img{height:104px!important}
+  }
+  @media(max-width:760px){
+    html{font-size:17px}
+    body{font-size:16.5px!important;line-height:1.76!important}
+    .wrap{padding-left:20px!important;padding-right:20px!important}
+    .nav-inner{padding:12px 18px!important}
+    .nav-name{font-size:17px!important}
+    .nav-links a{font-size:15px!important;min-height:46px!important}
+    .hero{padding-top:38px!important}
+    .hero-inner{padding-bottom:32px!important}
+    .graduation-cover{margin-bottom:28px!important}
+    .photo-carousel-stage{height:clamp(230px,66vw,360px)!important}
+    .graduation-cover figcaption{font-size:12.5px!important}
+    .hero-grid{grid-template-columns:minmax(0,1fr)!important;gap:18px!important}
+    .hero-photo{width:148px!important;height:148px!important;margin:0 auto!important}
+    .eyebrow{font-size:12.5px!important}
+    .hero h1{font-size:clamp(2.35rem,9vw,3rem)!important}
+    .hero .role{font-size:1.05rem!important}
+    .hero .bio{font-size:16px!important;line-height:1.8!important}
+    .linkrow{gap:9px!important;margin-top:18px!important}
+    .linkrow a,.copy-btn{font-size:14px!important;min-height:44px!important}
+    section{padding:56px 0!important;scroll-margin-top:76px!important}
+    .section-head{gap:11px!important;margin-bottom:24px!important}
+    .section-head h2{font-size:1.7rem!important}
+    .section-intro,.net-intro{font-size:15.5px!important;line-height:1.75!important}
+    .stat .num{font-size:1.8rem!important}
+    .stat .lbl{font-size:13.5px!important}
+    .paper{padding:17px 0!important}
+    .paper .title{font-size:16.5px!important;line-height:1.45!important}
+    .paper .authors,.paper .venue{font-size:14.5px!important}
+    .paper .desc{font-size:15px!important;line-height:1.65!important;-webkit-line-clamp:3!important}
+    .paper .plink{font-size:12.5px!important}
+    .paper>div:last-child:has(figure){grid-template-columns:minmax(0,1fr) 116px!important;column-gap:12px!important}
+    .paper>div:last-child:has(figure)>figure{width:116px!important;max-width:116px!important;height:78px!important}
+    .paper figure.visual-summary svg,.paper figure img,.paper figure .abstract-picture img{height:78px!important}
+    .paper figure .visual-caption{display:none!important}
+    .erow .what,.education-main .what{font-size:16.5px!important}
+    .erow .where,.education-main .where{font-size:14.5px!important}
+    .erow .detail,.education-main .edu-note{font-size:14px!important}
+    .erow .when,.education-date{font-size:12.5px!important}
+    .proj-card,.vol-card{padding:16px!important}
+    .proj-card p,.vol-card p,.proj-card .detail,.vol-card .detail{font-size:14.5px!important}
+  }
+  @media(max-width:390px){
+    .wrap{padding-left:16px!important;padding-right:16px!important}
+    .hero-photo{width:128px!important;height:128px!important}
+    .paper>div:last-child:has(figure){grid-template-columns:minmax(0,1fr) 96px!important;column-gap:9px!important}
+    .paper>div:last-child:has(figure)>figure{width:96px!important;max-width:96px!important;height:68px!important}
+    .paper figure.visual-summary svg,.paper figure img,.paper figure .abstract-picture img{height:68px!important}
+    .section-head h2{font-size:1.55rem!important}
+  }
+
 </style>
 <div id="contact-robot">
 <div class="cr-panel" id="cr-panel" role="dialog" aria-labelledby="cr-title" aria-hidden="true">
