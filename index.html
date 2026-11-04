@@ -628,8 +628,18 @@
     font-size:10.5px;
     color:var(--pulse);
   }
-  .collab-name{ margin-top:6px; font-size:15px; font-weight:700; color:#fff; }
+  .collab-name{ margin-top:10px; font-size:17px; font-weight:700; color:#fff; }
   .collab-tag{ margin-top:6px; font-size:13px; color:var(--ink-soft); line-height:1.55; }
+  .collab-picker{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:end;margin-top:12px}
+  .collab-picker label{display:block;color:var(--ink-soft);font-size:12px;margin-bottom:6px}
+  .collab-picker select{width:100%;min-height:44px;padding:10px 12px;border:1px solid var(--rule-strong);border-radius:10px;background:#101720;color:var(--ink);font:inherit}
+  .collab-scholar{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 14px;border:1px solid rgba(102,242,222,.28);border-radius:10px;background:rgba(102,242,222,.07);color:var(--pulse);font-size:13px;font-weight:700;white-space:nowrap}
+  .collab-scholar[aria-disabled="true"]{opacity:.45;pointer-events:none}
+  .collab-options{margin-top:12px}
+  .collab-options-title{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--pulse);font-family:'JetBrains Mono',monospace}
+  .collab-options-list{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+  .collab-option{padding:6px 9px;border:1px solid rgba(255,255,255,.11);border-radius:999px;background:rgba(255,255,255,.035);color:var(--ink-soft);font-size:12px}
+  @media(max-width:560px){.collab-picker{grid-template-columns:1fr}.collab-scholar{width:100%}}
   .snapshot-panel{ padding:18px; position:relative; }
   .snapshot-frame{
     position:relative;
@@ -1682,9 +1692,22 @@
         </svg>
         <div class="collab-mobile-key" id="collabMobileKey" aria-label="Collaborators"></div>
         <div class="collab-detail" id="collabDetail">
-          <div class="collab-kicker">Selected collaborator</div>
-          
-          
+          <div class="collab-kicker">Explore a research collaborator</div>
+          <div class="collab-picker">
+            <div>
+              <label for="collabSelect">Select a collaborator</label>
+              <select id="collabSelect">
+                <option value="">Choose a collaborator to view research options</option>
+              </select>
+            </div>
+            <a class="collab-scholar" id="collabScholarLink" href="#" target="_blank" rel="noopener noreferrer" aria-disabled="true">Google Scholar profile search ↗</a>
+          </div>
+          <div class="collab-name" id="collabSelectedName">No collaborator selected</div>
+          <div class="collab-tag" id="collabSelectedNote">Choose a name from the list or select a node in the collaboration map.</div>
+          <div class="collab-options" id="collabResearchOptions" hidden>
+            <div class="collab-options-title">Related research options</div>
+            <div class="collab-options-list" id="collabResearchList"></div>
+          </div>
         </div>
         <div class="net-legend">
           <span><span class="legend-dot" style="background:#1356C9;"></span>Mostafa Sameer</span>
@@ -2612,126 +2635,88 @@
 (function(){
   var center = { name:'Mostafa Sameer', x:380, y:230 };
   var collaborators = [
-    { name:'Mahbub Hassan',        tag:'ML in AV · GCC mobility',     angle:-92,  note:'Scientometric review work in autonomous vehicles and mobility systems.' },
-    { name:'Omar Nofal',           tag:'Flood &amp; hurricane risk',   angle:-38,  note:'Flood impacts, hurricane risk, and building resilience studies.' },
-    { name:'Imran Reza',           tag:'Dhaka Metro Rail',            angle:7,    note:'Transit performance and service-analysis collaboration.' },
-    { name:'Md Kamrul Islam',      tag:'Sustainable mobility',        angle:56,   note:'EV, AV, and sustainable transport scenario work.' },
-    { name:'Arindam G. Chowdhury', tag:'Wind-driven rain study',      angle:100,  note:'Wind-driven rain and sliding-glass-door standards research.' },
-    { name:'Syed Aaqib Javed',     tag:'GIS pedestrian safety',       angle:148,  note:'GIS-based pedestrian safety and school-zone analysis.' },
-    { name:'Tanjeel A. B. Zaman',  tag:'Bangladesh resilience',       angle:196,  note:'Disaster resilience research in Bangladesh and synthesis work.' },
-    { name:'Himadri Sen Gupta',    tag:'Disaster-data synthesis',     angle:244,  note:'Data synthesis and disaster-risk analytics.' }
+    { name:'Mahbub Hassan', tag:'ML in AV · GCC mobility', angle:-92, note:'Scientometric review work in autonomous vehicles and mobility systems.', options:['Machine learning in autonomous vehicles','Sustainable and autonomous mobility','GCC transport systems'] },
+    { name:'Omar Nofal', tag:'Flood & hurricane risk', angle:-38, note:'Flood impacts, hurricane risk, and building resilience studies.', options:['Coastal flood risk and resilience','Hurricane impacts on buildings','Digital twins for risk assessment'] },
+    { name:'Imran Reza', tag:'Dhaka Metro Rail', angle:7, note:'Transit performance and service-analysis collaboration.', options:['Metro rail performance','Transit service analysis','Urban mobility operations'] },
+    { name:'Md Kamrul Islam', tag:'Sustainable mobility', angle:56, note:'EV, AV, and sustainable transport scenario work.', options:['Electric vehicle deployment','Autonomous vehicle scenarios','Transport energy and emissions'] },
+    { name:'Arindam G. Chowdhury', tag:'Wind-driven rain study', angle:100, note:'Wind-driven rain and sliding-glass-door standards research.', options:['Wind-driven rain intrusion','Sliding glass door testing','Building-envelope performance'] },
+    { name:'Syed Aaqib Javed', tag:'GIS pedestrian safety', angle:148, note:'GIS-based pedestrian safety and school-zone analysis.', options:['GIS-based safety analysis','Pedestrian and school-zone safety','Spatial risk mapping'] },
+    { name:'Tanjeel A. B. Zaman', tag:'Bangladesh resilience', angle:196, note:'Disaster resilience research in Bangladesh and synthesis work.', options:['Disaster resilience in Bangladesh','Community vulnerability','Resilience literature synthesis'] },
+    { name:'Himadri Sen Gupta', tag:'Disaster-data synthesis', angle:244, note:'Data synthesis and disaster-risk analytics.', options:['Disaster-risk analytics','Data integration and synthesis','Infrastructure resilience'] }
   ];
-  var R = 178;
-  var edgesG = document.getElementById('edges');
-  var nodesG = document.getElementById('nodes');
-  var pulsesG = document.getElementById('networkPulses');
-  var ripplesG = document.getElementById('networkRipples');
-  var detail = document.getElementById('collabDetail');
-  var mobileKey = document.getElementById('collabMobileKey');
-  var ns = 'http://www.w3.org/2000/svg';
-
-  function el(tag, attrs){
-    var e = document.createElementNS(ns, tag);
-    for(var k in attrs){ e.setAttribute(k, attrs[k]); }
-    return e;
-  }
-
-  collaborators.forEach(function(c, idx){
-    var mobileButton = null;
-    if(mobileKey){
-      mobileButton = document.createElement('button');
-      mobileButton.type = 'button';
-      mobileButton.className = 'collab-person';
-      mobileButton.setAttribute('data-idx', idx);
-      var mobileName = document.createElement('strong');
-      mobileName.textContent = c.name;
-      var mobileTheme = document.createElement('span');
-      mobileTheme.textContent = c.tag.replace('&amp;','&');
-      mobileButton.appendChild(mobileName);
-      mobileButton.appendChild(mobileTheme);
-      mobileKey.appendChild(mobileButton);
+  var R=178, edgesG=document.getElementById('edges'), nodesG=document.getElementById('nodes');
+  var pulsesG=document.getElementById('networkPulses'), ripplesG=document.getElementById('networkRipples');
+  var detail=document.getElementById('collabDetail'), mobileKey=document.getElementById('collabMobileKey');
+  var select=document.getElementById('collabSelect'), selectedName=document.getElementById('collabSelectedName');
+  var selectedNote=document.getElementById('collabSelectedNote'), scholarLink=document.getElementById('collabScholarLink');
+  var researchOptions=document.getElementById('collabResearchOptions'), researchList=document.getElementById('collabResearchList');
+  var ns='http://www.w3.org/2000/svg', selected=-1;
+  if(!edgesG||!nodesG||!detail)return;
+  function el(tag,attrs){var e=document.createElementNS(ns,tag);Object.keys(attrs).forEach(function(k){e.setAttribute(k,attrs[k]);});return e;}
+  function setSelection(idx){
+    selected=idx;
+    var c=collaborators[idx];
+    if(!c)return;
+    if(select)select.value=String(idx);
+    if(selectedName)selectedName.textContent=c.name;
+    if(selectedNote)selectedNote.textContent=c.note;
+    if(scholarLink){
+      scholarLink.href='https://scholar.google.com/scholar?q='+encodeURIComponent('"'+c.name+'"');
+      scholarLink.setAttribute('aria-disabled','false');
+      scholarLink.textContent='Google Scholar profile search ↗';
     }
-    var rad = c.angle * Math.PI/180;
-    var x = center.x + R*Math.cos(rad);
-    var y = center.y + R*Math.sin(rad);
-
-    var edge = el('line', { class:'net-edge flow', x1:center.x, y1:center.y, x2:x, y2:y, 'data-idx':idx });
-    edge.style.animationDelay = (idx*0.25)+'s';
-    edgesG.appendChild(edge);
-
-    if(pulsesG){
-      var pulse = el('circle',{class:'net-pulse',r:3.4,'aria-hidden':'true'});
-      var travel = el('animateMotion',{dur:(3.1+idx*.22)+'s',begin:(idx*.32)+'s',repeatCount:'indefinite',path:'M '+center.x+' '+center.y+' L '+x.toFixed(1)+' '+y.toFixed(1)});
-      pulse.appendChild(travel);
-      pulsesG.appendChild(pulse);
+    if(researchOptions&&researchList){
+      researchOptions.hidden=false;
+      researchList.innerHTML='';
+      c.options.forEach(function(option){
+        var chip=document.createElement('span');chip.className='collab-option';chip.textContent=option;researchList.appendChild(chip);
+      });
     }
-
-    var g = el('g', { class:'net-node', 'data-idx':idx, tabindex:'0', role:'button', 'aria-label':c.name+': '+c.note });
-    var circle = el('circle', { cx:x, cy:y, r:20 });
-    g.appendChild(circle);
-    var labelY = (y < center.y ? y-28 : y+34);
-    var tagY = (y < center.y ? y-15 : y+47);
-    var labelAnchor = x < center.x-34 ? 'end' : (x > center.x+34 ? 'start' : 'middle');
-    var labelX = labelAnchor==='end' ? x-10 : (labelAnchor==='start' ? x+10 : x);
-    var label = el('text', { class:'nlabel', x:labelX, y:labelY, 'text-anchor':labelAnchor });
-    label.textContent = c.name;
-    var tag = el('text', { class:'ntag', x:labelX, y:tagY, 'text-anchor':labelAnchor });
-    tag.textContent = c.tag.replace('&amp;','&');
-    g.appendChild(label);
-    g.appendChild(tag);
-    nodesG.appendChild(g);
-
-    function highlight(on){
-      edge.style.strokeOpacity = on ? 0.96 : '';
-      edge.style.strokeWidth = on ? 3 : '';
-      circle.setAttribute('r', on ? 24 : 20);
-      if(detail){
-        detail.querySelector('.collab-name').textContent = c.name;
-        detail.querySelector('.collab-tag').textContent = c.note;
-      }
-      if(mobileKey){
-        Array.prototype.forEach.call(mobileKey.querySelectorAll('.collab-person'),function(button){
-          button.classList.toggle('is-selected',on&&button.getAttribute('data-idx')===String(idx));
-          button.setAttribute('aria-pressed',String(on&&button.getAttribute('data-idx')===String(idx)));
-        });
-      }
-    }
-    if(mobileButton)mobileButton.addEventListener('click',function(){g.focus();});
-    g.addEventListener('mouseenter', function(){ highlight(true); });
-    g.addEventListener('mouseleave', function(){ highlight(false); });
-    g.addEventListener('focus', function(){ highlight(true); });
-    g.addEventListener('blur', function(){ highlight(false); });
-    g.addEventListener('click', function(){ highlight(true); });
-    g.addEventListener('keydown',function(event){
-      if(event.key==='Enter'||event.key===' '){event.preventDefault();highlight(true);}
+    Array.prototype.forEach.call(nodesG.querySelectorAll('.net-node'),function(node){
+      var active=Number(node.getAttribute('data-idx'))===idx;
+      node.classList.toggle('is-selected',active);
+      node.setAttribute('aria-pressed',String(active));
+      var circle=node.querySelector('circle');if(circle)circle.setAttribute('r',active?25:20);
     });
-  });
-
-  if(ripplesG){
-    ripplesG.appendChild(el('circle',{class:'net-ripple ripple-a',cx:center.x,cy:center.y,r:38}));
-    ripplesG.appendChild(el('circle',{class:'net-ripple ripple-b',cx:center.x,cy:center.y,r:38}));
+    Array.prototype.forEach.call(edgesG.querySelectorAll('.net-edge'),function(edge){
+      var active=Number(edge.getAttribute('data-idx'))===idx;
+      edge.style.strokeOpacity=active?'0.96':'';
+      edge.style.strokeWidth=active?'3':'';
+    });
+    if(mobileKey)Array.prototype.forEach.call(mobileKey.querySelectorAll('.collab-person'),function(button){
+      var active=Number(button.getAttribute('data-idx'))===idx;
+      button.classList.toggle('is-selected',active);button.setAttribute('aria-pressed',String(active));
+    });
   }
-
-  var cnode = el('g', { class:'net-node center' });
-  cnode.appendChild(el('circle', { cx:center.x, cy:center.y, r:38, fill:'url(#centerGlow)', filter:'url(#softGlow)' }));
-  var clabel = el('text', { class:'nlabel', x:center.x, y:center.y+5, 'text-anchor':'middle' });
-  clabel.textContent = 'Mostafa Sameer';
-  cnode.appendChild(clabel);
-  nodesG.appendChild(cnode);
+  collaborators.forEach(function(c,idx){
+    if(select){var option=document.createElement('option');option.value=String(idx);option.textContent=c.name;select.appendChild(option);}
+    var mobileButton=null;
+    if(mobileKey){
+      mobileButton=document.createElement('button');mobileButton.type='button';mobileButton.className='collab-person';
+      mobileButton.setAttribute('data-idx',idx);mobileButton.setAttribute('aria-pressed','false');
+      var mobileName=document.createElement('strong');mobileName.textContent=c.name;
+      var mobileTheme=document.createElement('span');mobileTheme.textContent=c.tag;
+      mobileButton.appendChild(mobileName);mobileButton.appendChild(mobileTheme);mobileKey.appendChild(mobileButton);
+      mobileButton.addEventListener('click',function(){setSelection(idx);});
+    }
+    var rad=c.angle*Math.PI/180,x=center.x+R*Math.cos(rad),y=center.y+R*Math.sin(rad);
+    var edge=el('line',{class:'net-edge flow',x1:center.x,y1:center.y,x2:x,y2:y,'data-idx':idx});
+    edge.style.animationDelay=(idx*.25)+'s';edgesG.appendChild(edge);
+    if(pulsesG){var pulse=el('circle',{class:'net-pulse',r:3.4,'aria-hidden':'true'});pulse.appendChild(el('animateMotion',{dur:(3.1+idx*.22)+'s',begin:(idx*.32)+'s',repeatCount:'indefinite',path:'M '+center.x+' '+center.y+' L '+x.toFixed(1)+' '+y.toFixed(1)}));pulsesG.appendChild(pulse);}
+    var g=el('g',{class:'net-node','data-idx':idx,tabindex:'0',role:'button','aria-pressed':'false','aria-label':c.name+': '+c.note});
+    g.appendChild(el('circle',{cx:x,cy:y,r:20}));
+    var labelY=y<center.y?y-28:y+34,tagY=y<center.y?y-15:y+47;
+    var anchor=x<center.x-34?'end':(x>center.x+34?'start':'middle'),labelX=anchor==='end'?x-10:(anchor==='start'?x+10:x);
+    var label=el('text',{class:'nlabel',x:labelX,y:labelY,'text-anchor':anchor});label.textContent=c.name;
+    var tag=el('text',{class:'ntag',x:labelX,y:tagY,'text-anchor':anchor});tag.textContent=c.tag;
+    g.appendChild(label);g.appendChild(tag);nodesG.appendChild(g);
+    g.addEventListener('mouseenter',function(){setSelection(idx);});
+    g.addEventListener('focus',function(){setSelection(idx);});
+    g.addEventListener('click',function(){setSelection(idx);});
+    g.addEventListener('keydown',function(event){if(event.key==='Enter'||event.key===' '){event.preventDefault();setSelection(idx);}});
+  });
+  if(select)select.addEventListener('change',function(){if(select.value!=='')setSelection(Number(select.value));});
 })();
-
-  // ── scroll reveal ──────────────────────────────────────────────────────
-  (function(){
-    const els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
-    }, {threshold:0.12});
-    els.forEach(el=>io.observe(el));
-  })();
-
-</script>
-
-<script>
 /* ---------- scroll progress bar ---------- */
 (function(){
   var bar = document.getElementById('progressBar');
