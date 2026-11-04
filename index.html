@@ -2490,7 +2490,8 @@
     </div>
     <div class="analytics-panel" style="margin-top:22px">
       <h3>Where visitors are from</h3>
-      <p style="color:var(--ink-soft);font-size:13.5px;margin:0 0 14px">Each numbered marker represents visits from a country. Select a marker to see its visitor count.</p>
+      <p style="color:var(--ink-soft);font-size:13.5px;margin:0 0 14px">Explore approximate visitor locations by country and city. Select a marker to see the city, region, country, visit count, and rounded coordinates.</p>
+      <p style="color:var(--ink-soft);font-size:12px;margin:-5px 0 14px">City locations are estimated from visitors' IP addresses. They may be inaccurate, especially with VPNs or mobile networks. No GPS location or street address is collected. IP geolocation is provided by <a href="https://ipwho.is/" target="_blank" rel="noopener">IPWho.is</a>.</p>
       <div id="visitor-world-map" role="img" aria-label="World map showing approximate visitor counts by country" style="height:480px;width:100%;border-radius:12px;overflow:hidden;background:#e8eef5">
         <div class="empty-bars" style="padding:35px;text-align:center">The visitor map will appear here when analytics data is available.</div>
       </div>
@@ -3426,8 +3427,47 @@
   const mapEl=document.getElementById('visitor-world-map');
   const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   let map=null;
-  function showEmpty(message){mapEl.innerHTML='<div class="empty-bars" style="padding:35px;text-align:center">'+esc(message)+'</div>';}
-  function renderMap(countries){
+
+  // Record one approximate city event per browser tab session. The IP lookup is
+  // performed by IPWho.is; only city/region/country and coordinates rounded to
+  // one decimal place are sent to GoatCounter. The visitor's raw IP is not added
+  // to the event path or public analytics feed.
+  async function recordApproximateCity(){
+    try{
+      if(sessionStorage.getItem('visitorCityRecorded')==='1')return;
+      const response=await fetch('https://ipwho.is/',{cache:'no-store'});
+      if(!response.ok)throw new Error('Location lookup unavailable');
+      const place=await response.json();
+      if(!place.success||!place.country_code||!place.city||
+         !Number.isFinite(Number(place.latitude))||!Number.isFinite(Number(place.longitude)))return;
+
+      const country=String(place.country_code).toUpperCase().slice(0,2);
+      const region=String(place.region||'Unknown').trim().slice(0,80);
+      const city=String(place.city||'Unknown').trim().slice(0,80);
+      const lat=(Math.round(Number(place.latitude)*10)/10).toFixed(1);
+      const lon=(Math.round(Number(place.longitude)*10)/10).toFixed(1);
+      const path='visitor-location/'+[country,region,city,lat+','+lon].map(encodeURIComponent).join('/');
+
+      let attempts=0;
+      const send=()=>{
+        if(window.goatcounter&&typeof window.goatcounter.count==='function'){
+          window.goatcounter.count({path:path,title:'Approximate visitor city',event:true,no_session:true});
+          sessionStorage.setItem('visitorCityRecorded','1');
+          return;
+        }
+        if(++attempts<80)setTimeout(send,125);
+      };
+      send();
+    }catch(error){
+      // City enrichment is optional; country-level analytics remains available.
+    }
+  }
+
+  function showEmpty(message){
+    mapEl.innerHTML='<div class="empty-bars" style="padding:35px;text-align:center">'+esc(message)+'</div>';
+  }
+
+  function renderMap(countries,cities){
     if(!window.L){showEmpty('The map library could not be loaded. Please refresh the page.');return;}
     mapEl.innerHTML='';
     map=L.map(mapEl,{scrollWheelZoom:false}).setView([20,0],2);
@@ -3436,6 +3476,7 @@
       maxNativeZoom:19,
       attribution:'Tiles &copy; <a href="https://www.esri.com/">Esri</a> &mdash; Sources: Esri, HERE, Garmin, USGS, EPA, NPS'
     }).addTo(map);
+
     fetch('https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson')
       .then(r=>{if(!r.ok)throw new Error('Map geography unavailable');return r.json();})
       .then(geo=>{
@@ -3446,25 +3487,30 @@
           const code=String(props['ISO3166-1-Alpha-2']||props.ISO_A2||props.iso_a2||'').toUpperCase();
           const item=lookup[code];
           if(!item||!item.visits)return;
-          // The United States GeoJSON includes Alaska's Aleutian Islands,
-          // which can make its overall bounds cross the International Date Line.
-          // Use a representative point for the contiguous U.S. instead.
-          const countryCenters = {
-            US: [39.8283, -98.5795]
-          };
-          const center = countryCenters[code]
-            ? L.latLng(countryCenters[code][0], countryCenters[code][1])
-            : layer.getBounds().getCenter();
-          const label=item.country+' · '+fmt(item.visits)+' visits';
+          const countryCenters={US:[39.8283,-98.5795]};
+          const center=countryCenters[code]
+            ?L.latLng(countryCenters[code][0],countryCenters[code][1])
+            :layer.getBounds().getCenter();
           const marker=L.marker(center,{icon:L.divIcon({className:'',html:'<div class="visitor-map-marker"><span>'+fmt(item.visits)+'</span></div>',iconSize:[38,38],iconAnchor:[19,19]})});
-          marker.bindPopup('<strong>'+esc(item.country)+'</strong><br>'+fmt(item.visits)+' visits');
-          marker.bindTooltip(label);
+          const citySummary=(cities||[]).filter(c=>c.country_code===code).map(c=>esc(c.city)+', '+esc(c.region)+' ('+fmt(c.visits)+')').join('<br>');
+          marker.bindPopup('<strong>'+esc(item.country)+'</strong><br>'+fmt(item.visits)+' visits'+(citySummary?'<hr style="margin:7px 0"><small>'+citySummary+'</small>':''));
+          marker.bindTooltip(item.country+' · '+fmt(item.visits)+' visits');
+          marker.addTo(map);
+        });
+
+        (cities||[]).forEach(city=>{
+          if(!Number.isFinite(Number(city.latitude))||!Number.isFinite(Number(city.longitude)))return;
+          const point=[Number(city.latitude),Number(city.longitude)];
+          const marker=L.circleMarker(point,{radius:7,color:'#ffffff',weight:1.5,fillColor:'#d65b45',fillOpacity:.9});
+          marker.bindPopup('<strong>'+esc(city.city)+'</strong><br>'+esc(city.region)+', '+esc(city.country)+'<br>'+fmt(city.visits)+' visits<br><small>Approx. '+Number(city.latitude).toFixed(1)+', '+Number(city.longitude).toFixed(1)+'</small>');
+          marker.bindTooltip(esc(city.city)+' · '+fmt(city.visits)+' visits');
           marker.addTo(map);
         });
       })
-      .catch(()=>showEmpty('Country markers could not be loaded. Please try again later.'));
+      .catch(()=>showEmpty('Country boundaries could not be loaded. Please try again later.'));
     setTimeout(()=>map&&map.invalidateSize(),250);
   }
+
   fetch('analytics.json?ts='+Date.now(),{cache:'no-store'})
     .then(r=>{if(!r.ok)throw new Error('Analytics feed unavailable');return r.json();})
     .then(data=>{
@@ -3472,14 +3518,27 @@
       totalEl.textContent=fmt(data.all_time_pageviews);
       monthEl.textContent=fmt(data.last_30_days_visits);
       const countries=Array.isArray(data.countries)?data.countries:[];
+      const cities=Array.isArray(data.cities)?data.cities:[];
       countEl.textContent=fmt(countries.length);
-      if(!countries.length){showEmpty('No visitor location data has been recorded yet.');}
-      else renderMap(countries);
+      if(!countries.length&&!cities.length)showEmpty('No visitor location data has been recorded yet.');
+      else renderMap(countries,cities);
+
       const sorted=countries.slice().sort((a,b)=>(Number(b.visits)||0)-(Number(a.visits)||0));
-      listEl.innerHTML=sorted.slice(0,10).map(c=>'<div class="analytics-country"><div><strong>'+esc(c.country)+'</strong></div><strong>'+fmt(c.visits)+'</strong></div>').join('');
-      updatedEl.textContent='Last updated: '+(data.updated_at?new Date(data.updated_at).toLocaleString():'not available');
+      listEl.innerHTML=sorted.slice(0,10).map(country=>{
+        const places=cities.filter(c=>c.country_code===country.code)
+          .sort((a,b)=>(Number(b.visits)||0)-(Number(a.visits)||0))
+          .slice(0,8)
+          .map(c=>'<div style="font-size:12px;color:var(--ink-soft);margin-top:4px">'+esc(c.city)+', '+esc(c.region)+' · '+fmt(c.visits)+' visits</div>').join('');
+        return '<div class="analytics-country"><div><strong>'+esc(country.country)+'</strong>'+places+'</div><strong>'+fmt(country.visits)+'</strong></div>';
+      }).join('');
+      updatedEl.textContent='Last updated: '+(data.updated_at?new Date(data.updated_at).toLocaleString():'not available')+' · '+fmt(cities.length)+' approximate cities';
     })
-    .catch(()=>{showEmpty('Visitor map is waiting for GoatCounter statistics.');updatedEl.textContent='Analytics setup is pending. The map will populate after the API connection is configured and the first statistics refresh succeeds.';});
+    .catch(()=>{
+      showEmpty('Visitor map is waiting for GoatCounter statistics.');
+      updatedEl.textContent='Analytics setup is pending. The map will populate after the API connection is configured and the first statistics refresh succeeds.';
+    });
+
+  recordApproximateCity();
 })();
 </script>
 </body>
