@@ -21,8 +21,16 @@ In the repository, open **Settings → Secrets and variables → Actions → New
 
 Do not put the API token in `index.html`, a public JSON file, or any client-side JavaScript.
 
-## 4. Run the workflow
+## 4. City-level location enrichment and privacy
 
-Open **Actions → Refresh public website analytics → Run workflow**. The workflow also runs once daily. It writes aggregated counts and country-level totals to `analytics.json`, which the public dashboard reads.
+The site uses IPWho.is from each visitor's browser to estimate the visitor's city, region, country, and approximate coordinates. This sends the visitor's public IP address to IPWho.is for lookup. The site does not request GPS permission and does not collect a street address.
 
-The map places numbered markers at approximate country centroids. GoatCounter reports country-level locations, not precise visitor coordinates. Each marker shows aggregated visits for that country over the reporting period. The all-time counter starts when GoatCounter tracking is activated. Until the API token and repository secrets are configured and the workflow runs successfully, the dashboard intentionally shows no fabricated statistics.
+Only the country code, region name, city name, and latitude/longitude rounded to one decimal place are sent to GoatCounter as a custom event. The raw IP address is not written into the event path or the public `analytics.json` file. One city event is recorded per browser tab session. IP-based city estimates can be wrong, especially for VPNs, mobile networks, and corporate networks. The IPWho.is free endpoint has usage limits; if it is unavailable or rate-limited, ordinary country-level analytics continue to work.
+
+The map and analytics panel disclose that city locations are approximate and identify IPWho.is as the lookup provider.
+
+## 5. Run the workflow
+
+Open **Actions → Refresh public website analytics → Run workflow**. The workflow also runs once daily. It writes aggregated counts, country totals, and city-level event totals to `analytics.json`, which the public dashboard reads. The city event data is retrieved from GoatCounter's statistics API and is limited to the reporting window.
+
+The API token remains in GitHub Actions secrets. Never place it in `index.html`, `analytics.json`, or client-side JavaScript. Until the API token and repository secrets are configured and the workflow runs successfully, the dashboard will not show fabricated statistics.
