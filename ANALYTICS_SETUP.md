@@ -25,4 +25,4 @@ Do not put the API token in `index.html`, a public JSON file, or any client-side
 
 Open **Actions → Refresh public website analytics → Run workflow**. The workflow also runs once daily. It writes aggregated counts and country-level totals to `analytics.json`, which the public dashboard reads.
 
-The country breakdown is approximate and represents the last 30 days. The all-time counter starts when GoatCounter tracking is activated. Until the API token and repository secrets are configured and the workflow runs successfully, the dashboard intentionally shows no fabricated statistics.
+The map places numbered markers at approximate country centroids. GoatCounter reports country-level locations, not precise visitor coordinates. Each marker shows aggregated visits for that country over the reporting period. The all-time counter starts when GoatCounter tracking is activated. Until the API token and repository secrets are configured and the workflow runs successfully, the dashboard intentionally shows no fabricated statistics.
