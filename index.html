@@ -1669,10 +1669,10 @@
 #ambientResearchField .drift-c{animation:ambientDriftC 39s ease-in-out infinite}
 #ambientResearchField .orbit{transform-box:fill-box;transform-origin:center;animation:ambientOrbit 55s linear infinite}
 #ambientResearchField .twinkle{animation:ambientTwinkle 7s ease-in-out infinite alternate}
-@keyframes ambientDriftA{0%,100%{transform:translate(0,0) rotate(-1deg)}50%{transform:translate(10px,-12px) rotate(1.5deg)}}
-@keyframes ambientDriftB{0%,100%{transform:translate(0,0)}50%{transform:translate(-9px,10px)}}
-@keyframes ambientDriftC{0%,100%{transform:translate(0,0) rotate(1deg)}50%{transform:translate(8px,7px) rotate(-1deg)}}
-@keyframes ambientOrbit{to{transform:rotate(360deg)}}
+@keyframes ambientDriftA{0%,100%{translate:0 0;rotate:-1deg}50%{translate:10px -12px;rotate:1.5deg}}
+@keyframes ambientDriftB{0%,100%{translate:0 0}50%{translate:-9px 10px}}
+@keyframes ambientDriftC{0%,100%{translate:0 0;rotate:1deg}50%{translate:8px 7px;rotate:-1deg}}
+@keyframes ambientOrbit{to{rotate:360deg}}
 @keyframes ambientTwinkle{from{opacity:.25}to{opacity:.62}}
 @media(max-width:1250px){#ambientResearchField{display:none}}
 @media(prefers-reduced-motion:reduce){#ambientResearchField .drift-a,#ambientResearchField .drift-b,#ambientResearchField .drift-c,#ambientResearchField .orbit,#ambientResearchField .twinkle{animation:none!important}}
@@ -2367,7 +2367,10 @@
           </svg>
           <figcaption class="visual-caption"><a href="https://www.techscience.com/energy/online/detail/28773" target="_blank" rel="noopener">Read the published article and full methodology.</a></figcaption>
         </figure>
-      </<div class="paper" data-type="journal" data-featured="true"> data-type="journal">
+      </div>
+    </div>
+
+    <div class="paper" data-type="journal" data-featured="true">
       <div class="ptag">Journal</div>
       <div>
         <div class="title"><a href="https://doi.org/10.32604/ee.2026.086249" target="_blank" rel="noopener">Long-Term Transportation Fuel Consumption in Annex I Countries: A Mixed-Method Multi-Sector Analysis (1990–2020)</a></div>
