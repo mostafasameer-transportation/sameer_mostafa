@@ -3335,6 +3335,15 @@
   const toggle=document.getElementById('recommendationToggle');
   if(!gallery||!toggle)return;
   const total=gallery.querySelectorAll('.rec-shot').length;
+  // Randomize the featured recommendations on each page visit.
+  const shots=Array.from(gallery.querySelectorAll('.rec-shot'));
+  for(let i=shots.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [shots[i],shots[j]]=[shots[j],shots[i]];
+  }
+  const fragment=document.createDocumentFragment();
+  shots.forEach(shot=>fragment.appendChild(shot));
+  gallery.appendChild(fragment);
   const compact=window.matchMedia('(max-width:560px)');
   function update(){
     const expanded=gallery.classList.contains('is-expanded');
