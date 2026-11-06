@@ -1,13 +1,33 @@
 {
   "status": "ready",
-  "all_time_pageviews": 1,
-  "last_30_days_visits": 1,
+  "all_time_pageviews": 20,
+  "last_30_days_visits": 20,
   "countries": [
     {
       "code": "US",
       "country": "United States",
-      "visits": 1
+      "visits": 20
     }
   ],
-  "updated_at": "2026-11-04T13:24:34.597Z"
+  "cities": [
+    {
+      "country_code": "US",
+      "country": "United States",
+      "region": "Florida",
+      "city": "Miami",
+      "latitude": 25.8,
+      "longitude": -80.2,
+      "visits": 25
+    },
+    {
+      "country_code": "US",
+      "country": "United States",
+      "region": "Georgia",
+      "city": "Atlanta",
+      "latitude": 33.7,
+      "longitude": -84.4,
+      "visits": 10
+    }
+  ],
+  "updated_at": "2026-11-06T14:15:03.546Z"
 }
