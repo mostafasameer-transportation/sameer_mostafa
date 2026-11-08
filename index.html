@@ -1027,11 +1027,40 @@
 
   /* ---------- LinkedIn recommendation screenshots ---------- */
   .recommendation-gallery{
-    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:14px;align-items:start;
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px;align-items:start;
   }
-  .recommendation-gallery.is-rotating .rec-shot{opacity:.25;transition:opacity .35s ease}
-  @media(prefers-reduced-motion:reduce){.recommendation-gallery.is-rotating .rec-shot{transition:none}}
-  .recommendation-gallery:not(.is-expanded) .rec-shot:nth-child(n+7){display:none}
+  .recommendation-gallery .rec-shot[hidden]{display:none!important}
+  .recommendation-carousel-controls{
+    display:flex;align-items:center;justify-content:space-between;gap:18px;margin:16px 0 12px;padding:10px 4px;
+  }
+  .recommendation-arrow{
+    position:relative;isolation:isolate;display:grid;place-items:center;flex:0 0 auto;width:76px;height:76px;
+    border-radius:50%;border:1.5px solid rgba(125,211,252,.82);color:#9BE7FF;
+    background:radial-gradient(circle,rgba(56,189,248,.18),rgba(8,20,34,.82) 68%);
+    box-shadow:0 0 12px rgba(56,189,248,.38),inset 0 0 16px rgba(56,189,248,.12);
+    cursor:pointer;transition:transform .2s ease,background .2s ease,box-shadow .2s ease;
+    animation:recommendationArrowGlow 2.2s ease-in-out infinite;
+  }
+  .recommendation-arrow::before{
+    content:"";position:absolute;inset:-7px;border-radius:inherit;border:1px solid rgba(125,211,252,.34);
+    animation:recommendationArrowPulse 2.2s ease-out infinite;z-index:-1;
+  }
+  .recommendation-arrow svg{width:42px;height:42px;display:block;filter:drop-shadow(0 0 7px rgba(56,189,248,.9))}
+  .recommendation-arrow:hover{transform:scale(1.09);background:radial-gradient(circle,rgba(56,189,248,.3),rgba(8,20,34,.9) 70%);box-shadow:0 0 24px rgba(56,189,248,.72),inset 0 0 18px rgba(56,189,248,.2)}
+  .recommendation-arrow:focus-visible{outline:3px solid #BAF1FF;outline-offset:7px}
+  .recommendation-arrow:active{transform:scale(.96)}
+  .recommendation-position{flex:1;text-align:center;color:#C8EFFF;font:600 13px/1.5 'Inter',sans-serif;letter-spacing:.04em;text-shadow:0 0 12px rgba(56,189,248,.55)}
+  .recommendation-position strong{display:block;color:#8BE1FF;font-size:15px;letter-spacing:.02em}
+  @keyframes recommendationArrowGlow{
+    0%,100%{opacity:.72;filter:brightness(.9);box-shadow:0 0 9px rgba(56,189,248,.26),inset 0 0 12px rgba(56,189,248,.08)}
+    50%{opacity:1;filter:brightness(1.25);box-shadow:0 0 23px rgba(56,189,248,.68),inset 0 0 20px rgba(56,189,248,.2)}
+  }
+  @keyframes recommendationArrowPulse{
+    0%{transform:scale(.92);opacity:.72}
+    75%,100%{transform:scale(1.24);opacity:0}
+  }
+  @media(prefers-reduced-motion:reduce){.recommendation-arrow,.recommendation-arrow::before{animation:none}}
+
   .rec-shot{
     appearance:none;display:flex;align-items:center;justify-content:center;width:100%;min-width:0;aspect-ratio:1.58;
     border:1px solid rgba(124,183,255,0.20);background:linear-gradient(145deg,rgba(18,29,44,.98),rgba(8,11,17,.98));
@@ -1055,7 +1084,7 @@
   .recommendation-toggle:hover{background:rgba(102,242,222,.15);border-color:var(--pulse);transform:translateY(-1px)}
   .recommendation-toggle:focus-visible{outline:2px solid var(--pulse);outline-offset:3px}
   @media(max-width:980px){.recommendation-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}}
-  @media(max-width:560px){.recommendation-gallery{grid-template-columns:1fr;gap:12px}.rec-shot{aspect-ratio:1.5}.recommendation-archive-bar{align-items:flex-start}.recommendation-toggle{width:100%}}
+  @media(max-width:560px){.recommendation-gallery{grid-template-columns:1fr;gap:12px}.rec-shot{aspect-ratio:1.5}.recommendation-archive-bar{align-items:flex-start}.recommendation-toggle{width:100%}.recommendation-arrow{width:62px;height:62px}.recommendation-arrow svg{width:34px;height:34px}.recommendation-carousel-controls{gap:10px;padding:8px 0}.recommendation-position{font-size:11.5px}}
   .rec-shot:focus-visible{
     outline:2px solid #66f2de;
     outline-offset:3px;
@@ -1311,7 +1340,6 @@
     .metrics-grid .reference-list{grid-template-columns:minmax(0,1fr)}
     .metrics-grid .metric-head{align-items:flex-start}
     .metrics-grid .metric-head .badge{white-space:normal}
-    .recommendation-gallery:not(.is-expanded) .rec-shot:nth-child(n+4){display:none}
     .recommendation-toggle{width:100%}
     .visual-caption{font-size:11px;line-height:1.55;padding:9px 10px}
     .animated-visual{margin-left:0;margin-right:0}
@@ -2388,6 +2416,18 @@ section img,figure img,.photo-mosaic img,.paper figure img{
     <div class="section-head">
       <span class="section-icon section-icon-recommendations" style="--section-icon-color:#0A66C2" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path fill="currentColor" stroke="none" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM3.56 9h3.56v11.45H3.56zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></span>
       <span class="section-num">02A</span><h2>LinkedIn Recommendations</h2>
+    </div>
+    <div class="recommendation-carousel-controls" id="recommendationCarouselControls" aria-label="Browse LinkedIn recommendations">
+      <button class="recommendation-arrow" id="recommendationPrev" type="button" aria-label="Show previous recommendation" title="Previous recommendation">
+        <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M29.5 7.5L13 24l16.5 16.5" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="recommendation-position" id="recommendationPosition" aria-live="polite">
+        <strong>Browse recommendations</strong>
+        Use the arrows to explore every page
+      </div>
+      <button class="recommendation-arrow" id="recommendationNext" type="button" aria-label="Show next recommendation" title="Next recommendation">
+        <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M18.5 7.5L35 24 18.5 40.5" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
     </div>
     <div class="recommendation-gallery" id="recommendationGallery">
       <button class="rec-shot" type="button" data-full="assets/profile-image-03.jpg" aria-label="Open LinkedIn recommendations page 2">
@@ -3906,14 +3946,34 @@ section img,figure img,.photo-mosaic img,.paper figure img{
 (function(){
   const gallery=document.getElementById('recommendationGallery');
   const toggle=document.getElementById('recommendationToggle');
-  if(!gallery||!toggle)return;
-  const total=gallery.querySelectorAll('.rec-shot').length;
-  // Keep the first two recommendation pages fixed. No random shuffle or automatic rotation.
+  const controls=document.getElementById('recommendationCarouselControls');
+  const previous=document.getElementById('recommendationPrev');
+  const next=document.getElementById('recommendationNext');
+  const position=document.getElementById('recommendationPosition');
+  if(!gallery||!toggle||!controls||!previous||!next||!position)return;
+  const shots=Array.from(gallery.querySelectorAll('.rec-shot'));
+  const total=shots.length;
+  let current=0;
   function update(){
     const expanded=gallery.classList.contains('is-expanded');
+    shots.forEach((shot,index)=>{
+      shot.hidden=!expanded && index!==current && index!==(current+1)%total;
+    });
     toggle.setAttribute('aria-expanded',String(expanded));
-    toggle.textContent=expanded?'Show only 2 featured recommendations':'View all '+total+' recommendation pages';
+    toggle.textContent=expanded?'Show recommendation carousel':'View all '+total+' recommendation pages';
+    controls.hidden=expanded;
+    if(!expanded){
+      const first=current+1;
+      const second=(current+1)%total+1;
+      position.innerHTML='<strong>Recommendations '+first+'–'+second+' of '+total+'</strong>Use the arrows to browse all pages';
+    }
   }
+  function move(step){
+    current=(current+step+total)%total;
+    update();
+  }
+  previous.addEventListener('click',()=>move(-1));
+  next.addEventListener('click',()=>move(1));
   toggle.addEventListener('click',function(){
     gallery.classList.toggle('is-expanded');
     update();
