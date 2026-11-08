@@ -4162,8 +4162,22 @@ section img,figure img,.photo-mosaic img,.paper figure img{
     {src:'assets/profile-image-28.jpg',alt:'Gordie Howe International Bridge construction site during Mostafa Sameer’s quality assurance co-op',caption:'Gordie Howe International Bridge · Quality Assurance Field Experience · Detroit 2024'}
   ];
   const caption=document.getElementById('photoCarouselCaption');
+  const indicator=carousel.querySelector('.photo-carousel-indicator');
+  if(indicator){
+    indicator.innerHTML='';
+    photos.forEach((photo,i)=>{
+      const dot=document.createElement('span');
+      dot.className=i===0?'active':'';
+      dot.setAttribute('aria-hidden','true');
+      indicator.appendChild(dot);
+    });
+  }
+  const syncIndicator=(i)=>{
+    if(!indicator)return;
+    indicator.querySelectorAll('span').forEach((dot,n)=>dot.classList.toggle('active',n===i));
+  };
   const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let index=-1,active=stage.querySelector('.photo-slide'),timer=null,paused=false;
+  let index=0,active=stage.querySelector('.photo-slide'),timer=null,paused=false;
   function advance(){
     if(paused||document.hidden)return;
     const nextIndex=(index+1)%photos.length,photo=photos[nextIndex];
@@ -4176,7 +4190,7 @@ section img,figure img,.photo-mosaic img,.paper figure img{
       requestAnimationFrame(()=>requestAnimationFrame(()=>{
         incoming.classList.remove('enter');incoming.classList.add('active');
         if(active){active.classList.remove('active');active.classList.add('exit');const old=active;window.setTimeout(()=>old.remove(),1200);}
-        active=incoming;index=nextIndex;
+        active=incoming;index=nextIndex;syncIndicator(index);
         if(caption)caption.textContent=photo.caption;
       }));
     };
@@ -4619,6 +4633,10 @@ body .rec-quote{font-size:15px!important;line-height:1.65!important}
   .hero-photo img{width:100%!important;height:100%!important;border-radius:50% / 43%!important;object-fit:cover!important;object-position:center 30%!important}
   @media(max-width:760px){.nav-brand-title{font-size:14px}.hero-photo{width:126px!important;height:166px!important;margin:0 auto 2px!important}}
   @media(max-width:380px){.nav-brand-title{font-size:12.5px}}
+
+  .photo-carousel-indicator span{transition:width .2s ease,background .2s ease}
+  .photo-carousel-indicator span.active{width:18px!important;background:#79e6d4!important}
+  .photo-carousel-indicator span:not(.active){width:5px!important}
 </style>
 </body>
 </html>
