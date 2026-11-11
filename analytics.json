@@ -1,12 +1,12 @@
 {
   "status": "ready",
-  "all_time_pageviews": 37,
-  "last_30_days_visits": 37,
+  "all_time_pageviews": 41,
+  "last_30_days_visits": 41,
   "countries": [
     {
       "code": "US",
       "country": "United States",
-      "visits": 37
+      "visits": 41
     }
   ],
   "cities": [
@@ -17,7 +17,7 @@
       "city": "Miami",
       "latitude": 25.8,
       "longitude": -80.2,
-      "visits": 46
+      "visits": 49
     },
     {
       "country_code": "US",
@@ -35,7 +35,16 @@
       "city": "Sunshine Parkway",
       "latitude": 26.5,
       "longitude": -80.2,
-      "visits": 3
+      "visits": 4
+    },
+    {
+      "country_code": "US",
+      "country": "United States",
+      "region": "Virginia",
+      "city": "Plum Creek",
+      "latitude": 37.1,
+      "longitude": -80.5,
+      "visits": 1
     },
     {
       "country_code": "US",
@@ -47,5 +56,5 @@
       "visits": 1
     }
   ],
-  "updated_at": "2026-11-10T14:51:39.655Z"
+  "updated_at": "2026-11-11T14:20:39.914Z"
 }
