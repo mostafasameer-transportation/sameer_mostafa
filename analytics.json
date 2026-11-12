@@ -1,12 +1,12 @@
 {
   "status": "ready",
-  "all_time_pageviews": 41,
-  "last_30_days_visits": 41,
+  "all_time_pageviews": 44,
+  "last_30_days_visits": 44,
   "countries": [
     {
       "code": "US",
       "country": "United States",
-      "visits": 41
+      "visits": 44
     }
   ],
   "cities": [
@@ -17,7 +17,7 @@
       "city": "Miami",
       "latitude": 25.8,
       "longitude": -80.2,
-      "visits": 49
+      "visits": 51
     },
     {
       "country_code": "US",
@@ -56,5 +56,5 @@
       "visits": 1
     }
   ],
-  "updated_at": "2026-11-11T14:20:39.914Z"
+  "updated_at": "2026-11-12T15:51:27.472Z"
 }
