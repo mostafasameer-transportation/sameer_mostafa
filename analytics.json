@@ -1,12 +1,12 @@
 {
   "status": "ready",
-  "all_time_pageviews": 44,
-  "last_30_days_visits": 44,
+  "all_time_pageviews": 45,
+  "last_30_days_visits": 45,
   "countries": [
     {
       "code": "US",
       "country": "United States",
-      "visits": 44
+      "visits": 45
     }
   ],
   "cities": [
@@ -17,7 +17,7 @@
       "city": "Miami",
       "latitude": 25.8,
       "longitude": -80.2,
-      "visits": 51
+      "visits": 52
     },
     {
       "country_code": "US",
@@ -40,6 +40,15 @@
     {
       "country_code": "US",
       "country": "United States",
+      "region": "Florida",
+      "city": "Orlando",
+      "latitude": 28.5,
+      "longitude": -81.4,
+      "visits": 1
+    },
+    {
+      "country_code": "US",
+      "country": "United States",
       "region": "Virginia",
       "city": "Plum Creek",
       "latitude": 37.1,
@@ -56,5 +65,5 @@
       "visits": 1
     }
   ],
-  "updated_at": "2026-11-12T15:51:27.472Z"
+  "updated_at": "2026-11-13T14:32:35.878Z"
 }
