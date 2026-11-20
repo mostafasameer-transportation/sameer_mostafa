@@ -1,12 +1,12 @@
 {
   "status": "ready",
-  "all_time_pageviews": 58,
-  "last_30_days_visits": 58,
+  "all_time_pageviews": 60,
+  "last_30_days_visits": 60,
   "countries": [
     {
       "code": "US",
       "country": "United States",
-      "visits": 58
+      "visits": 60
     }
   ],
   "cities": [
@@ -17,7 +17,7 @@
       "city": "Miami",
       "latitude": 25.8,
       "longitude": -80.2,
-      "visits": 65
+      "visits": 66
     },
     {
       "country_code": "US",
@@ -32,19 +32,19 @@
       "country_code": "US",
       "country": "United States",
       "region": "Florida",
-      "city": "Sunshine Parkway",
-      "latitude": 26.5,
-      "longitude": -80.2,
+      "city": "Orlando",
+      "latitude": 28.5,
+      "longitude": -81.4,
       "visits": 4
     },
     {
       "country_code": "US",
       "country": "United States",
       "region": "Florida",
-      "city": "Orlando",
-      "latitude": 28.5,
-      "longitude": -81.4,
-      "visits": 3
+      "city": "Sunshine Parkway",
+      "latitude": 26.5,
+      "longitude": -80.2,
+      "visits": 4
     },
     {
       "country_code": "US",
@@ -65,5 +65,5 @@
       "visits": 1
     }
   ],
-  "updated_at": "2026-11-19T16:32:24.403Z"
+  "updated_at": "2026-11-20T15:25:00.074Z"
 }
