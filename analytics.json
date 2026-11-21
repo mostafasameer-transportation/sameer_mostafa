@@ -1,12 +1,12 @@
 {
   "status": "ready",
-  "all_time_pageviews": 60,
-  "last_30_days_visits": 60,
+  "all_time_pageviews": 62,
+  "last_30_days_visits": 62,
   "countries": [
     {
       "code": "US",
       "country": "United States",
-      "visits": 60
+      "visits": 62
     }
   ],
   "cities": [
@@ -17,7 +17,7 @@
       "city": "Miami",
       "latitude": 25.8,
       "longitude": -80.2,
-      "visits": 66
+      "visits": 68
     },
     {
       "country_code": "US",
@@ -49,6 +49,15 @@
     {
       "country_code": "US",
       "country": "United States",
+      "region": "Florida",
+      "city": "Cape Coral",
+      "latitude": 26.6,
+      "longitude": -81.9,
+      "visits": 1
+    },
+    {
+      "country_code": "US",
+      "country": "United States",
       "region": "Virginia",
       "city": "Plum Creek",
       "latitude": 37.1,
@@ -65,5 +74,5 @@
       "visits": 1
     }
   ],
-  "updated_at": "2026-11-20T15:25:00.074Z"
+  "updated_at": "2026-11-21T14:38:40.976Z"
 }
