@@ -1,12 +1,12 @@
 {
   "status": "ready",
-  "all_time_pageviews": 69,
-  "last_30_days_visits": 69,
+  "all_time_pageviews": 76,
+  "last_30_days_visits": 76,
   "countries": [
     {
       "code": "US",
       "country": "United States",
-      "visits": 69
+      "visits": 76
     }
   ],
   "cities": [
@@ -17,7 +17,7 @@
       "city": "Miami",
       "latitude": 25.8,
       "longitude": -80.2,
-      "visits": 83
+      "visits": 89
     },
     {
       "country_code": "US",
@@ -45,6 +45,24 @@
       "latitude": 28.5,
       "longitude": -81.4,
       "visits": 4
+    },
+    {
+      "country_code": "US",
+      "country": "United States",
+      "region": "District of Columbia",
+      "city": "Washington",
+      "latitude": 38.9,
+      "longitude": -77,
+      "visits": 1
+    },
+    {
+      "country_code": "US",
+      "country": "United States",
+      "region": "Texas",
+      "city": "San Marcos",
+      "latitude": 29.9,
+      "longitude": -97.9,
+      "visits": 1
     },
     {
       "country_code": "US",
@@ -83,5 +101,5 @@
       "visits": 1
     }
   ],
-  "updated_at": "2026-11-23T18:08:53.662Z"
+  "updated_at": "2026-11-24T17:41:15.832Z"
 }
