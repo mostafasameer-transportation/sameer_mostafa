@@ -1,12 +1,12 @@
 {
   "status": "ready",
-  "all_time_pageviews": 80,
-  "last_30_days_visits": 80,
+  "all_time_pageviews": 84,
+  "last_30_days_visits": 84,
   "countries": [
     {
       "code": "US",
       "country": "United States",
-      "visits": 80
+      "visits": 84
     }
   ],
   "cities": [
@@ -17,7 +17,7 @@
       "city": "Miami",
       "latitude": 25.8,
       "longitude": -80.2,
-      "visits": 95
+      "visits": 97
     },
     {
       "country_code": "US",
@@ -35,7 +35,7 @@
       "city": "Sunshine Parkway",
       "latitude": 26.5,
       "longitude": -80.2,
-      "visits": 8
+      "visits": 10
     },
     {
       "country_code": "US",
@@ -45,6 +45,15 @@
       "latitude": 28.5,
       "longitude": -81.4,
       "visits": 4
+    },
+    {
+      "country_code": "US",
+      "country": "United States",
+      "region": "North Carolina",
+      "city": "Charlotte",
+      "latitude": 35.2,
+      "longitude": -80.8,
+      "visits": 2
     },
     {
       "country_code": "US",
@@ -62,15 +71,6 @@
       "city": "San Marcos",
       "latitude": 29.9,
       "longitude": -97.9,
-      "visits": 1
-    },
-    {
-      "country_code": "US",
-      "country": "United States",
-      "region": "North Carolina",
-      "city": "Charlotte",
-      "latitude": 35.2,
-      "longitude": -80.8,
       "visits": 1
     },
     {
@@ -101,5 +101,5 @@
       "visits": 1
     }
   ],
-  "updated_at": "2026-11-26T16:52:03.933Z"
+  "updated_at": "2026-11-28T15:29:06.191Z"
 }
